@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KAIRO — Product Details</title>
+  <meta name="description" content="KAIRO upcycled glassware product details. Handcrafted from authentic reclaimed liquor bottles.">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+  <style>
+    /* Scoped PDP Styles - Confined strictly to product.html */
+    body.pdp-page {
+      background-color: var(--Red-bg) !important;
+      color: var(--Black);
+      font-family: var(--Font-Secondary), 'Inter', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    
+    .pdp-wrapper {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 13rem 3.4rem 6rem;
+    }
+
+    @media (max-width: 768px) {
+      .pdp-wrapper {
+        padding: 10rem 2rem 4rem;
+      }
+    }
+
+    .pdp-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: start;
+    }
+
+    @media (max-width: 900px) {
+      .pdp-grid {
+        grid-template-columns: 1fr;
+        gap: 4rem;
+      }
+    }
+
+    /* Left Column - Locked Image Placeholder Matching Catalog Proportions */
+    .pdp-visual-card {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      background-color: var(--White-Main);
+      border: 1px solid var(--Red-1);
+      border-radius: 0.6rem;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .pdp-visual-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      aspect-ratio: 1 / 1;
+      display: block;
+    }
+
+    .pdp-fallback-box {
+      text-align: center;
+      padding: 2rem;
+      color: var(--Grey-2);
+      font-family: var(--Font-Mono), monospace;
+    }
+
+    /* Right Column - Written Content & Inherited Typography */
+    .pdp-info-col {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .pdp-title-text {
+      font-family: var(--Font-Primary), 'Syne', sans-serif;
+      font-size: clamp(2.8rem, 3.8vw, 4.4rem);
+      font-weight: 800;
+      text-transform: uppercase;
+      line-height: 1.1;
+      color: var(--Black);
+      margin: 0 0 1.6rem 0;
+    }
+
+    .pdp-price-text {
+      font-family: var(--Font-Mono), monospace;
+      font-size: 2.6rem;
+      font-weight: 700;
+      color: var(--Black);
+      margin-bottom: 1.6rem;
+    }
+
+    .pdp-checkout-group {
+      display: flex;
+      flex-direction: column;
+      gap: 1.6rem;
+      margin-bottom: 3.6rem;
+    }
+
+    .pdp-qty-box {
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid var(--Black);
+      border-radius: 0.4rem;
+      width: fit-content;
+      background: var(--White-Main);
+    }
+
+    .pdp-qty-btn {
+      background: transparent;
+      border: none;
+      width: 4.4rem;
+      height: 4.4rem;
+      font-size: 1.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--Black);
+      font-family: var(--Font-Secondary), 'Inter', sans-serif;
+    }
+
+    .pdp-qty-btn:hover {
+      background: rgba(0, 0, 0, 0.05);
+    }
+
+    .pdp-qty-val {
+      width: 4.4rem;
+      text-align: center;
+      font-size: 1.6rem;
+      font-weight: 600;
+      font-family: var(--Font-Secondary), 'Inter', sans-serif;
+    }
+
+    .pdp-btn-cart {
+      background: var(--Black);
+      color: var(--White-Main);
+      width: 100%;
+      padding: 1.8rem;
+      font-family: var(--Font-Secondary), 'Inter', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      border: none;
+      border-radius: 0.4rem;
+      cursor: pointer;
+      transition: background 0.25s ease, transform 0.15s ease;
+    }
+
+    .pdp-btn-cart:hover {
+      background: var(--Red-Main);
+      transform: translateY(-2px);
+    }
+
+    .pdp-btn-buy {
+      background: var(--Red-Main);
+      color: var(--White-Main);
+      width: 100%;
+      padding: 1.8rem;
+      font-family: var(--Font-Secondary), 'Inter', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      border: none;
+      border-radius: 0.4rem;
+      cursor: pointer;
+      transition: background 0.25s ease, transform 0.15s ease;
+    }
+
+    .pdp-btn-buy:hover {
+      background: #c52924;
+      transform: translateY(-2px);
+    }
+
+    .pdp-disclaimer-box {
+      display: flex;
+      flex-direction: column;
+      gap: 1.6rem;
+      border-top: 1px solid var(--Red-1);
+      padding-top: 2.8rem;
+    }
+
+    .pdp-disclaimer-p {
+      font-family: var(--Font-Secondary), 'Inter', sans-serif;
+      font-size: 1.3rem;
+      line-height: 1.6;
+      color: var(--Grey-2);
+      margin: 0;
+    }
+
+    .pdp-policy-link {
+      font-family: var(--Font-Secondary), 'Inter', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--Black);
+      text-decoration: underline;
+      cursor: pointer;
+      transition: color 0.2s ease;
+    }
+
+    .pdp-policy-link:hover {
+      color: var(--Red-Main);
+    }
+
+    /* Related Products Miniature Single-Row Styles */
+    .pdp-mini-row::-webkit-scrollbar {
+      display: none;
+    }
+    
+    .pdp-mini-card {
+      flex: 0 0 140px;
+      width: 140px;
+      display: flex;
+      flex-direction: column;
+      text-decoration: none !important;
+      color: inherit !important;
+      cursor: pointer;
+      transition: transform 0.25s ease;
+    }
+
+    .pdp-mini-card:hover {
+      transform: translateY(-4px);
+    }
+
+    .pdp-mini-img-wrapper {
+      width: 140px;
+      aspect-ratio: 4 / 5;
+      background-color: var(--White-Main);
+      border: 1px solid var(--Red-1);
+      border-radius: 0.4rem;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+      position: relative;
+    }
+
+    .pdp-mini-img-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .pdp-mini-brand {
+      font-family: var(--Font-Mono), monospace;
+      font-size: 0.95rem;
+      color: var(--Red-Main);
+      text-transform: uppercase;
+      margin-bottom: 0.3rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .pdp-mini-title {
+      font-family: var(--Font-Secondary), 'Inter', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--Black);
+      line-height: 1.25;
+      margin-bottom: 0.4rem;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .pdp-mini-price {
+      font-family: var(--Font-Mono), monospace;
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--Black);
+    }
+  </style>
+</head>
+<body class="pdp-page">
+  <!-- Exact Global Header Component -->
+  <header class="header__inner">
+    <ul class="header__list header__list--left">
+      <li>
+        <button id="menuBtn" hover-link>
+          <span>[ Menu ]</span>
+        </button>
+      </li>
+    </ul>
+
+    <a href="index.html" class="header__logo">
+      <span class="header__logo-text">KAIRO</span>
+    </a>
+
+    <ul class="header__list header__list--right">
+      <li>
+        <button id="searchBtn" hover-link>
+          <span>[ Search ]</span>
+        </button>
+      </li>
+      <li>
+        <button id="cartBtn" hover-link>
+          <span>[ Bag.<span id="cartCount">0</span> ]</span>
+        </button>
+      </li>
+    </ul>
+  </header>
+
+  <!-- Global Navigation Menu Drawer (Side-Sliding Panel) -->
+  <div class="menu-drawer" id="menuDrawer">
+    <div class="menu-drawer__top">
+      <span class="mono-text" style="color:var(--Red-Main);">[ KAIRO STUDIO NAV ]</span>
+      <button class="close-btn" id="closeNavBtn">[ CLOSE X ]</button>
+    </div>
+    <div class="menu-drawer__content">
+      <div class="nav-accordion-item" id="navCatalogAccordion">
+        <div class="nav-accordion-header">
+          <span class="nav-link-main">[ 01 ] CATALOG</span>
+          <span class="nav-accordion-icon">+</span>
+        </div>
+        <div class="nav-accordion-body">
+          <div class="nav-sub-col">
+            <span class="nav-sub-title">[ SHOP BY PRODUCT FORM ]</span>
+            <ul class="nav-sub-list">
+              <li><a href="catalog.html?form=Glasses">The Glasses</a></li>
+              <li><a href="catalog.html?form=Sippers">The Sippers</a></li>
+              <li><a href="catalog.html?form=Trays">The Trays</a></li>
+              <li><a href="catalog.html?form=Containers">The Containers</a></li>
+            </ul>
+          </div>
+          <div class="nav-sub-col">
+            <span class="nav-sub-title">[ SHOP BY BRAND ORIGIN ]</span>
+            <ul class="nav-sub-list">
+              <li><a href="catalog.html?origin=Absolut%20Vodka">Absolut Vodka</a></li>
+              <li><a href="catalog.html?origin=Bombay%20Sapphire">Bombay Sapphire</a></li>
+              <li><a href="catalog.html?origin=Grey%20Goose">Grey Goose</a></li>
+              <li><a href="catalog.html?origin=Old%20Monk">Old Monk</a></li>
+              <li><a href="catalog.html?origin=J%C3%A4germeister">J&auml;germeister</a></li>
+              <li><a href="catalog.html?origin=Jack%20Daniel's">Jack Daniel's</a></li>
+              <li><a href="catalog.html?origin=Tanqueray">Tanqueray</a></li>
+              <li><a href="catalog.html?origin=Black%20Label">Black Label</a></li>
+              <li><a href="catalog.html?origin=Ciroc">Ciroc</a></li>
+              <li><a href="catalog.html?origin=1800%20Tequila">1800 Tequila</a></li>
+              <li><a href="catalog.html?origin=Blue%20Label">Blue Label</a></li>
+              <li><a href="catalog.html?origin=Don%20Julio%201942">Don Julio 1942</a></li>
+              <li><a href="catalog.html?origin=Altius%20GG">Altius GG</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div style="padding: 1.6rem 0; border-bottom: 0.5px solid var(--Red-1);">
+        <a href="byob.html" class="nav-link-main" id="navByobBtn">[ 02 ] BYOB</a>
+      </div>
+      <div style="padding: 1.6rem 0; border-bottom: 0.5px solid var(--Red-1);">
+        <a href="customized.html" class="nav-link-main" id="navCustomizedBtn">[ 03 ] CUSTOMIZED</a>
+      </div>
+      <div style="padding: 1.6rem 0; border-bottom: 0.5px solid var(--Red-1);">
+        <a href="index.html#contact" class="nav-link-main" id="navContactBtn">[ 04 ] CONTACT US</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Global Shopping Bag Cart Drawer (Side-Sliding Panel) -->
+  <div class="menu-drawer" id="cartDrawer" style="z-index: 2100;">
+    <div class="menu-drawer__top">
+      <span class="mono-text" style="color:var(--Red-Main);">[ YOUR SHOPPING BAG ]</span>
+      <button class="close-btn" id="closeCartBtn">[ CLOSE X ]</button>
+    </div>
+    <div class="menu-drawer__content" style="display:flex; flex-direction:column; justify-content:space-between; height:calc(100% - 6rem);">
+      <div id="cartItemList" style="display:flex; flex-direction:column; gap:2rem; overflow-y:auto; padding-right:1rem;">
+        <p class="mono-text" style="color: var(--Grey-2); text-align: center; margin-top: 4rem;">YOUR BAG IS CURRENTLY EMPTY.</p>
+      </div>
+      <div style="border-top:1px solid var(--Red-1); padding-top:2rem; margin-top:2rem;">
+        <div style="display:flex; justify-content:space-between; margin-bottom:2rem; font-size:1.8rem; font-weight:700;">
+          <span>SUBTOTAL:</span>
+          <span id="cartSubtotal">&#8377;0</span>
+        </div>
+        <button class="add-to-cart-btn" style="width:100%; font-size:1.4rem; padding:1.6rem;" onclick="if(typeof window.openCheckoutModal==='function') window.openCheckoutModal();">PROCEED TO CHECKOUT &rarr;</button>
+      </div>
+    </div>
+  </div>
+  <div class="menu-overlay" id="drawerBackdrop"></div>
+
+  <!-- Main PDP Content Section -->
+  <main class="pdp-wrapper">
+    <div class="pdp-grid">
+      <!-- Left Column: Single Visual -->
+      <div class="pdp-visual-card">
+        <img id="cardImage" src="" alt="Product Image" style="display: none;">
+        <div id="cardFallback" class="pdp-fallback-box">
+          <svg style="width: 5rem; height: 5rem; stroke: var(--Red-Main); fill: none;" viewBox="0 0 24 24">
+            <rect x="4" y="4" width="16" height="16" rx="2" stroke-width="1.5"/>
+          </svg>
+          <div style="margin-top: 1rem;">[ 1:1 PRODUCT VISUAL PLACEHOLDER ]</div>
+        </div>
+      </div>
+
+      <!-- Right Column: Written Content, Actions & Detail Accordions -->
+      <div class="pdp-info-col">
+        <h1 class="pdp-title-text" id="cardTitle">PRODUCT NAME</h1>
+        <div class="pdp-price-text" id="cardPrice" style="margin-bottom: 1.6rem;">&#8377; 0</div>
+
+        <!-- Dynamic Product Short Description Block (Positioned below Price, above Cart Actions) -->
+        <p class="pdp-desc-p" id="cardDesc" style="font-family: var(--Font-Secondary), 'Inter', sans-serif; font-size: 1.4rem; line-height: 1.6; color: var(--Grey-2); margin-top: 0; margin-bottom: 1.4rem;">
+          Handcrafted upcycled glassware reclaimed from authentic liquor bottles. Diamond-cut, flame-polished, and bevelled for smooth tactile perfection.
+        </p>
+
+        <!-- Dynamic Straw Disclaimer (Rendered conditionally for Sipper products & combos) -->
+        <p class="pdp-straw-disclaimer" id="strawDisclaimer" style="display: none; font-family: var(--Font-Secondary), 'Inter', sans-serif; font-size: 1.25rem; font-style: italic; color: var(--Grey-2); margin-top: 0; margin-bottom: 2.4rem; padding: 0.8rem 1.2rem; background: rgba(0, 0, 0, 0.03); border-left: 3px solid var(--Red-Main); border-radius: 0.2rem;">
+          The metal straw shown in the image comes with the sippers.
+        </p>
+
+        <!-- Checkout Actions -->
+        <div class="pdp-checkout-group">
+          <div class="pdp-qty-box">
+            <button class="pdp-qty-btn" id="btnMinus">-</button>
+            <span class="pdp-qty-val" id="qtyVal">1</span>
+            <button class="pdp-qty-btn" id="btnPlus">+</button>
+          </div>
+          <button class="pdp-btn-cart" id="btnAddToCart">ADD TO CART</button>
+          <button class="pdp-btn-buy" id="btnBuyNow">BUY IT NOW</button>
+        </div>
+
+        <!-- Hardcoded Disclaimers -->
+        <div class="pdp-disclaimer-box">
+          <p class="pdp-disclaimer-p">
+            Every piece is individually handcrafted from authentic bottles, meaning subtle variations in cut, height, and glass weight may occur from product to product.
+          </p>
+          <p class="pdp-disclaimer-p">
+            Note: Product images are AI-generated visual representations. The actual upcycled piece may differ slightly.
+          </p>
+          <div>
+            <a href="refund-policy.html" class="pdp-policy-link" id="pdpPolicyLink">View our Refund &amp; Return Policy</a>
+          </div>
+        </div>
+
+        <!-- Remaining Detail Accordions (Care Instructions & Shipping & Dispatch) -->
+        <div class="pdp-accordion-list" style="border-top: 1px solid #E0E0E0; margin-top: 2.8rem;">
+          <!-- Care Instructions Accordion -->
+          <div class="pdp-accordion-item" style="border-bottom: 1px solid #E0E0E0;">
+            <button class="pdp-accordion-hdr" style="width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 1.8rem 0; background: none; border: none; font-family: var(--Font-Secondary), 'Inter', sans-serif; font-size: 1.4rem; font-weight: 700; color: var(--Black); cursor: pointer; text-transform: uppercase;">
+              <span>[ + ] CARE INSTRUCTIONS</span>
+              <span class="pdp-acc-icon" style="font-size: 1.6rem; font-weight: 400; font-family: var(--Font-Mono);">+</span>
+            </button>
+            <div class="pdp-accordion-body" style="display: none; padding-bottom: 2rem; font-family: var(--Font-Secondary), 'Inter', sans-serif; font-size: 1.3rem; line-height: 1.6; color: var(--Grey-2);">
+              <p style="margin: 0;">Hand-wash recommended. Avoid abrasive scrubbers and extreme, sudden thermal shocks to preserve the glass integrity.</p>
+            </div>
+          </div>
+
+          <!-- Shipping & Dispatch Accordion -->
+          <div class="pdp-accordion-item" style="border-bottom: 1px solid #E0E0E0;">
+            <button class="pdp-accordion-hdr" style="width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 1.8rem 0; background: none; border: none; font-family: var(--Font-Secondary), 'Inter', sans-serif; font-size: 1.4rem; font-weight: 700; color: var(--Black); cursor: pointer; text-transform: uppercase;">
+              <span>[ + ] SHIPPING &amp; DISPATCH</span>
+              <span class="pdp-acc-icon" style="font-size: 1.6rem; font-weight: 400; font-family: var(--Font-Mono);">+</span>
+            </button>
+            <div class="pdp-accordion-body" style="display: none; padding-bottom: 2rem; font-family: var(--Font-Secondary), 'Inter', sans-serif; font-size: 1.3rem; line-height: 1.6; color: var(--Grey-2);">
+              <p style="margin: 0;">Standard dispatch within 2-4 business days. Packaged in custom shock-resistant materials for safe Pan-India delivery.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Related Products Single-Line Mini Strip (Positioned Directly Above Footer) -->
+  <section class="pdp-related-section" style="max-width: 1280px; margin: 0 auto; padding: 4rem 3.4rem; border-top: 1px solid #E0E0E0;">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2.4rem;">
+      <h3 style="font-family: var(--Font-Primary), 'Syne', sans-serif; font-size: 1.8rem; font-weight: 800; text-transform: uppercase; color: var(--Black); margin: 0;" id="relatedSectionTitle">
+        MORE FROM THIS BRAND
+      </h3>
+      <a href="catalog.html" style="font-family: var(--Font-Mono), monospace; font-size: 1.1rem; color: var(--Red-Main); text-transform: uppercase; text-decoration: none;">[ VIEW ALL CATALOG &rarr; ]</a>
+    </div>
+
+    <!-- Single Horizontal Row Slider with Hidden Scrollbar -->
+    <div class="pdp-mini-row" id="relatedMiniRow" style="display: flex; flex-direction: row; flex-wrap: nowrap; gap: 2rem; overflow-x: auto; -webkit-overflow-scrolling: touch; padding-bottom: 1.2rem; scrollbar-width: none;">
+      <!-- Dynamic Mini Cards Container -->
+    </div>
+  </section>
+
+  <!-- Exact Global Footer Component -->
+  <footer class="footer reveal-section" id="footer">
+    <div class="footer__top">
+      <div class="footer__newsletter">
+        <h3>STAY INFORMED ON NEW DROPS</h3>
+        <p style="color: var(--Grey-2);">Receive exclusive updates on small-batch bottle runs and studio releases.</p>
+        <form class="newsletter-form" onsubmit="const btn=this.querySelector('.newsletter-btn'); const input=this.querySelector('.newsletter-input'); if(btn){btn.textContent='SUBSCRIBED!';} if(input){input.value='';} return false;">
+          <input type="email" class="newsletter-input" placeholder="ENTER YOUR EMAIL..." required>
+          <input type="tel" class="newsletter-input" placeholder="PHONE NUMBER..." required>
+          <button type="submit" class="newsletter-btn">SUBSCRIBE</button>
+        </form>
+      </div>
+
+      <div class="footer__col">
+        <span class="footer__col-title">[ BRAND COLLECTIONS ]</span>
+        <ul class="footer__links">
+          <li><a href="catalog.html?origin=Absolut%20Vodka">Absolut Vodka</a></li>
+          <li><a href="catalog.html?origin=Bombay%20Sapphire">Bombay Sapphire</a></li>
+          <li><a href="catalog.html?origin=Grey%20Goose">Grey Goose</a></li>
+          <li><a href="catalog.html?origin=Old%20Monk%20Face">Old Monk</a></li>
+          <li><a href="catalog.html?origin=J%C3%A4germeister">J&auml;germeister</a></li>
+          <li><a href="catalog.html?origin=Jack%20Daniel's">Jack Daniel's</a></li>
+          <li><a href="catalog.html?origin=Tanqueray">Tanqueray</a></li>
+        </ul>
+      </div>
+
+      <div class="footer__col">
+        <span class="footer__col-title" style="visibility: hidden;">[ MORE BRANDS ]</span>
+        <ul class="footer__links">
+          <li><a href="catalog.html?origin=Black%20Label">Black Label</a></li>
+          <li><a href="catalog.html?origin=Ciroc">Ciroc</a></li>
+          <li><a href="catalog.html?origin=1800%20Tequila">1800 Tequila</a></li>
+          <li><a href="catalog.html?origin=Blue%20Label">Blue Label</a></li>
+          <li><a href="catalog.html?origin=Don%20Julio%201942">Don Julio 1942</a></li>
+          <li><a href="catalog.html?origin=Altius%20GG">Altius GG</a></li>
+        </ul>
+      </div>
+
+      <div class="footer__col">
+        <span class="footer__col-title">[ LEGAL ]</span>
+        <ul class="footer__links">
+          <li><a href="privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="refund-policy.html">Refund &amp; Return Policy</a></li>
+          <li><a href="refund-policy.html#terms">Terms of Service</a></li>
+        </ul>
+      </div>
+
+      <div class="footer__col">
+        <span class="footer__col-title">[ CONTACT ]</span>
+        <ul class="footer__links">
+          <li><a href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=assistance.kairo@gmail.com" target="_blank" rel="noopener noreferrer">assistance.kairo@gmail.com</a></li>
+          <li><a href="https://www.instagram.com/kairo.studio.in?igsh=MXIxYXQ4YWIxc3RhNQ%3D%3D&amp;igsi=MXIxYXQ4YWIxc3RhNQ%3D%3D&amp;utm_source=qr" target="_blank" rel="noopener noreferrer">Instagram (@kairo.studio.in)</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <span>&copy; 2026 KAIRO GLASSWARE. ALL RIGHTS RESERVED.</span>
+      <span>HANDCRAFTED FROM RECLAIMED GLASS &middot; AUTO-SCROLLING CAROUSEL</span>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+  <script>
+    (function() {
+      // 1. Dataset & PDP Population
+      const catalogDataset = {
+        "1": { name: "Absolut Vodka - Sipper Single", price: "799", img: "images/Absolut%20Vodka%20Sipper%20Single.png", desc: "Single Sipper · Upcycled Reclaimed Absolut Glassware", specs: "Height: 14.5cm | Diameter: 7.5cm | Capacity: 350ml | Weight: ~290g" },
+        "2": { name: "Absolut Vodka - Sipper Set of 2", price: "1499", img: "images/Absolut%20Vodka%20Sipper%20Set%20of%202.png", desc: "Dual Sipper Set · Upcycled Reclaimed Absolut Glassware", specs: "Height: 14.5cm | Diameter: 7.5cm | Capacity: 350ml per glass | Weight: ~580g (Pair)" },
+        "3": { name: "Absolut Vodka - Sipper Set of 5", price: "3499", img: "images/Absolut%20Vodka%20Sipper%20Set%20of%205.png", desc: "Quintet Sipper Collection · Upcycled Reclaimed Absolut Glassware", specs: "Height: 14.5cm | Diameter: 7.5cm | Capacity: 350ml per glass | Weight: ~1.45kg (Set)" },
+        "4": { name: "Bombay Sapphire - Glass Set of 2", price: "799", img: "images/Bombay%20Sapphire%20Glass%20Set%20of%202.png", desc: "Sapphire Blue Tumbler Set of 2 · Upcycled Sapphire Glass", specs: "Height: 11cm | Width: 7.2cm | Capacity: 300ml per glass | Weight: ~520g" },
+        "5": { name: "Bombay Sapphire - Glass Set of 4", price: "1499", img: "images/Bombay%20Sapphire%20Glass%20Set%20of%204.png", desc: "Sapphire Blue Tumbler Set of 4 · Upcycled Sapphire Glass", specs: "Height: 11cm | Width: 7.2cm | Capacity: 300ml per glass | Weight: ~1.04kg" },
+        "6": { name: "Bombay Sapphire - Glass Set of 6", price: "1999", img: "images/Bombay%20Sapphire%20Glass%20Set%20of%206.png", desc: "Sapphire Blue Tumbler Set of 6 · Upcycled Sapphire Glass", specs: "Height: 11cm | Width: 7.2cm | Capacity: 300ml per glass | Weight: ~1.56kg" },
+        "7": { name: "Bombay Sapphire - Tray Single", price: "799", img: "images/Bombay%20Sapphire%20Tray%20Single.png", desc: "Hand-Cut Bottle Serving Tray · Sapphire Blue Glass", specs: "Length: 26cm | Width: 8.5cm | Depth: 3.5cm | Weight: ~380g" },
+        "8": { name: "Bombay Sapphire - Tray Set of 2", price: "1499", img: "images/Bombay%20Sapphire%20Tray%20Set%20of%202.png", desc: "Hand-Cut Bottle Serving Tray Pair · Sapphire Blue Glass", specs: "Length: 26cm | Width: 8.5cm | Depth: 3.5cm | Weight: ~760g (Pair)" },
+        "9": { name: "Bombay Sapphire - Tray Single + Glass Set of 4", price: "2199", img: "images/Bombay%20Sapphire%20Tray%20Single%20%2B%20Glass%20Set%20of%202.png", desc: "Combo Set · 1 Bottle Tray + 4 Sapphire Tumblers", specs: "Tray: 26cm x 8.5cm | Glasses: 11cm x 7.2cm (300ml each)" },
+        "10": { name: "Bombay Sapphire - Tray Set of 2 + Glass Set of 6", price: "3299", img: "images/Bombay%20Sapphire%20Tray%20Set%20of%202%20%2B%20Glass%20Set%20of%206.png", desc: "Master Combo Set · 2 Bottle Trays + 6 Sapphire Tumblers", specs: "Trays: 26cm x 8.5cm (x2) | Glasses: 11cm x 7.2cm (x6)" },
+        "11": { name: "Grey Goose - Glass Set of 2", price: "899", img: "images/Grey%20Goose%20Glass%20Set%20of%202.png", desc: "Frosted Highball Tumbler Set of 2 · Reclaimed Grey Goose", specs: "Height: 13.5cm | Diameter: 7.8cm | Capacity: 380ml | Weight: ~620g" },
+        "12": { name: "Grey Goose - Glass Set of 4", price: "1599", img: "images/Grey%20Goose%20Glass%20Set%20of%204.png", desc: "Frosted Highball Tumbler Set of 4 · Reclaimed Grey Goose", specs: "Height: 13.5cm | Diameter: 7.8cm | Capacity: 380ml | Weight: ~1.24kg" },
+        "13": { name: "Grey Goose - Glass Set of 6", price: "2299", img: "images/Grey%20Goose%20Glass%20Set%20of%206.png", desc: "Frosted Highball Tumbler Set of 6 · Reclaimed Grey Goose", specs: "Height: 13.5cm | Diameter: 7.8cm | Capacity: 380ml | Weight: ~1.86kg" },
+        "14": { name: "Old Monk Face - Glass Set of 2", price: "799", img: "images/Old%20Monk%20Glass%20Set%20of%202.png", desc: "Iconic Sculpted Face Glasses Set of 2 · Old Monk Rum", specs: "Height: 10cm | Width: 8cm | Capacity: 280ml | Weight: ~480g" },
+        "15": { name: "Old Monk Face - Glass Set of 4", price: "1499", img: "images/Old%20Monk%20Glass%20Set%20of%204.png", desc: "Iconic Sculpted Face Glasses Set of 4 · Old Monk Rum", specs: "Height: 10cm | Width: 8cm | Capacity: 280ml | Weight: ~960g" },
+        "16": { name: "Old Monk Face - Glass Set of 6", price: "1999", img: "images/Old%20Monk%20Glass%20Set%20of%206.png", desc: "Iconic Sculpted Face Glasses Set of 6 · Old Monk Rum", specs: "Height: 10cm | Width: 8cm | Capacity: 280ml | Weight: ~1.44kg" },
+        "17": { name: "Jägermeister - Sipper Single", price: "899", img: "images/J%C3%A4germeister%20Sipper%20Single.png", desc: "Square Green Sipper Glass with Straw · Reclaimed Jägermeister", specs: "Height: 12cm | Width: 7.5cm x 7.5cm | Capacity: 350ml | Weight: ~340g" },
+        "18": { name: "Jägermeister - Sipper Set of 2", price: "1699", img: "images/J%C3%A4germeister%20Sipper%20Set%20of%202.png", desc: "Square Green Sipper Glasses Set of 2 · Reclaimed Jägermeister", specs: "Height: 12cm | Width: 7.5cm x 7.5cm | Capacity: 350ml (x2) | Weight: ~680g" },
+        "19": { name: "Jägermeister - Tray Single", price: "999", img: "images/J%C3%A4germeister%20Tray%20Single.png", desc: "Hand-Cut Square Bottle Serving Tray · Green Glass", specs: "Length: 24cm | Width: 8cm | Depth: 4cm | Weight: ~420g" },
+        "20": { name: "Jägermeister - Tray Set of 2", price: "1799", img: "images/J%C3%A4germeister%20Tray%20Set%20of%202.png", desc: "Hand-Cut Square Bottle Serving Tray Pair · Green Glass", specs: "Length: 24cm | Width: 8cm | Depth: 4cm | Weight: ~840g" },
+        "21": { name: "Jägermeister - Tray Single + Sipper Single", price: "1699", img: "images/J%C3%A4germeister%20Tray%20Single%20%2B%20Sipper%20Single.png", desc: "Combo Set · 1 Green Bottle Tray + 1 Green Square Sipper", specs: "Tray: 24cm x 8cm | Sipper: 12cm x 7.5cm (350ml)" },
+        "22": { name: "Jägermeister - Tray Set of 2 + Sipper Set of 2", price: "3299", img: "images/J%C3%A4germeister%20Tray%20Set%20of%202%20%2B%20Sipper%20Set%20of%202.png", desc: "Master Combo Set · 2 Green Trays + 2 Green Sippers", specs: "Trays: 24cm x 8cm (x2) | Sippers: 12cm x 7.5cm (x2)" },
+        "23": { name: "Jack Daniel's - Tray Single", price: "999", img: "images/Jack%20Daniel's%20Tray%20Single.png", desc: "Square Amber Bottle Tray · Reclaimed Jack Daniel's", specs: "Length: 25cm | Width: 8cm | Depth: 4cm | Weight: ~410g" },
+        "24": { name: "Jack Daniel's - Tray Set of 2", price: "1799", img: "images/Jack%20Daniel's%20Tray%20Set%20of%202.png", desc: "Square Amber Bottle Tray Pair · Reclaimed Jack Daniel's", specs: "Length: 25cm | Width: 8cm | Depth: 4cm | Weight: ~820g" },
+        "25": { name: "Tanqueray - Container Single", price: "999", img: "images/Tanqueray%20Container%20Single.png", desc: "Green Glass Canister with Wooden Lid · Reclaimed Tanqueray", specs: "Height: 15cm | Diameter: 8.5cm | Capacity: 500ml | Weight: ~450g" },
+        "26": { name: "Tanqueray - Container Set of 3", price: "2699", img: "images/Tanqueray%20Container%20Set%20of%203.png", desc: "Green Glass Canister Trio with Wooden Lids · Reclaimed Tanqueray", specs: "Height: 15cm | Diameter: 8.5cm | Capacity: 500ml (x3) | Weight: ~1.35kg" },
+        "27": { name: "Black Label Gold Label - Glass Set of 2", price: "1299", img: "images/Black%20Label%20Gold%20Label%20Glass%20Set%20of%202.png", desc: "Gold Label Accent Tumblers Set of 2 · Reclaimed Johnnie Walker", specs: "Height: 11cm | Width: 7.5cm | Capacity: 320ml | Weight: ~550g" },
+        "28": { name: "Black Label Gold Label - Glass Set of 4", price: "2499", img: "images/Black%20Label%20Gold%20Label%20Glass%20Set%20of%204.png", desc: "Gold Label Accent Tumblers Set of 4 · Reclaimed Johnnie Walker", specs: "Height: 11cm | Width: 7.5cm | Capacity: 320ml | Weight: ~1.1kg" },
+        "29": { name: "Black Label Gold Label - Glass Set of 6", price: "3699", img: "images/Black%20Label%20Gold%20Label%20Glass%20Set%20of%206.png", desc: "Gold Label Accent Tumblers Set of 6 · Reclaimed Johnnie Walker", specs: "Height: 11cm | Width: 7.5cm | Capacity: 320ml | Weight: ~1.65kg" },
+        "30": { name: "Black Label Gold Label - Tray Single", price: "1199", img: "images/Black%20Label%20Gold%20Label%20Tray%20Single.png", desc: "Gold Label Bottle Serving Tray · Reclaimed Johnnie Walker", specs: "Length: 26cm | Width: 8.2cm | Depth: 3.8cm | Weight: ~430g" },
+        "31": { name: "Black Label Gold Label - Tray Set of 2", price: "1499", img: "images/Black%20label%20Gold%20Label%20Tray%20Set%20of%202.png", desc: "Gold Label Bottle Serving Tray Pair · Reclaimed Johnnie Walker", specs: "Length: 26cm | Width: 8.2cm | Depth: 3.8cm | Weight: ~860g" },
+        "32": { name: "Black Label Gold Label - Tray Single + Glass Set of 4", price: "3499", img: "images/Black%20label%20Gold%20Label%20Tray%20Single%20%2B%20Glass%20Set%20of%204.png", desc: "Gold Label Combo · 1 Tray + 4 Glasses", specs: "Tray: 26cm x 8.2cm | Glasses: 11cm x 7.5cm (320ml x4)" },
+        "33": { name: "Black Label Gold Label - Tray Set of 2 + Glass Set of 6", price: "4999", img: "images/Black%20label%20Gold%20Label%20Tray%20Set%20of%202%20%2B%20Glass%20Set%20of%206.png", desc: "Gold Label Master Set · 2 Trays + 6 Glasses", specs: "Trays: 26cm x 8.2cm (x2) | Glasses: 11cm x 7.5cm (x6)" },
+        "34": { name: "Ciroc - Glass Single", price: "849", img: "images/Ciroc%20Glass%20Single.png", desc: "Ultra-Premium Blue Accent Tumbler · Reclaimed Ciroc Vodka", specs: "Height: 12.5cm | Diameter: 7.6cm | Capacity: 340ml | Weight: ~310g" },
+        "35": { name: "Ciroc - Glass Set of 2", price: "1599", img: "images/Ciroc%20Glass%20Set%20of%202.png", desc: "Ultra-Premium Blue Accent Tumblers Set of 2 · Reclaimed Ciroc", specs: "Height: 12.5cm | Diameter: 7.6cm | Capacity: 340ml (x2) | Weight: ~620g" },
+        "36": { name: "Ciroc - Glass Set of 4", price: "2999", img: "images/Ciroc%20Glass%20Set%20of%204.png", desc: "Ultra-Premium Blue Accent Tumblers Set of 4 · Reclaimed Ciroc", specs: "Height: 12.5cm | Diameter: 7.6cm | Capacity: 340ml (x4) | Weight: ~1.24kg" },
+        "37": { name: "Ciroc - Glass Set of 6", price: "3999", img: "images/Ciroc%20Glass%20Set%20of%206.png", desc: "Ultra-Premium Blue Accent Tumblers Set of 6 · Reclaimed Ciroc", specs: "Height: 12.5cm | Diameter: 7.6cm | Capacity: 340ml (x6) | Weight: ~1.86kg" },
+        "38": { name: "1800 Tequila - Tray Single", price: "999", img: "images/1800%20Tequila%20Tray%20Single.png", desc: "Pyramid-Formed Tequila Bottle Tray · Reclaimed 1800 Tequila", specs: "Length: 25cm | Width: 9cm | Depth: 4.2cm | Weight: ~460g" },
+        "39": { name: "1800 Tequila - Tray Set of 2", price: "1699", img: "images/1800%20Tequila%20Tray%20Set%20of%202.png", desc: "Pyramid-Formed Tequila Bottle Tray Pair · Reclaimed 1800 Tequila", specs: "Length: 25cm | Width: 9cm | Depth: 4.2cm | Weight: ~920g" },
+        "40": { name: "1800 Tequila Cristalino - Tray Single", price: "1499", img: "images/1800%20Tequila%20Cristalino%20Tray%20Single.png", desc: "Cristalino Cut Glass Bottle Tray · Reclaimed 1800 Tequila", specs: "Length: 25cm | Width: 9cm | Depth: 4.2cm | Weight: ~470g" },
+        "41": { name: "1800 Tequila Cristalino - Tray Set of 2", price: "2599", img: "images/1800%20Tequila%20Cristalino%20Tray%20Set%20of%202.png", desc: "Cristalino Cut Glass Bottle Tray Pair · Reclaimed 1800 Tequila", specs: "Length: 25cm | Width: 9cm | Depth: 4.2cm | Weight: ~940g" },
+        "42": { name: "Blue Label - Glass Single", price: "999", img: "images/Blue%20Label%20Glass%20Single.png", desc: "Ultra-Luxury Heavy-Base Tumbler · Reclaimed Blue Label", specs: "Height: 11.5cm | Width: 7.8cm | Capacity: 330ml | Weight: ~360g" },
+        "43": { name: "Blue Label - Glass Set of 2", price: "1799", img: "images/Blue%20Label%20Glass%20Set%20of%202.png", desc: "Ultra-Luxury Heavy-Base Tumblers Set of 2 · Reclaimed Blue Label", specs: "Height: 11.5cm | Width: 7.8cm | Capacity: 330ml (x2) | Weight: ~720g" },
+        "44": { name: "Blue Label - Glass Set of 4", price: "3499", img: "images/Blue%20Label%20Glass%20Set%20of%204.png", desc: "Ultra-Luxury Heavy-Base Tumblers Set of 4 · Reclaimed Blue Label", specs: "Height: 11.5cm | Width: 7.8cm | Capacity: 330ml (x4) | Weight: ~1.44kg" },
+        "45": { name: "Blue Label - Glass Set of 6", price: "4999", img: "images/Blue%20Label%20Glass%20Set%20of%206.png", desc: "Ultra-Luxury Heavy-Base Tumblers Set of 6 · Reclaimed Blue Label", specs: "Height: 11.5cm | Width: 7.8cm | Capacity: 330ml (x6) | Weight: ~2.16kg" },
+        "46": { name: "Blue Label - Tray Single", price: "1499", img: "images/Blue%20Label%20Tray%20Single.png", desc: "Hand-Cut Luxury Bottle Tray · Reclaimed Blue Label", specs: "Length: 27cm | Width: 8.5cm | Depth: 4cm | Weight: ~490g" },
+        "47": { name: "Blue Label - Tray Set of 2", price: "2599", img: "images/Blue%20Label%20Tray%20Set%20of%202.png", desc: "Hand-Cut Luxury Bottle Tray Pair · Reclaimed Blue Label", specs: "Length: 27cm | Width: 8.5cm | Depth: 4cm | Weight: ~980g" },
+        "48": { name: "Blue Label - Tray Single + Glass Set of 4", price: "4499", img: "images/Blue%20Label%20Tray%20Single%20%2B%20Glass%20Set%20of%204.png", desc: "Luxury Combo Set · 1 Blue Label Tray + 4 Heavy Tumblers", specs: "Tray: 27cm x 8.5cm | Glasses: 11.5cm x 7.8cm (330ml x4)" },
+        "49": { name: "Blue Label - Tray Set of 2 + Glass Set of 6", price: "6999", img: "images/Blue%20Label%20Tray%20Set%20of%202%20%2B%20Glass%20Set%20of%206.png", desc: "Presidential Luxury Combo Set · 2 Trays + 6 Heavy Tumblers", specs: "Trays: 27cm x 8.5cm (x2) | Glasses: 11.5cm x 7.8cm (x6)" },
+        "50": { name: "Don Julio 1942 - Glass Single", price: "999", img: "images/Don%20Julio%201942%20Glass%20Single.png", desc: "Tall Tapered Amber Tumbler · Reclaimed Don Julio 1942", specs: "Height: 14cm | Top Diameter: 6.5cm | Capacity: 310ml | Weight: ~330g" },
+        "51": { name: "Don Julio 1942 - Glass Set of 2", price: "1799", img: "images/Don%20Julio%201942%20Glass%20Set%20of%202.png", desc: "Tall Tapered Amber Tumblers Set of 2 · Reclaimed Don Julio 1942", specs: "Height: 14cm | Top Diameter: 6.5cm | Capacity: 310ml (x2) | Weight: ~660g" },
+        "52": { name: "Don Julio 1942 - Glass Set of 4", price: "3499", img: "images/Don%20Julio%201942%20Glass%20Set%20of%204.png", desc: "Tall Tapered Amber Tumblers Set of 4 · Reclaimed Don Julio 1942", specs: "Height: 14cm | Top Diameter: 6.5cm | Capacity: 310ml (x4) | Weight: ~1.32kg" },
+        "53": { name: "Don Julio 1942 - Glass Set of 6", price: "4999", img: "images/Don%20Julio%201942%20Glass%20Set%20of%206.png", desc: "Tall Tapered Amber Tumblers Set of 6 · Reclaimed Don Julio 1942", specs: "Height: 14cm | Top Diameter: 6.5cm | Capacity: 310ml (x6) | Weight: ~1.98kg" },
+        "54": { name: "Altius GG - Glass Single", price: "999", img: "images/Altius%20Grey%20Goose%20Glass%20Single.png", desc: "Glacial Frost Cut Tumbler · Reclaimed Grey Goose Altius", specs: "Height: 13.8cm | Diameter: 7.8cm | Capacity: 370ml | Weight: ~350g" },
+        "55": { name: "Altius GG - Glass Set of 2", price: "1799", img: "images/Altius%20Grey%20Goose%20Glass%20Set%20of%202.png", desc: "Glacial Frost Cut Tumblers Set of 2 · Reclaimed Grey Goose Altius", specs: "Height: 13.8cm | Diameter: 7.8cm | Capacity: 370ml (x2) | Weight: ~700g" },
+        "56": { name: "Altius GG - Glass Set of 4", price: "3499", img: "images/Altius%20Grey%20Goose%20Glass%20Set%20of%204.png", desc: "Glacial Frost Cut Tumblers Set of 4 · Reclaimed Grey Goose Altius", specs: "Height: 13.8cm | Diameter: 7.8cm | Capacity: 370ml (x4) | Weight: ~1.4kg" },
+        "57": { name: "Altius GG - Glass Set of 6", price: "4499", img: "images/Altius%20Grey%20Goose%20Glass%20Set%20of%206.png", desc: "Glacial Frost Cut Tumblers Set of 6 · Reclaimed Grey Goose Altius", specs: "Height: 13.8cm | Diameter: 7.8cm | Capacity: 370ml (x6) | Weight: ~2.1kg" }
+      };
+
+      let activeId = "1";
+      let activeItem = catalogDataset["1"];
+
+      try {
+        const urlParams = new URLSearchParams(window.location.search);
+        activeId = urlParams.get('id') || urlParams.get('product') || '1';
+        activeItem = catalogDataset[String(activeId)] || catalogDataset["1"];
+
+        const titleEl = document.getElementById('cardTitle');
+        const priceEl = document.getElementById('cardPrice');
+        const imgEl = document.getElementById('cardImage');
+        const fallbackEl = document.getElementById('cardFallback');
+        const descEl = document.getElementById('cardDesc');
+
+        if (titleEl && activeItem.name) {
+          titleEl.textContent = activeItem.name;
+        }
+
+        if (priceEl && activeItem.price) {
+          priceEl.innerHTML = '&#8377; ' + activeItem.price;
+        }
+
+        if (imgEl && activeItem.img) {
+          imgEl.src = activeItem.img;
+          imgEl.style.display = 'block';
+          if (fallbackEl) fallbackEl.style.display = 'none';
+        }
+
+        if (descEl) {
+          descEl.textContent = activeItem.desc || (activeItem.name + " — Handcrafted upcycled glassware reclaimed from authentic liquor bottles.");
+        }
+
+        const isSipper = (String(activeItem.name || '') + ' ' + String(activeItem.desc || '') + ' ' + String(activeItem.specs || '')).toLowerCase().includes('sipper');
+        const strawDisclaimerEl = document.getElementById('strawDisclaimer');
+        if (strawDisclaimerEl) {
+          strawDisclaimerEl.style.display = isSipper ? 'block' : 'none';
+        }
+      } catch (err) {
+        console.warn("PDP data load fallback active:", err);
+      }
+
+      // 2. Accordion Toggle Logic
+      document.querySelectorAll('.pdp-accordion-hdr').forEach(function(hdr) {
+        hdr.addEventListener('click', function() {
+          const item = hdr.closest('.pdp-accordion-item');
+          const body = item.querySelector('.pdp-accordion-body');
+          const icon = hdr.querySelector('.pdp-acc-icon');
+          if (body.style.display === 'block') {
+            body.style.display = 'none';
+            icon.textContent = '+';
+          } else {
+            body.style.display = 'block';
+            icon.textContent = '\u2212';
+          }
+        });
+      });
+
+      // 3. Dynamic Related Products Mini Slider
+      const relatedMiniRow = document.getElementById('relatedMiniRow');
+      const relatedSectionTitle = document.getElementById('relatedSectionTitle');
+      
+      if (relatedMiniRow) {
+        const currentBrand = activeItem.name.split('-')[0].trim();
+        if (relatedSectionTitle && currentBrand) {
+          relatedSectionTitle.textContent = "MORE FROM " + currentBrand.toUpperCase();
+        }
+
+        const allItems = Object.keys(catalogDataset).map(idKey => ({ id: idKey, ...catalogDataset[idKey] }));
+        let relatedItems = allItems.filter(item => item.id !== String(activeId) && item.name.toLowerCase().includes(currentBrand.toLowerCase()));
+        
+        if (relatedItems.length < 4) {
+          const fallbackItems = allItems.filter(item => item.id !== String(activeId) && !relatedItems.some(r => r.id === item.id));
+          relatedItems = relatedItems.concat(fallbackItems).slice(0, 5);
+        } else {
+          relatedItems = relatedItems.slice(0, 5);
+        }
+
+        relatedMiniRow.innerHTML = relatedItems.map(item => `
+          <a href="product.html?id=${item.id}" class="pdp-mini-card">
+            <div class="pdp-mini-img-wrapper">
+              <img src="${item.img}" alt="${item.name}" loading="lazy">
+            </div>
+            <span class="pdp-mini-brand">${item.name.split('-')[0].trim().toUpperCase()}</span>
+            <div class="pdp-mini-title">${item.name}</div>
+            <div class="pdp-mini-price">&#8377; ${item.price}</div>
+          </a>
+        `).join('');
+      }
+
+      // 4. Quantity Selector Logic
+      let qty = 1;
+      const btnMinus = document.getElementById('btnMinus');
+      const btnPlus = document.getElementById('btnPlus');
+      const qtyVal = document.getElementById('qtyVal');
+
+      if (btnMinus && btnPlus && qtyVal) {
+        btnMinus.addEventListener('click', function() {
+          if (qty > 1) {
+            qty--;
+            qtyVal.textContent = qty;
+          }
+        });
+        btnPlus.addEventListener('click', function() {
+          qty++;
+          qtyVal.textContent = qty;
+        });
+      }
+
+      // 5. Wire Add to Cart with Global Cart Context
+      const btnAddToCart = document.getElementById('btnAddToCart');
+      if (btnAddToCart) {
+        btnAddToCart.addEventListener('click', function() {
+          if (typeof window.addToCart === 'function') {
+            window.addToCart(activeId, activeItem.name, activeItem.price, qty);
+          }
+        });
+      }
+
+      // 6. Wire Buy It Now Button (Routes directly to Checkout)
+      const btnBuyNow = document.getElementById('btnBuyNow');
+      if (btnBuyNow) {
+        btnBuyNow.addEventListener('click', function() {
+          if (typeof window.addToCart === 'function') {
+            window.addToCart(activeId, activeItem.name, activeItem.price, qty);
+          }
+          if (typeof window.openCheckoutModal === 'function') {
+            window.openCheckoutModal();
+          }
+        });
+      }
+
+      // 7. Wire Refund Policy Link (Allows direct navigation to refund-policy.html)
+      const pdpPolicyLink = document.getElementById('pdpPolicyLink');
+      if (pdpPolicyLink) {
+        pdpPolicyLink.setAttribute('href', 'refund-policy.html');
+      }
+    })();
+  </script>
+</body>
+</html>

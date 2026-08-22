@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+  <title>BYOB: Bring Your Own Bottle &mdash; KAIRO Glassware Studio</title>
+  <meta name="description" content="Send Kairo your own empty bottles. We upcycle them into bespoke drinking glasses, sippers, or trays.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Preloader Screen -->
+  <div class="preloader" id="preloader">
+    <div class="preloader__top">
+      <span>[ EST. 2026 ]</span>
+      <span>[ BYOB SERVICE ]</span>
+    </div>
+    <div class="preloader__center">
+      <h1 class="preloader__title">KAIRO</h1>
+      <div class="preloader__progress-bar">
+        <div class="preloader__progress-fill" id="progressFill"></div>
+      </div>
+    </div>
+    <div class="preloader__top" style="justify-content: center;">
+      <span>YOUR EMPTIES &middot; OUR HANDMADE CRAFT</span>
+    </div>
+  </div>
+
+  <!-- Fixed Navigation Bar -->
+  <header class="header__inner">
+    <ul class="header__list header__list--left">
+      <li>
+        <button id="menuBtn" hover-link>
+          <span>[ Menu ]</span>
+        </button>
+      </li>
+    </ul>
+
+    <a href="index.html" class="header__logo">
+      <span class="header__logo-text">KAIRO</span>
+    </a>
+
+    <ul class="header__list header__list--right">
+      <li>
+        <button id="searchBtn" hover-link>
+          <span>[ Search ]</span>
+        </button>
+      </li>
+      <li>
+        <button id="cartBtn" hover-link>
+          <span>[ Bag.<span id="cartCount">0</span> ]</span>
+        </button>
+      </li>
+    </ul>
+  </header>
+
+  <main style="padding-top: 12rem;">
+    <!-- BYOB Hero Section -->
+    <section class="section-header" style="padding: 4rem 3.4rem 4rem;">
+      <div class="section-title-wrap">
+        <span class="section-subtitle">[ RECLAIMED BESPOKE SERVICE ]</span>
+        <h1 style="font-size: clamp(3.2rem, 6vw, 7rem); text-transform: uppercase; font-weight: 800; line-height: 1.05;">BYOB: BRING YOUR OWN BOTTLE.</h1>
+      </div>
+      <p style="font-size: clamp(1.6rem, 2vw, 2.2rem); color: var(--Grey-2); max-width: 65rem; margin-top: 2rem; line-height: 1.5;">
+        Your empties, our craft. Give us your bottles, select your curated designs, and enjoy the ultimate upcycled products.
+      </p>
+    </section>
+
+    <!-- BYOB 3-Step Process Card Section -->
+    <section style="padding: 0 3.4rem 10rem;">
+      <div class="categories-grid">
+        <div class="categories-card" id="Ship your bottles" data-label="Ship your bottles" style="aspect-ratio: 1 / 1; min-height: auto; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 2.8rem 2.4rem;">
+          <span class="categories-card__count" style="margin-bottom: 1.2rem;">[ STEP 01 ]</span>
+          <h3 class="categories-card__title" style="margin: 0 0 1rem 0;">SHIP YOUR BOTTLES</h3>
+          <p style="font-size: 1.3rem; color: var(--Grey-2); margin: 0; line-height: 1.5;">Send us your saved commemorative wine, liquor, or rare bottles directly to our studio.</p>
+        </div>
+
+        <div class="categories-card" id="Select vessel form" data-label="Select vessel form" style="aspect-ratio: 1 / 1; min-height: auto; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 2.8rem 2.4rem;">
+          <span class="categories-card__count" style="margin-bottom: 1.2rem;">[ STEP 02 ]</span>
+          <h3 class="categories-card__title" style="margin: 0 0 1rem 0;">SELECT VESSEL FORM</h3>
+          <p style="font-size: 1.3rem; color: var(--Grey-2); margin: 0; line-height: 1.5;">Choose your desired cut style: Drinking Glasses (Set of 2 / 4), Fluted Sippers, or Dish Trays.</p>
+        </div>
+
+        <div class="categories-card" id="Handcrafted return" data-label="Handcrafted return" style="aspect-ratio: 1 / 1; min-height: auto; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 2.8rem 2.4rem;">
+          <span class="categories-card__count" style="margin-bottom: 1.2rem;">[ STEP 03 ]</span>
+          <h3 class="categories-card__title" style="margin: 0 0 1rem 0;">HANDCRAFTED RETURN</h3>
+          <p style="font-size: 1.3rem; color: var(--Grey-2); margin: 0; line-height: 1.5;">Our artisans diamond-blade cut, bevel-edge polish, and flame-finish your custom pieces.</p>
+        </div>
+      </div>
+
+      <!-- Action Button -->
+      <div style="margin-top: 6rem; text-align: center;">
+        <button class="primary-btn" id="submitByobBtn" style="padding: 1.6rem 4rem; font-size: 1.4rem;">
+          [ SUBMIT BOTTLE CRAFT REQUEST ]
+        </button>
+      </div>
+    </section>
+  </main>
+
+  <!-- Mandatory Customer Contact Capture Modal Overlay -->
+  <div class="modal-backdrop" id="contactModalOverlay">
+    <div class="modal-card">
+      <div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--Red-1); padding-bottom: 1rem; margin-bottom: 2rem;">
+        <span class="mono-text" style="color: var(--Red-Main); font-weight: 600;">[ MANDATORY CONTACT INFO ]</span>
+        <button type="button" class="close-btn" id="closeContactModalBtn" style="font-size: 1.1rem; padding: 0.4rem 0.8rem;">[ CLOSE X ]</button>
+      </div>
+
+      <h3 style="font-family: var(--Font-Primary), 'Syne', sans-serif; font-size: 2.2rem; font-weight: 800; text-transform: uppercase; color: var(--Black); margin-bottom: 0.6rem;">ENTER CONTACT DETAILS</h3>
+      <p style="font-family: var(--Font-Secondary), 'Inter', sans-serif; font-size: 1.3rem; color: var(--Grey-2); margin-bottom: 2.4rem; line-height: 1.5;">
+        Please provide your details below so our studio team can connect with you regarding your upcycling craft request.
+      </p>
+
+      <form id="modalContactForm">
+        <div class="modal-input-group">
+          <label for="modalCustomerName" class="modal-input-label">FULL NAME *</label>
+          <input type="text" id="modalCustomerName" required class="modal-input" autocomplete="name">
+        </div>
+
+        <div class="modal-input-group">
+          <label for="modalCustomerPhone" class="modal-input-label">WHATSAPP NUMBER *</label>
+          <input type="tel" id="modalCustomerPhone" required class="modal-input" autocomplete="tel">
+        </div>
+
+        <p class="modal-disclaimer">This is for contacting you regarding your request.</p>
+
+        <div style="display: flex; gap: 1.2rem; margin-top: 2rem;">
+          <button type="button" class="secondary-btn" id="cancelContactModalBtn" style="flex: 1; padding: 1.4rem;">[ CANCEL ]</button>
+          <button type="submit" class="primary-btn" id="modalConfirmSubmitBtn" style="flex: 2; padding: 1.4rem;">[ CONFIRM &amp; SEND REQUEST ]</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer" id="footer">
+    <div class="footer__top">
+      <div class="footer__newsletter">
+        <h3>STAY INFORMED ON NEW DROPS</h3>
+        <p style="color: var(--Grey-2);">Receive exclusive updates on small-batch bottle runs and studio releases.</p>
+        <form class="newsletter-form" onsubmit="const btn=this.querySelector('.newsletter-btn'); const input=this.querySelector('.newsletter-input'); if(btn){btn.textContent='SUBSCRIBED!';} if(input){input.value='';} return false;">
+          <input type="email" class="newsletter-input" placeholder="ENTER YOUR EMAIL..." required>
+          <input type="tel" class="newsletter-input" placeholder="PHONE NUMBER..." required>
+          <button type="submit" class="newsletter-btn">SUBSCRIBE</button>
+        </form>
+      </div>
+
+      <div class="footer__col">
+        <span class="footer__col-title">[ BRAND COLLECTIONS ]</span>
+        <ul class="footer__links">
+          <li><a href="catalog.html?origin=Absolut%20Vodka">Absolut Vodka</a></li>
+          <li><a href="catalog.html?origin=Bombay%20Sapphire">Bombay Sapphire</a></li>
+          <li><a href="catalog.html?origin=Grey%20Goose">Grey Goose</a></li>
+          <li><a href="catalog.html?origin=Old%20Monk%20Face">Old Monk</a></li>
+          <li><a href="catalog.html?origin=J%C3%A4germeister">J&auml;germeister</a></li>
+          <li><a href="catalog.html?origin=Jack%20Daniel's">Jack Daniel's</a></li>
+          <li><a href="catalog.html?origin=Tanqueray">Tanqueray</a></li>
+        </ul>
+      </div>
+
+      <div class="footer__col">
+        <span class="footer__col-title" style="visibility: hidden;">[ MORE BRANDS ]</span>
+        <ul class="footer__links">
+          <li><a href="catalog.html?origin=Black%20Label">Black Label</a></li>
+          <li><a href="catalog.html?origin=Ciroc">Ciroc</a></li>
+          <li><a href="catalog.html?origin=1800%20Tequila">1800 Tequila</a></li>
+          <li><a href="catalog.html?origin=Blue%20Label">Blue Label</a></li>
+          <li><a href="catalog.html?origin=Don%20Julio%201942">Don Julio 1942</a></li>
+          <li><a href="catalog.html?origin=Altius%20GG">Altius GG</a></li>
+        </ul>
+      </div>
+
+      <div class="footer__col">
+        <span class="footer__col-title">[ LEGAL ]</span>
+        <ul class="footer__links">
+          <li><a href="privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="refund-policy.html">Refund &amp; Return Policy</a></li>
+          <li><a href="refund-policy.html#terms">Terms of Service</a></li>
+        </ul>
+      </div>
+
+      <div class="footer__col">
+        <span class="footer__col-title">[ CONTACT ]</span>
+        <ul class="footer__links">
+          <li><a href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=assistance.kairo@gmail.com" target="_blank" rel="noopener noreferrer">assistance.kairo@gmail.com</a></li>
+          <li><a href="https://www.instagram.com/kairo.studio.in?igsh=MXIxYXQ4YWIxc3RhNQ%3D%3D&amp;igsi=MXIxYXQ4YWIxc3RhNQ%3D%3D&amp;utm_source=qr" target="_blank" rel="noopener noreferrer">Instagram (@kairo.studio.in)</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <span>&copy; 2026 KAIRO GLASSWARE. ALL RIGHTS RESERVED.</span>
+      <span>HANDCRAFTED FROM RECLAIMED GLASS &middot; AUTO-SCROLLING CAROUSEL</span>
+    </div>
+  </footer>
+
+  <!-- Side-Sliding Navigation Menu Drawer -->
+  <div class="menu-drawer" id="menuDrawer">
+    <div class="menu-drawer__top">
+      <span class="mono-text" style="color:var(--Red-Main);">[ KAIRO STUDIO NAV ]</span>
+      <button class="close-btn" id="closeNavBtn">[ CLOSE X ]</button>
+    </div>
+
+    <div class="menu-drawer__content">
+      <!-- Catalog Accordion Category -->
+      <div class="nav-accordion-item active" id="navCatalogAccordion">
+        <div class="nav-accordion-header">
+          <span class="nav-link-main">[ 01 ] CATALOG</span>
+          <span class="nav-accordion-icon">+</span>
+        </div>
+
+        <div class="nav-accordion-body">
+          <!-- Featured Top Action: SHOP ALL -->
+          <div class="nav-sub-col" style="margin-bottom: 2rem; padding-bottom: 1.6rem; border-bottom: 1px solid #E0E0E0;">
+            <a href="catalog.html" class="nav-shop-all-link">
+              <span>SHOP ALL</span>
+              <span class="nav-shop-all-badge">[ VIEW ALL SKUS &rarr; ]</span>
+            </a>
+          </div>
+
+          <div class="nav-sub-col">
+            <span class="nav-sub-title">[ SHOP BY PRODUCT FORM ]</span>
+            <ul class="nav-sub-list">
+              <li><a href="catalog.html?form=Glasses">The Glasses</a></li>
+              <li><a href="catalog.html?form=Sippers">The Sippers</a></li>
+              <li><a href="catalog.html?form=Trays">The Trays</a></li>
+              <li><a href="catalog.html?form=Containers">The Containers</a></li>
+            </ul>
+          </div>
+
+          <div class="nav-sub-col">
+            <span class="nav-sub-title">[ SHOP BY BRAND ORIGIN ]</span>
+            <ul class="nav-sub-list">
+              <li><a href="catalog.html?origin=Absolut%20Vodka">Absolut Vodka</a></li>
+              <li><a href="catalog.html?origin=Bombay%20Sapphire">Bombay Sapphire</a></li>
+              <li><a href="catalog.html?origin=Grey%20Goose">Grey Goose</a></li>
+              <li><a href="catalog.html?origin=Old%20Monk">Old Monk</a></li>
+              <li><a href="catalog.html?origin=J%C3%A4germeister">J&auml;germeister</a></li>
+              <li><a href="catalog.html?origin=Jack%20Daniel's">Jack Daniel's</a></li>
+              <li><a href="catalog.html?origin=Tanqueray">Tanqueray</a></li>
+              <li><a href="catalog.html?origin=Black%20Label">Black Label</a></li>
+              <li><a href="catalog.html?origin=Ciroc">Ciroc</a></li>
+              <li><a href="catalog.html?origin=1800%20Tequila">1800 Tequila</a></li>
+              <li><a href="catalog.html?origin=Blue%20Label">Blue Label</a></li>
+              <li><a href="catalog.html?origin=Don%20Julio%201942">Don Julio 1942</a></li>
+              <li><a href="catalog.html?origin=Altius%20GG">Altius GG</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 02: BYOB -->
+      <div class="nav-accordion-item">
+        <a href="byob.html" class="nav-link-main" id="navByobBtn">[ 02 ] BYOB</a>
+      </div>
+
+      <!-- Item 03: Customized -->
+      <div class="nav-accordion-item">
+        <a href="customized.html" class="nav-link-main" id="navCustomizedBtn">[ 03 ] CUSTOMIZED</a>
+      </div>
+
+      <!-- Item 04: Contact Us -->
+      <div class="nav-accordion-item">
+        <a href="index.html#footer" class="nav-link-main" id="navContactBtn">[ 04 ] CONTACT US</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="drawer-backdrop" id="drawerBackdrop"></div>
+
+  <div class="drawer" id="cartDrawer">
+    <div class="drawer__header">
+      <h3 class="drawer__title">YOUR SHOPPING BAG</h3>
+      <button class="close-btn" id="closeCartBtn">[ CLOSE X ]</button>
+    </div>
+
+    <div class="cart__items-list" id="cartItemList">
+      <p class="mono-text" style="color: var(--Grey-2); text-align: center; margin-top: 4rem;">YOUR BAG IS CURRENTLY EMPTY.</p>
+    </div>
+
+    <div class="drawer__footer">
+      <div class="cart-total-row">
+        <span>SUBTOTAL</span>
+        <span id="cartSubtotal">&#8377;0</span>
+      </div>
+      <button class="primary-btn" style="width: 100%;" onclick="if(typeof window.openCheckoutModal==='function') window.openCheckoutModal();">
+        [ PROCEED TO CHECKOUT ]
+      </button>
+    </div>
+  </div>
+
+  <div class="search-modal" id="searchModal">
+    <div class="search-modal__top">
+      <span class="mono-text" style="color:var(--Red-Main);">[ SEARCH KAIRO COLLECTION ]</span>
+      <button class="close-btn" id="closeSearchBtn">[ CLOSE X ]</button>
+    </div>
+    <input type="text" class="search-input" id="searchInput" placeholder="TYPE TO SEARCH">
+    <div class="arrivals-grid" id="searchResults" style="margin-top: 4rem; padding: 0;"></div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

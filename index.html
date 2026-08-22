@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+  <title>KAIRO &mdash; Upcycled Glassware Studio</title>
+  <meta name="description" content="Kairo crafts elevated drinking glasses, sippers, and trays from 100% reclaimed bottles. Handcrafted sustainable glass vessels.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Preloader Screen -->
+  <div class="preloader" id="preloader">
+    <div class="preloader__top">
+      <span>[ EST. 2026 ]</span>
+      <span>[ UPCYCLED GLASS STUDIO ]</span>
+    </div>
+    <div class="preloader__center">
+      <h1 class="preloader__title">KAIRO</h1>
+      <div class="preloader__progress-bar">
+        <div class="preloader__progress-fill" id="progressFill"></div>
+      </div>
+    </div>
+    <div class="preloader__top" style="justify-content: center;">
+      <span>RECLAIMED VESSELS &middot; HANDCRAFTED DESIGN</span>
+    </div>
+  </div>
+
+  <!-- Fixed Navigation Bar -->
+  <header class="header__inner">
+    <ul class="header__list header__list--left">
+      <li>
+        <button id="menuBtn" hover-link>
+          <span>[ Menu ]</span>
+        </button>
+      </li>
+    </ul>
+
+    <a href="index.html" class="header__logo">
+      <span class="header__logo-text">KAIRO</span>
+    </a>
+
+    <ul class="header__list header__list--right">
+      <li>
+        <button id="searchBtn" hover-link>
+          <span>[ Search ]</span>
+        </button>
+      </li>
+      <li>
+        <button id="cartBtn" hover-link>
+          <span>[ Bag.<span id="cartCount">0</span> ]</span>
+        </button>
+      </li>
+    </ul>
+  </header>
+
+  <main>
+    <!-- Combined Hero Overlap Wrapper to Restrict Sticky Bounds -->
+    <div class="hero-overlap-wrapper">
+      <!-- SECTION 1: Clean Full-Width 3D Revolving Cylinder Carousel Hero -->
+      <section class="hero-split-section">
+        <!-- Full-Width Pane: Dark Grayscale 3D Revolving Cylinder Carousel -->
+        <div class="hero-split__right">
+          <div class="hero-split__gradient-overlay"></div>
+
+          <div class="cylinder-stage">
+            <div class="cylinder-rotation-ring">
+              <!-- Slot Set 1 -->
+              <div class="cylinder-card">
+                <div class="cylinder-card__inner" style="padding:0; background:#0d0d0d;">
+                  <img src="images/slot_1.jpg" alt="Slot 01 - Reclaimed Bottle Serving Trays" class="cylinder-card__img" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                </div>
+              </div>
+
+              <div class="cylinder-card">
+                <div class="cylinder-card__inner" style="padding:0; background:#0d0d0d;">
+                  <img src="images/slot_2.jpg" alt="Slot 02 - Upcycled Glassware Collection Grid" class="cylinder-card__img" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                </div>
+              </div>
+
+              <div class="cylinder-card">
+                <div class="cylinder-card__inner" style="padding:0; background:#0d0d0d;">
+                  <img src="images/slot_3.jpg" alt="Slot 03 - Absolut Mandrin &amp; J&auml;germeister Glasses" class="cylinder-card__img" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                </div>
+              </div>
+
+              <!-- Duplicate Set 2 for Seamless Gapless Infinite Looping -->
+              <div class="cylinder-card">
+                <div class="cylinder-card__inner" style="padding:0; background:#0d0d0d;">
+                  <img src="images/slot_1.jpg" alt="Slot 01 - Reclaimed Bottle Serving Trays" class="cylinder-card__img" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                </div>
+              </div>
+
+              <div class="cylinder-card">
+                <div class="cylinder-card__inner" style="padding:0; background:#0d0d0d;">
+                  <img src="images/slot_2.jpg" alt="Slot 02 - Upcycled Glassware Collection Grid" class="cylinder-card__img" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                </div>
+              </div>
+
+              <div class="cylinder-card">
+                <div class="cylinder-card__inner" style="padding:0; background:#0d0d0d;">
+                  <img src="images/slot_3.jpg" alt="Slot 03 - Absolut Mandrin &amp; J&auml;germeister Glasses" class="cylinder-card__img" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 2: Moving Horizontal Catalog (Auto-Scrolling Brand Carousel) -->
+      <section class="arrivals-section" id="origins" style="padding-bottom: 6rem;">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <span class="section-subtitle">[ BRAND RECLAIMED COLLECTIONS ]</span>
+            <h2>EXPLORE BRAND CAROUSEL</h2>
+          </div>
+          <a href="catalog.html" class="mono-text" style="color:var(--Red-Main);">[ VIEW ALL 55 SKUS &rarr; ]</a>
+        </div>
+
+        <!-- Horizontal Sliding Track Container -->
+        <div class="carousel-track-container" id="carouselContainer">
+          <div class="carousel-track-move">          <a href="catalog.html?brand=Absolut%20Vodka" class="carousel-card">
+            <div class="carousel-card__img-wrapper">
+              <span class="arrivals-card__badge">SIPPER SINGLE / SETS</span>
+              <span class="arrivals-card__prices">&#8377;799+</span>
+              <img src="images/collections/Absolut%20Vodka%20Sipper%20Set%20of%202.png" alt="ABSOLUT VODKA" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
+            </div>
+            <div class="arrivals-card__info">
+              <span class="arrivals-card__brand">ABSOLUT VODKA</span>
+              <h3 class="arrivals-card__title">Brand Collection</h3>
+              <div class="arrivals-card__meta">
+                <span class="arrivals-card__price-val">&#8377;799+</span>
+                <span>3 SKUs AVAILABLE</span>
+              </div>
+            </div>
+          </a>          <a href="catalog.html?brand=Bombay%20Sapphire" class="carousel-card">
+            <div class="carousel-card__img-wrapper">
+              <span class="arrivals-card__badge">SAPPHIRE GIN</span>
+              <span class="arrivals-card__prices">&#8377;799+</span>
+              <img src="images/collections/Bombay%20Sapphire%20Tray%20Single%20%2B%20Glass%20Set%20of%202.png" alt="BOMBAY SAPPHIRE" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
+            </div>
+            <div class="arrivals-card__info">
+              <span class="arrivals-card__brand">BOMBAY SAPPHIRE</span>
+              <h3 class="arrivals-card__title">Brand Collection</h3>
+              <div class="arrivals-card__meta">
+                <span class="arrivals-card__price-val">&#8377;799+</span>
+                <span>7 SKUs AVAILABLE</span>
+              </div>
+            </div>
+          </a>          <a href="catalog.html?brand=Grey%20Goose" class="carousel-card">
+            <div class="carousel-card__img-wrapper">
+              <span class="arrivals-card__badge">FRENCH VODKA</span>
+              <span class="arrivals-card__prices">&#8377;899+</span>
+              <img src="images/collections/Grey%20Goose%20Glass%20Set%20of%204.png" alt="GREY GOOSE" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
+            </div>
+            <div class="arrivals-card__info">
+              <span class="arrivals-card__brand">GREY GOOSE</span>
+              <h3 class="arrivals-card__title">Brand Collection</h3>
+              <div class="arrivals-card__meta">
+                <span class="arrivals-card__price-val">&#8377;899+</span>
+                <span>3 SKUs AVAILABLE</span>
+              </div>
+            </div>
+          </a>          <a href="catalog.html?brand=Old%20Monk%20Face" class="carousel-card">
+            <div class="carousel-card__img-wrapper">
+              <span class="arrivals-card__badge">EMBOSSED GLASS</span>
+              <span class="arrivals-card__prices">&#8377;799+</span>
+              <img src="images/collections/Old%20Monk%20Glass%20Set%20of%204.png" alt="OLD MONK" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
+            </div>
+            <div class="arrivals-card__info">
+              <span class="arrivals-card__brand">OLD MONK</span>
+              <h3 class="arrivals-card__title">Brand Collection</h3>
+              <div class="arrivals-card__meta">
+                <span class="arrivals-card__price-val">&#8377;799+</span>
+                <span>3 SKUs AVAILABLE</span>
+              </div>
+            </div>
+          </a>          <a href="catalog.html?brand=J%C3%A4germeister" class="carousel-card">
+            <div class="carousel-card__img-wrapper">
+              <span class="arrivals-card__badge">HERBAL LIQUEUR</span>
+              <span class="arrivals-card__prices">&#8377;899+</span>
+              <img src="images/collections/Jagermeister_Collection.png" alt="J&Auml;GERMEISTER" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
+            </div>
+            <div class="arrivals-card__info">
+              <span class="arrivals-card__brand">J&Auml;GERMEISTER</span>
+              <h3 class="arrivals-card__title">Brand Collection</h3>
+              <div class="arrivals-card__meta">
+                <span class="arrivals-card__price-val">&#8377;899+</span>
+                <span>6 SKUs AVAILABLE</span>
+              </div>
+            </div>
+          </a>          <a href="catalog.html?brand=Jack%20Daniel's" class="carousel-card">
+            <div class="carousel-card__img-wrapper">
+              <span class="arrivals-card__badge">TENNESSEE WHISKEY</span>
+              <span class="arrivals-card__prices">&#8377;999+</span>
+              <img src="images/collections/Jack%20Daniel's%20Tray%20Single.png" alt="JACK DANIEL'S" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
+            </div>
+            <div class="arrivals-card__info">
+              <span class="arrivals-card__brand">JACK DANIEL'S</span>
+              <h3 class="arrivals-card__title">Brand Collection</h3>
+              <div class="arrivals-card__meta">
+                <span class="arrivals-card__price-val">&#8377;999+</span>
+                <span>2 SKUs AVAILABLE</span>
+              </div>
+            </div>
+          </a>          <a href="catalog.html?brand=Black%20Label" class="carousel-card">
+            <div class="carousel-card__img-wrapper">
+              <span class="arrivals-card__badge">SMOKED SCOTCH</span>
+              <span class="arrivals-card__prices">&#8377;1199+</span>
+              <img src="images/collections/Black%20label%20Gold%20Label%20Tray%20Single%20%2B%20Glass%20Set%20of%204.png" alt="BLACK LABEL" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
+            </div>
+            <div class="arrivals-card__info">
+              <span class="arrivals-card__brand">BLACK LABEL</span>
+              <h3 class="arrivals-card__title">Brand Collection</h3>
+              <div class="arrivals-card__meta">
+                <span class="arrivals-card__price-val">&#8377;1199+</span>
+                <span>7 SKUs AVAILABLE</span>
+              </div>
+            </div>
+          </a>          <a href="catalog.html?brand=Blue%20Label" class="carousel-card">
+            <div class="carousel-card__img-wrapper">
+              <span class="arrivals-card__badge">RARE BLENDED</span>
+              <span class="arrivals-card__prices">&#8377;999+</span>
+              <img src="images/collections/Blue%20Label%20Tray%20Single%20%2B%20Glass%20Set%20of%204.png" alt="BLUE LABEL" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
+            </div>
+            <div class="arrivals-card__info">
+              <span class="arrivals-card__brand">BLUE LABEL</span>
+              <h3 class="arrivals-card__title">Brand Collection</h3>
+              <div class="arrivals-card__meta">
+                <span class="arrivals-card__price-val">&#8377;999+</span>
+                <span>8 SKUs AVAILABLE</span>
+              </div>
+            </div>
+          </a>          <a href="catalog.html?brand=1800%20Tequila" class="carousel-card">
+            <div class="carousel-card__img-wrapper">
+              <span class="arrivals-card__badge">AGAVE TEQUILA</span>
+              <span class="arrivals-card__prices">&#8377;999+</span>
+              <img src="images/collections/1800%20Tequila%20Tray%20Single.png" alt="1800 TEQUILA" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
+            </div>
+            <div class="arrivals-card__info">
+              <span class="arrivals-card__brand">1800 TEQUILA</span>
+              <h3 class="arrivals-card__title">Brand Collection</h3>
+              <div class="arrivals-card__meta">
+                <span class="arrivals-card__price-val">&#8377;999+</span>
+                <span>4 SKUs AVAILABLE</span>
+              </div>
+            </div>
+          </a>          <a href="catalog.html?brand=Don%20Julio%201942" class="carousel-card">
+            <div class="carousel-card__img-wrapper">
+              <span class="arrivals-card__badge">A&Ntilde;EJO TEQUILA</span>
+              <span class="arrivals-card__prices">&#8377;999+</span>
+              <img src="images/collections/Don%20Julio%201942%20Glass%20Set%20of%202.png" alt="DON JULIO 1942" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
+            </div>
+            <div class="arrivals-card__info">
+              <span class="arrivals-card__brand">DON JULIO 1942</span>
+              <h3 class="arrivals-card__title">Brand Collection</h3>
+              <div class="arrivals-card__meta">
+                <span class="arrivals-card__price-val">&#8377;999+</span>
+                <span>4 SKUs AVAILABLE</span>
+              </div>
+            </div>
+          </a>          <a href="catalog.html?brand=Tanqueray" class="carousel-card">
+            <div class="carousel-card__img-wrapper">
+              <span class="arrivals-card__badge">LONDON DRY GIN</span>
+              <span class="arrivals-card__prices">&#8377;999+</span>
+              <img src="images/collections/Tanqueray%20Container%20Single.png" alt="TANQUERAY" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
+            </div>
+            <div class="arrivals-card__info">
+              <span class="arrivals-card__brand">TANQUERAY</span>
+              <h3 class="arrivals-card__title">Brand Collection</h3>
+              <div class="arrivals-card__meta">
+                <span class="arrivals-card__price-val">&#8377;999+</span>
+                <span>2 SKUs AVAILABLE</span>
+              </div>
+            </div>
+          </a>          <a href="catalog.html?brand=Ciroc" class="carousel-card">
+            <div class="carousel-card__img-wrapper">
+              <span class="arrivals-card__badge">VODKA TUMBLERS</span>
+              <span class="arrivals-card__prices">&#8377;849+</span>
+              <img src="images/collections/Ciroc%20Glass%20Single.png" alt="CIROC" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
+            </div>
+            <div class="arrivals-card__info">
+              <span class="arrivals-card__brand">CIROC</span>
+              <h3 class="arrivals-card__title">Brand Collection</h3>
+              <div class="arrivals-card__meta">
+                <span class="arrivals-card__price-val">&#8377;849+</span>
+                <span>4 SKUs AVAILABLE</span>
+              </div>
+            </div>
+          </a>          <a href="catalog.html?brand=Altius%20GG" class="carousel-card">
+            <div class="carousel-card__img-wrapper">
+              <span class="arrivals-card__badge">CRYSTAL HIGHBALLS</span>
+              <span class="arrivals-card__prices">&#8377;999+</span>
+              <img src="images/collections/Altius%20Grey%20Goose%20Glass%20Single.png" alt="ALTIUS GG" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
+            </div>
+            <div class="arrivals-card__info">
+              <span class="arrivals-card__brand">ALTIUS GG</span>
+              <h3 class="arrivals-card__title">Brand Collection</h3>
+              <div class="arrivals-card__meta">
+                <span class="arrivals-card__price-val">&#8377;999+</span>
+                <span>4 SKUs AVAILABLE</span>
+              </div>
+            </div>
+          </a>          <a href="catalog.html?brand=Absolut%20Vodka" class="carousel-card">
+            <div class="carousel-card__img-wrapper">
+              <span class="arrivals-card__badge">SIPPER SINGLE / SETS</span>
+              <span class="arrivals-card__prices">&#8377;799+</span>
+              <img src="images/collections/Absolut%20Vodka%20Sipper%20Set%20of%202.png" alt="ABSOLUT VODKA" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
+            </div>
+            <div class="arrivals-card__info">
+              <span class="arrivals-card__brand">ABSOLUT VODKA</span>
+              <h3 class="arrivals-card__title">Brand Collection</h3>
+              <div class="arrivals-card__meta">
+                <span class="arrivals-card__price-val">&#8377;799+</span>
+                <span>3 SKUs AVAILABLE</span>
+              </div>
+            </div>
+          </a>          <a href="catalog.html?brand=Bombay%20Sapphire" class="carousel-card">
+            <div class="carousel-card__img-wrapper">
+              <span class="arrivals-card__badge">SAPPHIRE GIN</span>
+              <span class="arrivals-card__prices">&#8377;799+</span>
+              <img src="images/collections/Bombay%20Sapphire%20Tray%20Single%20%2B%20Glass%20Set%20of%202.png" alt="BOMBAY SAPPHIRE" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
+            </div>
+            <div class="arrivals-card__info">
+              <span class="arrivals-card__brand">BOMBAY SAPPHIRE</span>
+              <h3 class="arrivals-card__title">Brand Collection</h3>
+              <div class="arrivals-card__meta">
+                <span class="arrivals-card__price-val">&#8377;799+</span>
+                <span>7 SKUs AVAILABLE</span>
+              </div>
+            </div>
+          </a>          <a href="catalog.html?brand=Grey%20Goose" class="carousel-card">
+            <div class="carousel-card__img-wrapper">
+              <span class="arrivals-card__badge">FRENCH VODKA</span>
+              <span class="arrivals-card__prices">&#8377;899+</span>
+              <img src="images/collections/Grey%20Goose%20Glass%20Set%20of%204.png" alt="GREY GOOSE" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
+            </div>
+            <div class="arrivals-card__info">
+              <span class="arrivals-card__brand">GREY GOOSE</span>
+              <h3 class="arrivals-card__title">Brand Collection</h3>
+              <div class="arrivals-card__meta">
+                <span class="arrivals-card__price-val">&#8377;899+</span>
+                <span>3 SKUs AVAILABLE</span>
+              </div>
+            </div>
+          </a>          <a href="catalog.html?brand=Old%20Monk%20Face" class="carousel-card">
+            <div class="carousel-card__img-wrapper">
+              <span class="arrivals-card__badge">EMBOSSED GLASS</span>
+              <span class="arrivals-card__prices">&#8377;799+</span>
+              <img src="images/collections/Old%20Monk%20Glass%20Set%20of%204.png" alt="OLD MONK" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
+            </div>
+            <div class="arrivals-card__info">
+              <span class="arrivals-card__brand">OLD MONK</span>
+              <h3 class="arrivals-card__title">Brand Collection</h3>
+              <div class="arrivals-card__meta">
+                <span class="arrivals-card__price-val">&#8377;799+</span>
+                <span>3 SKUs AVAILABLE</span>
+              </div>
+            </div>
+          </a>          <a href="catalog.html?brand=J%C3%A4germeister" class="carousel-card">
+            <div class="carousel-card__img-wrapper">
+              <span class="arrivals-card__badge">HERBAL LIQUEUR</span>
+              <span class="arrivals-card__prices">&#8377;899+</span>
+              <img src="images/collections/Jagermeister_Collection.png" alt="J&Auml;GERMEISTER" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
+            </div>
+            <div class="arrivals-card__info">
+              <span class="arrivals-card__brand">J&Auml;GERMEISTER</span>
+              <h3 class="arrivals-card__title">Brand Collection</h3>
+              <div class="arrivals-card__meta">
+                <span class="arrivals-card__price-val">&#8377;899+</span>
+                <span>6 SKUs AVAILABLE</span>
+              </div>
+            </div>
+          </a>          <a href="catalog.html?brand=Jack%20Daniel's" class="carousel-card">
+            <div class="carousel-card__img-wrapper">
+              <span class="arrivals-card__badge">TENNESSEE WHISKEY</span>
+              <span class="arrivals-card__prices">&#8377;999+</span>
+              <img src="images/collections/Jack%20Daniel's%20Tray%20Single.png" alt="JACK DANIEL'S" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
+            </div>
+            <div class="arrivals-card__info">
+              <span class="arrivals-card__brand">JACK DANIEL'S</span>
+              <h3 class="arrivals-card__title">Brand Collection</h3>
+              <div class="arrivals-card__meta">
+                <span class="arrivals-card__price-val">&#8377;999+</span>
+                <span>2 SKUs AVAILABLE</span>
+              </div>
+            </div>
+          </a>          <a href="catalog.html?brand=Black%20Label" class="carousel-card">
+            <div class="carousel-card__img-wrapper">
+              <span class="arrivals-card__badge">SMOKED SCOTCH</span>
+              <span class="arrivals-card__prices">&#8377;1199+</span>
+              <img src="images/collections/Black%20label%20Gold%20Label%20Tray%20Single%20%2B%20Glass%20Set%20of%204.png" alt="BLACK LABEL" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
+            </div>
+            <div class="arrivals-card__info">
+              <span class="arrivals-card__brand">BLACK LABEL</span>
+              <h3 class="arrivals-card__title">Brand Collection</h3>
+              <div class="arrivals-card__meta">
+                <span class="arrivals-card__price-val">&#8377;1199+</span>
+                <span>7 SKUs AVAILABLE</span>
+              </div>
+            </div>
+          </a>          <a href="catalog.html?brand=Blue%20Label" class="carousel-card">
+            <div class="carousel-card__img-wrapper">
+              <span class="arrivals-card__badge">RARE BLENDED</span>
+              <span class="arrivals-card__prices">&#8377;999+</span>
+              <img src="images/collections/Blue%20Label%20Tray%20Single%20%2B%20Glass%20Set%20of%204.png" alt="BLUE LABEL" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
+            </div>
+            <div class="arrivals-card__info">
+              <span class="arrivals-card__brand">BLUE LABEL</span>
+              <h3 class="arrivals-card__title">Brand Collection</h3>
+              <div class="arrivals-card__meta">
+                <span class="arrivals-card__price-val">&#8377;999+</span>
+                <span>8 SKUs AVAILABLE</span>
+              </div>
+            </div>
+          </a>          <a href="catalog.html?brand=1800%20Tequila" class="carousel-card">
+            <div class="carousel-card__img-wrapper">
+              <span class="arrivals-card__badge">AGAVE TEQUILA</span>
+              <span class="arrivals-card__prices">&#8377;999+</span>
+              <img src="images/collections/1800%20Tequila%20Tray%20Single.png" alt="1800 TEQUILA" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
+            </div>
+            <div class="arrivals-card__info">
+              <span class="arrivals-card__brand">1800 TEQUILA</span>
+              <h3 class="arrivals-card__title">Brand Collection</h3>
+              <div class="arrivals-card__meta">
+                <span class="arrivals-card__price-val">&#8377;999+</span>
+                <span>4 SKUs AVAILABLE</span>
+              </div>
+            </div>
+          </a>          <a href="catalog.html?brand=Don%20Julio%201942" class="carousel-card">
+            <div class="carousel-card__img-wrapper">
+              <span class="arrivals-card__badge">A&Ntilde;EJO TEQUILA</span>
+              <span class="arrivals-card__prices">&#8377;999+</span>
+              <img src="images/collections/Don%20Julio%201942%20Glass%20Set%20of%202.png" alt="DON JULIO 1942" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
+            </div>
+            <div class="arrivals-card__info">
+              <span class="arrivals-card__brand">DON JULIO 1942</span>
+              <h3 class="arrivals-card__title">Brand Collection</h3>
+              <div class="arrivals-card__meta">
+                <span class="arrivals-card__price-val">&#8377;999+</span>
+                <span>4 SKUs AVAILABLE</span>
+              </div>
+            </div>
+          </a>          <a href="catalog.html?brand=Tanqueray" class="carousel-card">
+            <div class="carousel-card__img-wrapper">
+              <span class="arrivals-card__badge">LONDON DRY GIN</span>
+              <span class="arrivals-card__prices">&#8377;999+</span>
+              <img src="images/collections/Tanqueray%20Container%20Single.png" alt="TANQUERAY" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
+            </div>
+            <div class="arrivals-card__info">
+              <span class="arrivals-card__brand">TANQUERAY</span>
+              <h3 class="arrivals-card__title">Brand Collection</h3>
+              <div class="arrivals-card__meta">
+                <span class="arrivals-card__price-val">&#8377;999+</span>
+                <span>2 SKUs AVAILABLE</span>
+              </div>
+            </div>
+          </a>          <a href="catalog.html?brand=Ciroc" class="carousel-card">
+            <div class="carousel-card__img-wrapper">
+              <span class="arrivals-card__badge">VODKA TUMBLERS</span>
+              <span class="arrivals-card__prices">&#8377;849+</span>
+              <img src="images/collections/Ciroc%20Glass%20Single.png" alt="CIROC" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
+            </div>
+            <div class="arrivals-card__info">
+              <span class="arrivals-card__brand">CIROC</span>
+              <h3 class="arrivals-card__title">Brand Collection</h3>
+              <div class="arrivals-card__meta">
+                <span class="arrivals-card__price-val">&#8377;849+</span>
+                <span>4 SKUs AVAILABLE</span>
+              </div>
+            </div>
+          </a>          <a href="catalog.html?brand=Altius%20GG" class="carousel-card">
+            <div class="carousel-card__img-wrapper">
+              <span class="arrivals-card__badge">CRYSTAL HIGHBALLS</span>
+              <span class="arrivals-card__prices">&#8377;999+</span>
+              <img src="images/collections/Altius%20Grey%20Goose%20Glass%20Single.png" alt="ALTIUS GG" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
+            </div>
+            <div class="arrivals-card__info">
+              <span class="arrivals-card__brand">ALTIUS GG</span>
+              <h3 class="arrivals-card__title">Brand Collection</h3>
+              <div class="arrivals-card__meta">
+                <span class="arrivals-card__price-val">&#8377;999+</span>
+                <span>4 SKUs AVAILABLE</span>
+              </div>
+            </div>
+          </a>          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- SECTION 3: Infinite Horizontal Text Marquee Ticker -->
+    <section class="ticker-section reveal-section">
+      <div class="ticker-wrap">
+        <div class="ticker-move">
+          <div class="ticker-item">ABSOLUT VODKA - BOMBAY SAPPHIRE - GREY GOOSE - TANQUERAY - J&Auml;GERMEISTER - JACK DANIEL'S - JOHNNIE WALKER - 1800 TEQUILA - DON JULIO 1942 - CIROC - OLD MONK -</div>
+          <div class="ticker-item">ABSOLUT VODKA - BOMBAY SAPPHIRE - GREY GOOSE - TANQUERAY - J&Auml;GERMEISTER - JACK DANIEL'S - JOHNNIE WALKER - 1800 TEQUILA - DON JULIO 1942 - CIROC - OLD MONK -</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: Vessel Form Categories Grid -->
+    <section class="categories-section reveal-section" id="categories">
+      <div class="section-header">
+        <div class="section-title-wrap">
+          <span class="section-subtitle">[ EXPLORE ARCHITECTURE ]</span>
+          <h2>VESSEL FORM CATEGORIES</h2>
+        </div>
+      </div>
+
+      <div class="categories-grid">
+        <!-- Category 1 -->
+        <a href="catalog.html?form=Glasses" class="categories-card">
+          <span class="categories-card__count">[ 01 / 32 PRODUCTS ]</span>
+          <div style="width: 100%; height: 22rem; margin: 1.6rem 0; overflow: hidden; border-radius: 0.4rem; position: relative; background: var(--Placeholder-Bg-1);">
+            <img src="images/categories/Glasses%20Collection%20.jpeg?v=3" alt="DRINKING GLASSES" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
+          </div>
+          <div>
+            <h3 class="categories-card__title">DRINKING GLASSES</h3>
+            <span class="placeholder-badge" style="margin-top:1rem; display:inline-block;">[ EXPLORE FORM ]</span>
+          </div>
+        </a>
+
+        <!-- Category 2 -->
+        <a href="catalog.html?form=Sippers" class="categories-card">
+          <span class="categories-card__count">[ 02 / 07 PRODUCTS ]</span>
+          <div style="width: 100%; height: 22rem; margin: 1.6rem 0; overflow: hidden; border-radius: 0.4rem; position: relative; background: var(--Placeholder-Bg-1);">
+            <img src="images/categories/Sipper%20Collection.jpeg?v=3" alt="GLASS SIPPERS" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
+          </div>
+          <div>
+            <h3 class="categories-card__title">GLASS SIPPERS</h3>
+            <span class="placeholder-badge" style="margin-top:1rem; display:inline-block;">[ EXPLORE FORM ]</span>
+          </div>
+        </a>
+
+        <!-- Category 3 -->
+        <a href="catalog.html?form=Trays" class="categories-card">
+          <span class="categories-card__count">[ 03 / 16 PRODUCTS ]</span>
+          <div style="width: 100%; height: 22rem; margin: 1.6rem 0; overflow: hidden; border-radius: 0.4rem; position: relative; background: var(--Placeholder-Bg-1);">
+            <img src="images/categories/Tray%20Collection.jpeg?v=3" alt="ARTISANAL TRAYS &amp; COMBOS" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
+          </div>
+          <div>
+            <h3 class="categories-card__title">ARTISANAL TRAYS &amp; COMBOS</h3>
+            <span class="placeholder-badge" style="margin-top:1rem; display:inline-block;">[ EXPLORE FORM ]</span>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- SECTION 5: BYOB & Customized 50/50 Split-Screen Section with Bold Red Zig-Zag Line Divider -->
+    <section class="byob-customized-section reveal-section" id="byobCustomized">
+      <!-- Vertical Bold Red Even Zig-Zag Line (Desktop) -->
+      <div class="zigzag-divider vertical-zigzag">
+        <svg viewBox="0 0 24 1000" preserveAspectRatio="none" style="width: 100%; height: 100%;">
+          <path d="M12,0 L2,20 L22,40 L2,60 L22,80 L2,100 L22,120 L2,140 L22,160 L2,180 L22,200 L2,220 L22,240 L2,260 L22,280 L2,300 L22,320 L2,340 L22,360 L2,380 L22,400 L2,420 L22,440 L2,460 L22,480 L2,500 L22,520 L2,540 L22,560 L2,580 L22,600 L2,620 L22,640 L2,660 L22,680 L2,700 L22,720 L2,740 L22,760 L2,780 L22,800 L2,820 L22,840 L2,860 L22,880 L2,900 L22,920 L2,940 L22,960 L2,980 L12,1000" stroke="#ed3833" stroke-width="6" fill="none" vector-effect="non-scaling-stroke" stroke-linejoin="round" stroke-linecap="round" />
+        </svg>
+      </div>
+
+      <!-- Horizontal Bold Red Even Zig-Zag Line (Mobile) -->
+      <div class="zigzag-divider horizontal-zigzag">
+        <svg viewBox="0 0 1000 24" preserveAspectRatio="none" style="width: 100%; height: 100%;">
+          <path d="M0,12 L20,2 L40,22 L60,2 L80,22 L100,2 L120,22 L140,2 L160,22 L180,2 L200,22 L220,2 L240,22 L260,2 L280,22 L300,2 L320,22 L340,2 L360,22 L380,2 L400,22 L420,2 L440,22 L460,2 L480,22 L500,2 L520,22 L540,2 L560,22 L580,2 L600,22 L620,2 L640,22 L660,2 L680,22 L700,2 L720,22 L740,2 L760,22 L780,2 L800,22 L820,2 L840,22 L860,2 L880,22 L900,2 L920,22 L940,2 L960,22 L980,2 L1000,12" stroke="#ed3833" stroke-width="6" fill="none" vector-effect="non-scaling-stroke" stroke-linejoin="round" stroke-linecap="round" />
+        </svg>
+      </div>
+
+      <!-- Left Column: BYOB (Dark Navy / Black Background) -->
+      <div class="byob-col">
+        <span class="mono-text" style="color:var(--Red-Main);">[ 01 &middot; BRING YOUR OWN BOTTLE ]</span>
+        <h2>BYOB: Bring Your Own Bottle.</h2>
+        <p>
+          Your empties, our craft. Give us your bottles, select your curated designs, and enjoy the ultimate upcycled products.
+        </p>
+        <a href="byob.html" class="primary-btn">[ Explore BYOB ]</a>
+      </div>
+
+      <!-- Right Column: Customized (Off-White Background) -->
+      <div class="customized-col">
+        <span class="mono-text" style="color:var(--Red-Main);">[ 02 &middot; CUSTOM COMMISSIONS ]</span>
+        <h2>Customized.</h2>
+        <p>
+          You name the brand, we build the vision. Request specific bottles and choose your form - glass, sipper, tray, or a completely custom request.
+        </p>
+        <a href="customized.html" class="primary-btn">[ Explore Customized ]</a>
+    </section>
+
+    <!-- SECTION 6: Campaign Film Strict Parent Track (350vh) & Sticky Frame (100vh) -->
+    <div class="section-6-track" id="section6Track">
+      <div class="section-6-sticky" id="section6Sticky">
+        <div class="campaign-section__marquee">
+          <span class="marquee-text">RECLAIMED BOTTLES. ELEVATED DESIGN. ZERO WASTE. KAIRO GLASSWARE.</span>
+          <span class="marquee-text">RECLAIMED BOTTLES. ELEVATED DESIGN. ZERO WASTE. KAIRO GLASSWARE.</span>
+        </div>
+
+        <div class="campaign-section__placeholder" id="section6Placeholder">
+          <img src="images/Founder%20Kairo.jpg" alt="Founder Kairo" style="width: 100%; height: 100%; object-fit: cover; border-radius: inherit; display: block;">
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- SECTION 7: Global Footer Architecture -->
+  <footer class="footer reveal-section" id="footer">
+    <div class="footer__top">
+      <div class="footer__newsletter">
+        <h3>STAY INFORMED ON NEW DROPS</h3>
+        <p style="color: var(--Grey-2);">Receive exclusive updates on small-batch bottle runs and studio releases.</p>
+        <form class="newsletter-form" onsubmit="const btn=this.querySelector('.newsletter-btn'); const input=this.querySelector('.newsletter-input'); if(btn){btn.textContent='SUBSCRIBED!';} if(input){input.value='';} return false;">
+          <input type="email" class="newsletter-input" placeholder="ENTER YOUR EMAIL..." required>
+          <input type="tel" class="newsletter-input" placeholder="PHONE NUMBER..." required>
+          <button type="submit" class="newsletter-btn">SUBSCRIBE</button>
+        </form>
+      </div>
+
+      <div class="footer__col">
+        <span class="footer__col-title">[ BRAND COLLECTIONS ]</span>
+        <ul class="footer__links">
+          <li><a href="catalog.html?origin=Absolut%20Vodka">Absolut Vodka</a></li>
+          <li><a href="catalog.html?origin=Bombay%20Sapphire">Bombay Sapphire</a></li>
+          <li><a href="catalog.html?origin=Grey%20Goose">Grey Goose</a></li>
+          <li><a href="catalog.html?origin=Old%20Monk%20Face">Old Monk</a></li>
+          <li><a href="catalog.html?origin=J%C3%A4germeister">J&auml;germeister</a></li>
+          <li><a href="catalog.html?origin=Jack%20Daniel's">Jack Daniel's</a></li>
+          <li><a href="catalog.html?origin=Tanqueray">Tanqueray</a></li>
+        </ul>
+      </div>
+
+      <div class="footer__col">
+        <span class="footer__col-title" style="visibility: hidden;">[ MORE BRANDS ]</span>
+        <ul class="footer__links">
+          <li><a href="catalog.html?origin=Black%20Label">Black Label</a></li>
+          <li><a href="catalog.html?origin=Ciroc">Ciroc</a></li>
+          <li><a href="catalog.html?origin=1800%20Tequila">1800 Tequila</a></li>
+          <li><a href="catalog.html?origin=Blue%20Label">Blue Label</a></li>
+          <li><a href="catalog.html?origin=Don%20Julio%201942">Don Julio 1942</a></li>
+          <li><a href="catalog.html?origin=Altius%20GG">Altius GG</a></li>
+        </ul>
+      </div>
+
+      <div class="footer__col">
+        <span class="footer__col-title">[ LEGAL ]</span>
+        <ul class="footer__links">
+          <li><a href="privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="refund-policy.html">Refund &amp; Return Policy</a></li>
+          <li><a href="refund-policy.html#terms">Terms of Service</a></li>
+        </ul>
+      </div>
+
+      <div class="footer__col">
+        <span class="footer__col-title">[ CONTACT ]</span>
+        <ul class="footer__links">
+          <li><a href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=assistance.kairo@gmail.com" target="_blank" rel="noopener noreferrer">assistance.kairo@gmail.com</a></li>
+          <li><a href="https://www.instagram.com/kairo.studio.in?igsh=MXIxYXQ4YWIxc3RhNQ%3D%3D&amp;igsi=MXIxYXQ4YWIxc3RhNQ%3D%3D&amp;utm_source=qr" target="_blank" rel="noopener noreferrer">Instagram (@kairo.studio.in)</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <span>&copy; 2026 KAIRO GLASSWARE. ALL RIGHTS RESERVED.</span>
+      <span>HANDCRAFTED FROM RECLAIMED GLASS &middot; AUTO-SCROLLING CAROUSEL</span>
+    </div>
+  </footer>
+
+  <!-- Side-Sliding Navigation Menu Drawer -->
+  <div class="menu-drawer" id="menuDrawer">
+    <div class="menu-drawer__top">
+      <span class="mono-text" style="color:var(--Red-Main);">[ KAIRO STUDIO NAV ]</span>
+      <button class="close-btn" id="closeNavBtn">[ CLOSE X ]</button>
+    </div>
+
+    <div class="menu-drawer__content">
+      <!-- Catalog Accordion Category (Closed by Default) -->
+      <div class="nav-accordion-item" id="navCatalogAccordion">
+        <div class="nav-accordion-header">
+          <span class="nav-link-main">[ 01 ] CATALOG</span>
+          <span class="nav-accordion-icon">+</span>
+        </div>
+
+        <div class="nav-accordion-body">
+          <!-- Featured Top Action: SHOP ALL -->
+          <div class="nav-sub-col" style="margin-bottom: 2rem; padding-bottom: 1.6rem; border-bottom: 1px solid #E0E0E0;">
+            <a href="catalog.html" class="nav-shop-all-link">
+              <span>SHOP ALL</span>
+              <span class="nav-shop-all-badge">[ VIEW ALL SKUS &rarr; ]</span>
+            </a>
+          </div>
+
+          <!-- Sub-Group 1: Shop by Product Form -->
+          <div class="nav-sub-col">
+            <span class="nav-sub-title">[ SHOP BY PRODUCT FORM ]</span>
+            <ul class="nav-sub-list">
+              <li><a href="catalog.html?form=Glasses">The Glasses</a></li>
+              <li><a href="catalog.html?form=Sippers">The Sippers</a></li>
+              <li><a href="catalog.html?form=Trays">The Trays</a></li>
+              <li><a href="catalog.html?form=Containers">The Containers</a></li>
+            </ul>
+          </div>
+
+          <!-- Sub-Group 2: Shop by Brand Origin -->
+          <div class="nav-sub-col">
+            <span class="nav-sub-title">[ SHOP BY BRAND ORIGIN ]</span>
+            <ul class="nav-sub-list">
+              <li><a href="catalog.html?origin=Absolut%20Vodka">Absolut Vodka</a></li>
+              <li><a href="catalog.html?origin=Bombay%20Sapphire">Bombay Sapphire</a></li>
+              <li><a href="catalog.html?origin=Grey%20Goose">Grey Goose</a></li>
+              <li><a href="catalog.html?origin=Old%20Monk">Old Monk</a></li>
+              <li><a href="catalog.html?origin=J%C3%A4germeister">J&auml;germeister</a></li>
+              <li><a href="catalog.html?origin=Jack%20Daniel's">Jack Daniel's</a></li>
+              <li><a href="catalog.html?origin=Tanqueray">Tanqueray</a></li>
+              <li><a href="catalog.html?origin=Black%20Label">Black Label</a></li>
+              <li><a href="catalog.html?origin=Ciroc">Ciroc</a></li>
+              <li><a href="catalog.html?origin=1800%20Tequila">1800 Tequila</a></li>
+              <li><a href="catalog.html?origin=Blue%20Label">Blue Label</a></li>
+              <li><a href="catalog.html?origin=Don%20Julio%201942">Don Julio 1942</a></li>
+              <li><a href="catalog.html?origin=Altius%20GG">Altius GG</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 02: BYOB -->
+      <div class="nav-accordion-item">
+        <a href="byob.html" class="nav-link-main" id="navByobBtn">[ 02 ] BYOB</a>
+      </div>
+
+      <!-- Item 03: Customized -->
+      <div class="nav-accordion-item">
+        <a href="customized.html" class="nav-link-main" id="navCustomizedBtn">[ 03 ] CUSTOMIZED</a>
+      </div>
+
+      <!-- Item 04: Contact Us -->
+      <div class="nav-accordion-item">
+        <a href="index.html#footer" class="nav-link-main" id="navContactBtn">[ 04 ] CONTACT US</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide-out Cart Drawer -->
+  <div class="drawer-backdrop" id="drawerBackdrop"></div>
+
+  <div class="drawer" id="cartDrawer">
+    <div class="drawer__header">
+      <h3 class="drawer__title">YOUR SHOPPING BAG</h3>
+      <button class="close-btn" id="closeCartBtn">[ CLOSE X ]</button>
+    </div>
+
+    <div class="cart__items-list" id="cartItemList">
+      <p class="mono-text" style="color: var(--Grey-2); text-align: center; margin-top: 4rem;">YOUR BAG IS CURRENTLY EMPTY.</p>
+    </div>
+
+    <div class="drawer__footer">
+      <div class="cart-total-row">
+        <span>SUBTOTAL</span>
+        <span id="cartSubtotal">&#8377;0</span>
+      </div>
+      <button class="primary-btn" style="width: 100%;" onclick="if(typeof window.openCheckoutModal==='function') window.openCheckoutModal();">
+        [ PROCEED TO CHECKOUT ]
+      </button>
+    </div>
+  </div>
+
+  <!-- Fullscreen Search Modal -->
+  <div class="search-modal" id="searchModal">
+    <div class="search-modal__top">
+      <span class="mono-text" style="color:var(--Red-Main);">[ SEARCH KAIRO COLLECTION ]</span>
+      <button class="close-btn" id="closeSearchBtn">[ CLOSE X ]</button>
+    </div>
+    <div class="search-input-container">
+      <input type="text" class="search-input" id="searchInput" placeholder="TYPE TO SEARCH" autocomplete="off">
+      <div class="search-autosuggest" id="searchAutosuggest"></div>
+    </div>
+    <div class="arrivals-grid" id="searchResults" style="margin-top: 4rem; padding: 0;"></div>
+  </div>
+
+  <!-- Custom Interactive Hover Cursor Badge -->
+  <div class="custom-cursor" id="customCursor">EXPLORE</div>
+
+  <script src="app.js"></script>
+</body>
+</html>

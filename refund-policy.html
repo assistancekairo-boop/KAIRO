@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KAIRO &mdash; Return, Refund &amp; Cancellation Policy</title>
+  <meta name="description" content="KAIRO Upcycled Glassware legal policy regarding returns, exchanges, refunds, damaged shipments, and order cancellations.">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+  <style>
+    body.policy-page {
+      background-color: var(--Red-bg) !important;
+      color: var(--Black);
+      font-family: var(--Font-Secondary), 'Inter', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    .policy-wrapper {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 13rem 2.4rem 8rem;
+    }
+
+    @media (max-width: 768px) {
+      .policy-wrapper {
+        padding: 10rem 2rem 6rem;
+      }
+    }
+
+    .policy-title {
+      font-family: var(--Font-Primary), 'Syne', sans-serif;
+      font-size: clamp(2.8rem, 4vw, 4.4rem);
+      font-weight: 800;
+      text-transform: uppercase;
+      line-height: 1.1;
+      color: var(--Black);
+      margin-bottom: 3.2rem;
+      border-bottom: 2px solid var(--Red-Main);
+      padding-bottom: 2rem;
+    }
+
+    .policy-content {
+      display: flex;
+      flex-direction: column;
+      gap: 3.2rem;
+    }
+
+    .policy-section {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    .policy-section h2 {
+      font-family: var(--Font-Secondary), 'Inter', sans-serif;
+      font-size: 2rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--Black);
+      margin: 0;
+      letter-spacing: -0.02rem;
+    }
+
+    .policy-section p {
+      font-family: var(--Font-Secondary), 'Inter', sans-serif;
+      font-size: 1.4rem;
+      line-height: 1.65;
+      color: #333333;
+      margin: 0;
+    }
+
+    .policy-section ul {
+      margin: 0.4rem 0 0 2rem;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+
+    .policy-section li {
+      font-family: var(--Font-Secondary), 'Inter', sans-serif;
+      font-size: 1.4rem;
+      line-height: 1.65;
+      color: #333333;
+    }
+
+    .policy-contact-box {
+      background: var(--White-Main);
+      border: 1px solid var(--Red-1);
+      border-radius: 0.6rem;
+      padding: 2.4rem;
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body class="policy-page">
+  <!-- Exact Global Header Component -->
+  <header class="header__inner">
+    <ul class="header__list header__list--left">
+      <li>
+        <button id="menuBtn" hover-link>
+          <span>[ Menu ]</span>
+        </button>
+      </li>
+    </ul>
+
+    <a href="index.html" class="header__logo">
+      <span class="header__logo-text">KAIRO</span>
+    </a>
+
+    <ul class="header__list header__list--right">
+      <li>
+        <button id="searchBtn" hover-link>
+          <span>[ Search ]</span>
+        </button>
+      </li>
+      <li>
+        <button id="cartBtn" hover-link>
+          <span>[ Bag.<span id="cartCount">0</span> ]</span>
+        </button>
+      </li>
+    </ul>
+  </header>
+
+  <!-- Global Navigation Menu Drawer (Side-Sliding Panel) -->
+  <div class="menu-drawer" id="menuDrawer">
+    <div class="menu-drawer__top">
+      <span class="mono-text" style="color:var(--Red-Main);">[ KAIRO STUDIO NAV ]</span>
+      <button class="close-btn" id="closeNavBtn">[ CLOSE X ]</button>
+    </div>
+    <div class="menu-drawer__content">
+      <div class="nav-accordion-item" id="navCatalogAccordion">
+        <div class="nav-accordion-header">
+          <span class="nav-link-main">[ 01 ] CATALOG</span>
+          <span class="nav-accordion-icon">+</span>
+        </div>
+        <div class="nav-accordion-body">
+          <!-- Featured Top Action: SHOP ALL -->
+          <div class="nav-sub-col" style="margin-bottom: 2rem; padding-bottom: 1.6rem; border-bottom: 1px solid #E0E0E0;">
+            <a href="catalog.html" class="nav-shop-all-link">
+              <span>SHOP ALL</span>
+              <span class="nav-shop-all-badge">[ VIEW ALL SKUS &rarr; ]</span>
+            </a>
+          </div>
+
+          <div class="nav-sub-col">
+            <span class="nav-sub-title">[ SHOP BY PRODUCT FORM ]</span>
+            <ul class="nav-sub-list">
+              <li><a href="catalog.html?form=Glasses">The Glasses</a></li>
+              <li><a href="catalog.html?form=Sippers">The Sippers</a></li>
+              <li><a href="catalog.html?form=Trays">The Trays</a></li>
+              <li><a href="catalog.html?form=Containers">The Containers</a></li>
+            </ul>
+          </div>
+          <div class="nav-sub-col">
+            <span class="nav-sub-title">[ SHOP BY BRAND ORIGIN ]</span>
+            <ul class="nav-sub-list">
+              <li><a href="catalog.html?origin=Absolut%20Vodka">Absolut Vodka</a></li>
+              <li><a href="catalog.html?origin=Bombay%20Sapphire">Bombay Sapphire</a></li>
+              <li><a href="catalog.html?origin=Grey%20Goose">Grey Goose</a></li>
+              <li><a href="catalog.html?origin=Old%20Monk">Old Monk</a></li>
+              <li><a href="catalog.html?origin=J%C3%A4germeister">J&auml;germeister</a></li>
+              <li><a href="catalog.html?origin=Jack%20Daniel's">Jack Daniel's</a></li>
+              <li><a href="catalog.html?origin=Tanqueray">Tanqueray</a></li>
+              <li><a href="catalog.html?origin=Black%20Label">Black Label</a></li>
+              <li><a href="catalog.html?origin=Ciroc">Ciroc</a></li>
+              <li><a href="catalog.html?origin=1800%20Tequila">1800 Tequila</a></li>
+              <li><a href="catalog.html?origin=Blue%20Label">Blue Label</a></li>
+              <li><a href="catalog.html?origin=Don%20Julio%201942">Don Julio 1942</a></li>
+              <li><a href="catalog.html?origin=Altius%20GG">Altius GG</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div style="padding: 1.6rem 0; border-bottom: 0.5px solid var(--Red-1);">
+        <a href="byob.html" class="nav-link-main" id="navByobBtn">[ 02 ] BYOB</a>
+      </div>
+      <div style="padding: 1.6rem 0; border-bottom: 0.5px solid var(--Red-1);">
+        <a href="customized.html" class="nav-link-main" id="navCustomizedBtn">[ 03 ] CUSTOMIZED</a>
+      </div>
+      <div style="padding: 1.6rem 0; border-bottom: 0.5px solid var(--Red-1);">
+        <a href="index.html#contact" class="nav-link-main" id="navContactBtn">[ 04 ] CONTACT US</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Global Shopping Bag Cart Drawer (Side-Sliding Panel) -->
+  <div class="menu-drawer" id="cartDrawer" style="z-index: 2100;">
+    <div class="menu-drawer__top">
+      <span class="mono-text" style="color:var(--Red-Main);">[ YOUR SHOPPING BAG ]</span>
+      <button class="close-btn" id="closeCartBtn">[ CLOSE X ]</button>
+    </div>
+    <div class="menu-drawer__content" style="display:flex; flex-direction:column; justify-content:space-between; height:calc(100% - 6rem);">
+      <div id="cartItemList" style="display:flex; flex-direction:column; gap:2rem; overflow-y:auto; padding-right:1rem;">
+        <p class="mono-text" style="color: var(--Grey-2); text-align: center; margin-top: 4rem;">YOUR BAG IS CURRENTLY EMPTY.</p>
+      </div>
+      <div style="border-top:1px solid var(--Red-1); padding-top:2rem; margin-top:2rem;">
+        <div style="display:flex; justify-content:space-between; margin-bottom:2rem; font-size:1.8rem; font-weight:700;">
+          <span>SUBTOTAL:</span>
+          <span id="cartSubtotal">&#8377;0</span>
+        </div>
+        <button class="add-to-cart-btn" style="width:100%; font-size:1.4rem; padding:1.6rem;" onclick="if(typeof window.openCheckoutModal==='function') window.openCheckoutModal();">PROCEED TO CHECKOUT &rarr;</button>
+      </div>
+    </div>
+  </div>
+  <div class="menu-overlay" id="drawerBackdrop"></div>
+
+  <!-- Main Legal Policy Document Container -->
+  <main class="policy-wrapper">
+    <h1 class="policy-title">RETURN, REFUND &amp; CANCELLATION POLICY</h1>
+
+    <div class="policy-content">
+      <!-- Section 1 -->
+      <div class="policy-section">
+        <h2>Return &amp; Exchange Policy</h2>
+        <p>
+          We take immense pride in our craftsmanship. However, if an issue arises, our return policy lasts 5 days from the date of delivery. If 5 days have passed since your order was delivered, we unfortunately cannot offer a return or exchange.
+        </p>
+        <p>
+          To initiate a return or exchange, please email our support team directly at <a href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=assistance.kairo@gmail.com" target="_blank" rel="noopener noreferrer" style="color: var(--Red-Main); text-decoration: underline;">assistance.kairo@gmail.com</a>. Your item must be unused, in its original packaging, and in the same condition that you received it.
+        </p>
+      </div>
+
+      <!-- Section 2 -->
+      <div class="policy-section">
+        <h2>Defective or Damaged Items</h2>
+        <p>
+          Because our items are fragile, we only replace or refund items if they are defective, missing parts, or damaged during transit.
+        </p>
+        <p>
+          If your product arrives damaged or is missing from the package, you must notify us at <a href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=assistance.kairo@gmail.com" target="_blank" rel="noopener noreferrer" style="color: var(--Red-Main); text-decoration: underline;">assistance.kairo@gmail.com</a> and share clear photos and an unboxing video within 24 hours of delivery.
+        </p>
+        <p>
+          Please include your Order ID in all correspondence.
+        </p>
+      </div>
+
+      <!-- Section 3 -->
+      <div class="policy-section">
+        <h2>Non-Returnable Items</h2>
+        <p>
+          Returns, exchanges, or cancellations will not be granted under the following conditions:
+        </p>
+        <ul>
+          <li>Any item not in its original condition, or damaged for reasons not due to our error.</li>
+          <li>Requests made more than 5 days after delivery.</li>
+          <li><strong>Customized/Personalised Orders:</strong> Due to their bespoke nature, we do not accept returns, exchanges, or cancellations for personalized products.</li>
+          <li><strong>Sale Items:</strong> All products purchased under a promotional SALE are final and not eligible for return or exchange.</li>
+        </ul>
+      </div>
+
+      <!-- Section 4 -->
+      <div class="policy-section">
+        <h2>Refunds</h2>
+        <p>
+          Once your return is received and inspected at our facility, we will notify you of the approval or rejection of your return.
+        </p>
+        <p>
+          <strong>Approved Returns:</strong> You may choose to receive a Credit Note (valid for 90 days) for the full item amount, OR a full refund back to your original payment method. (Note: Original shipping and COD charges are non-refundable).
+        </p>
+        <p>
+          <strong>Processing Time:</strong> Approved refunds are initiated within 2 working days. Please allow 5–7 working days (excluding bank holidays) for the amount to reflect in your account.
+        </p>
+        <p>
+          <strong>Return Shipping:</strong> You are responsible for paying the shipping costs for returning your item.
+        </p>
+      </div>
+
+      <!-- Section 5 -->
+      <div class="policy-section">
+        <h2>RTO (Return to Origin)</h2>
+        <p>
+          If our courier attempts delivery but you are unavailable at the provided address or unreachable by phone, the package will be returned to us. To initiate a second delivery attempt, the customer will be required to pay the additional shipping charges.
+        </p>
+      </div>
+
+      <!-- Section 6 -->
+      <div class="policy-section">
+        <h2>Cancellation Policy</h2>
+        <p>
+          If you wish to cancel your order, please message us immediately with your Order ID.
+        </p>
+        <p>
+          If the order has not yet been dispatched, we will cancel the order and issue a credit note for the purchased amount.
+        </p>
+        <p>
+          No cancellations will be entertained for orders that have already been dispatched or for discounted/sale items.
+        </p>
+      </div>
+
+      <!-- Contact Support Box -->
+      <div class="policy-contact-box">
+        <h2 style="font-size: 1.6rem; margin-bottom: 0.8rem;">Need Assistance with a Return?</h2>
+        <p style="color: var(--Grey-2);">
+          Reach out to our customer care team at <a href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=assistance.kairo@gmail.com" target="_blank" rel="noopener noreferrer" style="color: var(--Red-Main); text-decoration: underline;">assistance.kairo@gmail.com</a> or message us directly with your Order ID.
+        </p>
+      </div>
+    </div>
+  </main>
+
+  <!-- Exact Global Footer Component -->
+  <!-- Exact Global Footer Component -->
+  <footer class="footer reveal-section" id="footer">
+    <div class="footer__top">
+      <div class="footer__newsletter">
+        <h3>STAY INFORMED ON NEW DROPS</h3>
+        <p style="color: var(--Grey-2);">Receive exclusive updates on small-batch bottle runs and studio releases.</p>
+        <form class="newsletter-form" onsubmit="const btn=this.querySelector('.newsletter-btn'); const input=this.querySelector('.newsletter-input'); if(btn){btn.textContent='SUBSCRIBED!';} if(input){input.value='';} return false;">
+          <input type="email" class="newsletter-input" placeholder="ENTER YOUR EMAIL..." required>
+          <input type="tel" class="newsletter-input" placeholder="PHONE NUMBER..." required>
+          <button type="submit" class="newsletter-btn">SUBSCRIBE</button>
+        </form>
+      </div>
+
+      <div class="footer__col">
+        <span class="footer__col-title">[ BRAND COLLECTIONS ]</span>
+        <ul class="footer__links">
+          <li><a href="catalog.html?origin=Absolut%20Vodka">Absolut Vodka</a></li>
+          <li><a href="catalog.html?origin=Bombay%20Sapphire">Bombay Sapphire</a></li>
+          <li><a href="catalog.html?origin=Grey%20Goose">Grey Goose</a></li>
+          <li><a href="catalog.html?origin=Old%20Monk%20Face">Old Monk</a></li>
+          <li><a href="catalog.html?origin=J%C3%A4germeister">J&auml;germeister</a></li>
+          <li><a href="catalog.html?origin=Jack%20Daniel's">Jack Daniel's</a></li>
+          <li><a href="catalog.html?origin=Tanqueray">Tanqueray</a></li>
+        </ul>
+      </div>
+
+      <div class="footer__col">
+        <span class="footer__col-title" style="visibility: hidden;">[ MORE BRANDS ]</span>
+        <ul class="footer__links">
+          <li><a href="catalog.html?origin=Black%20Label">Black Label</a></li>
+          <li><a href="catalog.html?origin=Ciroc">Ciroc</a></li>
+          <li><a href="catalog.html?origin=1800%20Tequila">1800 Tequila</a></li>
+          <li><a href="catalog.html?origin=Blue%20Label">Blue Label</a></li>
+          <li><a href="catalog.html?origin=Don%20Julio%201942">Don Julio 1942</a></li>
+          <li><a href="catalog.html?origin=Altius%20GG">Altius GG</a></li>
+        </ul>
+      </div>
+
+      <div class="footer__col">
+        <span class="footer__col-title">[ LEGAL ]</span>
+        <ul class="footer__links">
+          <li><a href="privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="refund-policy.html">Refund &amp; Return Policy</a></li>
+          <li><a href="refund-policy.html#terms">Terms of Service</a></li>
+        </ul>
+      </div>
+
+      <div class="footer__col">
+        <span class="footer__col-title">[ CONTACT ]</span>
+        <ul class="footer__links">
+          <li><a href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=assistance.kairo@gmail.com" target="_blank" rel="noopener noreferrer">assistance.kairo@gmail.com</a></li>
+          <li><a href="https://www.instagram.com/kairo.studio.in?igsh=MXIxYXQ4YWIxc3RhNQ%3D%3D&amp;igsi=MXIxYXQ4YWIxc3RhNQ%3D%3D&amp;utm_source=qr" target="_blank" rel="noopener noreferrer">Instagram (@kairo.studio.in)</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <span>&copy; 2026 KAIRO GLASSWARE. ALL RIGHTS RESERVED.</span>
+      <span>HANDCRAFTED FROM RECLAIMED GLASS &middot; AUTO-SCROLLING CAROUSEL</span>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

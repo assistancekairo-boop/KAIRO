@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BYOB Service Presentation — KAIRO Glassware Studio</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Presentation Deck Snap-Scrolling Layout */
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background-color: #F8F8F8;
+      font-family: var(--Font-Primary), 'Inter', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .presentation-deck {
+      width: 100vw;
+      height: 100vh;
+      height: 100dvh;
+      overflow-y: scroll;
+      scroll-snap-type: y mandatory;
+      scroll-behavior: smooth;
+    }
+
+    .slide {
+      width: 100vw;
+      height: 100vh;
+      height: 100dvh;
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
+      position: relative;
+      background-color: #F8F8F8;
+      box-sizing: border-box;
+      border: 1px solid #000000;
+      margin-bottom: 40px;
+    }
+
+    /* PDF / Print Rules for Clean Export */
+    @media print {
+      html, body {
+        overflow: visible !important;
+        height: auto !important;
+        background: #ffffff !important;
+      }
+
+      .presentation-deck {
+        overflow: visible !important;
+        height: auto !important;
+      }
+
+      .slide {
+        height: 100vh !important;
+        height: 100dvh !important;
+        page-break-after: always !important;
+        break-after: page !important;
+        margin-bottom: 0 !important;
+        border: none !important;
+        scroll-snap-align: none !important;
+        box-shadow: none !important;
+      }
+    }
+
+    /* Dual Color Palette Rules */
+    .text-black {
+      color: #000000;
+    }
+
+    .text-red {
+      color: var(--Red-Main, #ed3833);
+    }
+
+    /* ----------------------------------------------------
+       SLIDE 1: TITLE SLIDE
+       ---------------------------------------------------- */
+    .slide--title {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 0 2rem;
+    }
+
+    .slide-title__wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1.6rem;
+    }
+
+    .slide-title__heading {
+      font-family: var(--Font-Primary), 'Inter', sans-serif;
+      font-size: clamp(8rem, 22vw, 26rem);
+      font-weight: 900;
+      line-height: 0.85;
+      letter-spacing: -0.05em;
+      text-transform: uppercase;
+      margin: 0;
+    }
+
+    .slide-title__subheading {
+      font-family: var(--Font-Primary), 'Inter', sans-serif;
+      font-size: clamp(1.8rem, 3.5vw, 4rem);
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin: 0;
+      line-height: 1.2;
+    }
+
+    .slide-footer-pinned {
+      position: absolute;
+      bottom: 20px;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      font-family: var(--Font-Primary), 'Inter', sans-serif;
+      font-size: clamp(1.6rem, 2.2vw, 2.4rem);
+      font-weight: 900;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: #000000;
+      pointer-events: none;
+    }
+
+    /* ----------------------------------------------------
+       SLIDE 2: WALKTHROUGH (HOW IT WORKS)
+       ---------------------------------------------------- */
+    .slide--walkthrough {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      padding: 5rem 4rem;
+      box-sizing: border-box;
+    }
+
+    .slide-walkthrough__header {
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+
+    .slide-walkthrough__title {
+      font-family: var(--Font-Primary), 'Inter', sans-serif;
+      font-size: clamp(2.4rem, 3.5vw, 3.8rem);
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: #000000;
+      margin: 0;
+    }
+
+    .slide-walkthrough__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 3.6rem;
+      width: 100%;
+      max-width: 1100px;
+      margin: auto 0;
+    }
+
+    .walkthrough-card {
+      display: flex;
+      flex-direction: column;
+      gap: 1.6rem;
+      text-align: left;
+    }
+
+    .walkthrough-card__placeholder {
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      background-color: #e2e2e2;
+      border-radius: 4px;
+      box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.06);
+    }
+
+    .walkthrough-card__content {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .walkthrough-card__number {
+      font-family: var(--Font-Mono), monospace;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--Red-Main, #ed3833);
+      letter-spacing: 0.05em;
+    }
+
+    .walkthrough-card__title {
+      font-family: var(--Font-Primary), 'Inter', sans-serif;
+      font-size: clamp(1.6rem, 1.8vw, 2.2rem);
+      font-weight: 800;
+      text-transform: uppercase;
+      color: #000000;
+      letter-spacing: -0.02em;
+      margin: 0;
+      line-height: 1.2;
+    }
+
+    .walkthrough-card__subtext {
+      font-family: var(--Font-Primary), 'Inter', sans-serif;
+      font-size: 1.35rem;
+      font-weight: 400;
+      color: #4a4a4a;
+      line-height: 1.45;
+      margin: 0;
+    }
+
+    /* ----------------------------------------------------
+       SLIDE 3: STEP 1 DETAILS (50/50 SPLIT)
+       ---------------------------------------------------- */
+    .slide--step1 {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 4rem 6rem;
+      box-sizing: border-box;
+    }
+
+    .slide-step1__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: center;
+      width: 100%;
+      max-width: 1150px;
+    }
+
+    .slide-step1__visual-placeholder {
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      background-color: #e2e2e2;
+      border-radius: 4px;
+      box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.06);
+    }
+
+    .slide-step1__content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: left;
+    }
+
+    .slide-step1__indicator {
+      font-family: var(--Font-Mono), monospace;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--Red-Main, #ed3833);
+      letter-spacing: 0.05em;
+    }
+
+    .slide-step1__title {
+      font-family: var(--Font-Primary), 'Inter', sans-serif;
+      font-size: clamp(2.8rem, 4vw, 4.6rem);
+      font-weight: 800;
+      text-transform: uppercase;
+      color: #000000;
+      letter-spacing: -0.03em;
+      margin: 0.6rem 0 2.8rem;
+      line-height: 1.1;
+    }
+
+    .slide-step1__blocks {
+      display: flex;
+      flex-direction: column;
+      gap: 2.2rem;
+    }
+
+    .step-block {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .step-block__heading {
+      font-family: var(--Font-Primary), 'Inter', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      color: #000000;
+      letter-spacing: 0.02em;
+    }
+
+    .step-block__desc {
+      font-family: var(--Font-Primary), 'Inter', sans-serif;
+      font-size: 1.35rem;
+      font-weight: 400;
+      color: #4a4a4a;
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    /* ----------------------------------------------------
+       SLIDE 4: STEP 2 DETAILS (PRICING TABLE)
+       ---------------------------------------------------- */
+    .slide--step2 {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 4rem 6rem;
+      box-sizing: border-box;
+      text-align: center;
+    }
+
+    .slide-step2__container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      max-width: 1050px;
+    }
+
+    .slide-step2__indicator {
+      font-family: var(--Font-Mono), monospace;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--Red-Main, #ed3833);
+      letter-spacing: 0.05em;
+    }
+
+    .slide-step2__title {
+      font-family: var(--Font-Primary), 'Inter', sans-serif;
+      font-size: clamp(2.8rem, 4vw, 4.4rem);
+      font-weight: 800;
+      text-transform: uppercase;
+      color: #000000;
+      letter-spacing: -0.03em;
+      margin: 0.6rem 0 3.2rem;
+      line-height: 1.1;
+    }
+
+    .pricing-table-wrapper {
+      width: 100%;
+      overflow-x: auto;
+    }
+
+    .pricing-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: var(--Font-Primary), 'Inter', sans-serif;
+      text-align: center;
+    }
+
+    .pricing-table th,
+    .pricing-table td {
+      padding: 1.8rem 2.4rem;
+      font-size: clamp(1.3rem, 1.5vw, 1.6rem);
+      color: #000000;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    .pricing-table th {
+      font-weight: 800;
+      text-transform: uppercase;
+      font-size: clamp(1.2rem, 1.4vw, 1.5rem);
+      letter-spacing: 0.03em;
+      background-color: rgba(0, 0, 0, 0.03);
+    }
+
+    .pricing-table th:first-child,
+    .pricing-table td:first-child {
+      text-align: left;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .pricing-table td {
+      font-weight: 500;
+      color: #2b2b2b;
+    }
+
+    .pricing-table .row-custom-design td {
+      text-align: center;
+      font-weight: 600;
+      color: #4a4a4a;
+      background-color: rgba(0, 0, 0, 0.02);
+      padding: 2rem;
+      font-size: clamp(1.25rem, 1.4vw, 1.45rem);
+    }
+
+    /* ----------------------------------------------------
+       SLIDE 5: STEP 3 DETAILS (50/50 SPLIT MIRRORING SLIDE 3)
+       ---------------------------------------------------- */
+    .slide--step3 {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 4rem 6rem;
+      box-sizing: border-box;
+    }
+
+    .slide-step3__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: center;
+      width: 100%;
+      max-width: 1150px;
+    }
+
+    .slide-step3__visual-placeholder {
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      background-color: #e2e2e2;
+      border-radius: 4px;
+      box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.06);
+    }
+
+    .slide-step3__content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: left;
+    }
+
+    .slide-step3__indicator {
+      font-family: var(--Font-Mono), monospace;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--Red-Main, #ed3833);
+      letter-spacing: 0.05em;
+    }
+
+    .slide-step3__title {
+      font-family: var(--Font-Primary), 'Inter', sans-serif;
+      font-size: clamp(2.8rem, 4vw, 4.6rem);
+      font-weight: 800;
+      text-transform: uppercase;
+      color: #000000;
+      letter-spacing: -0.03em;
+      margin: 0.6rem 0 2.8rem;
+      line-height: 1.1;
+    }
+
+    .slide-step3__blocks {
+      display: flex;
+      flex-direction: column;
+      gap: 2.2rem;
+    }
+
+    /* ----------------------------------------------------
+       SLIDE 6: THANK YOU & CONTACT & TERMS
+       ---------------------------------------------------- */
+    .slide--thankyou {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      padding: 5rem 4rem 3.5rem;
+      box-sizing: border-box;
+      text-align: center;
+    }
+
+    .slide-thankyou__top {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+      margin-top: auto;
+      margin-bottom: auto;
+    }
+
+    .slide-thankyou__heading {
+      font-family: var(--Font-Primary), 'Inter', sans-serif;
+      font-size: clamp(6rem, 14vw, 16rem);
+      font-weight: 900;
+      line-height: 0.85;
+      letter-spacing: -0.05em;
+      text-transform: uppercase;
+      margin: 0;
+    }
+
+    .slide-thankyou__contact {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      font-family: var(--Font-Primary), 'Inter', sans-serif;
+      font-size: clamp(1.6rem, 2.5vw, 2.8rem);
+      font-weight: 800;
+      color: #000000;
+      letter-spacing: -0.02em;
+    }
+
+    .slide-thankyou__terms {
+      width: 100%;
+      max-width: 950px;
+      margin-top: auto;
+      text-align: left;
+      border-top: 1px solid rgba(0, 0, 0, 0.1);
+      padding-top: 2rem;
+    }
+
+    .terms-title {
+      font-family: var(--Font-Primary), 'Inter', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      color: #000000;
+      letter-spacing: 0.03em;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .terms-list {
+      margin: 0;
+      padding-left: 2rem;
+      font-family: var(--Font-Primary), 'Inter', sans-serif;
+      font-size: clamp(1.1rem, 1.2vw, 1.3rem);
+      font-weight: 400;
+      color: #5a5a5a;
+      line-height: 1.45;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+  </style>
+</head>
+<body>
+
+  <main class="presentation-deck">
+
+    <!-- SLIDE 1: Title Slide (The Hook) -->
+    <section id="slide-1" class="slide slide--title">
+      <div class="slide-title__wrapper">
+        <h1 class="slide-title__heading">
+          <span class="text-black">BYO</span><span class="text-red">B</span>
+        </h1>
+        <p class="slide-title__subheading">
+          <span class="text-black">BRING YOUR OWN </span><span class="text-red">BOTTLE</span>
+        </p>
+      </div>
+
+      <div class="slide-footer-pinned">
+        <span>KAIRO</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 2: Walkthrough (Table of Contents: 3 Steps) -->
+    <section id="slide-2" class="slide slide--walkthrough">
+      <header class="slide-walkthrough__header">
+        <h2 class="slide-walkthrough__title">HOW IT WORKS</h2>
+      </header>
+
+      <div class="slide-walkthrough__grid">
+        <!-- Column 1: Step 01 -->
+        <article class="walkthrough-card">
+          <div class="walkthrough-card__placeholder"></div>
+          <div class="walkthrough-card__content">
+            <span class="walkthrough-card__number">01</span>
+            <h3 class="walkthrough-card__title">BRING YOUR BOTTLE</h3>
+            <p class="walkthrough-card__subtext">Deliver or bring your empty bottles to our location.</p>
+          </div>
+        </article>
+
+        <!-- Column 2: Step 02 -->
+        <article class="walkthrough-card">
+          <div class="walkthrough-card__placeholder"></div>
+          <div class="walkthrough-card__content">
+            <span class="walkthrough-card__number">02</span>
+            <h3 class="walkthrough-card__title">SELECT YOUR COMBINATION</h3>
+            <p class="walkthrough-card__subtext">Explore different pricing combinations to select your preferred choice.</p>
+          </div>
+        </article>
+
+        <!-- Column 3: Step 03 -->
+        <article class="walkthrough-card">
+          <div class="walkthrough-card__placeholder"></div>
+          <div class="walkthrough-card__content">
+            <span class="walkthrough-card__number">03</span>
+            <h3 class="walkthrough-card__title">TAKE YOUR PRODUCTS</h3>
+            <p class="walkthrough-card__subtext">Send a pickup or schedule a shipment directly from our side.</p>
+          </div>
+        </article>
+      </div>
+
+      <div style="visibility: hidden; height: 1px;"></div>
+    </section>
+
+    <!-- SLIDE 3: Step 1 (Bring Your Bottle) -->
+    <section id="slide-3" class="slide slide--step1">
+      <div class="slide-step1__grid">
+        <!-- Left Column: Visual Placeholder -->
+        <div class="slide-step1__visual-placeholder"></div>
+
+        <!-- Right Column: Text Content -->
+        <div class="slide-step1__content">
+          <span class="slide-step1__indicator">01</span>
+          <h2 class="slide-step1__title">BRING YOUR BOTTLE</h2>
+
+          <div class="slide-step1__blocks">
+            <div class="step-block">
+              <span class="step-block__heading">LOCATION</span>
+              <p class="step-block__desc">B-90 Birbal Road, Lajpat Nagar 2, Opposite Car Boutique, Lajpat Nagar, New Delhi - 110024.</p>
+            </div>
+
+            <div class="step-block">
+              <span class="step-block__heading">PACKAGING INSTRUCTIONS</span>
+              <p class="step-block__desc">Please ensure secure packaging specifically designed for glass bottles to prevent any damage during transit.</p>
+            </div>
+
+            <div class="step-block">
+              <span class="step-block__heading">ORDER DETAILS</span>
+              <p class="step-block__desc">Include a text note listing exactly which bottles are being sent and what specific product is to be crafted from each.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 4: Step 2 (Table for Pricing & Combinations) -->
+    <section id="slide-4" class="slide slide--step2">
+      <div class="slide-step2__container">
+        <span class="slide-step2__indicator">02</span>
+        <h2 class="slide-step2__title">SELECT YOUR COMBINATION</h2>
+
+        <div class="pricing-table-wrapper">
+          <table class="pricing-table">
+            <thead>
+              <tr>
+                <th></th>
+                <th>Less than 5 Bottles</th>
+                <th>6-15 Bottles</th>
+                <th>More than 15 Bottles</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Per Glass</td>
+                <td>Rs 349</td>
+                <td>Rs 299</td>
+                <td>Rs 199</td>
+              </tr>
+              <tr>
+                <td>Per Sipper</td>
+                <td>Rs 399</td>
+                <td>Rs 349</td>
+                <td>Rs 249</td>
+              </tr>
+              <tr>
+                <td>Per Tray</td>
+                <td>Rs 449</td>
+                <td>Rs 399</td>
+                <td>Rs 299</td>
+              </tr>
+              <tr class="row-custom-design">
+                <td colspan="4">Custom Design: Price will be determined according to the specific design requirements.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 5: Step 3 (Take Your Products) -->
+    <section id="slide-5" class="slide slide--step3">
+      <div class="slide-step3__grid">
+        <!-- Left Column: Visual Placeholder -->
+        <div class="slide-step3__visual-placeholder"></div>
+
+        <!-- Right Column: Text Content -->
+        <div class="slide-step3__content">
+          <span class="slide-step3__indicator">03</span>
+          <h2 class="slide-step3__title">TAKE YOUR PRODUCTS</h2>
+
+          <div class="slide-step3__blocks">
+            <div class="step-block">
+              <span class="step-block__heading">TURNAROUND TIME</span>
+              <p class="step-block__desc">Crafting takes an average of 4-5 days once we receive your bottles.</p>
+            </div>
+
+            <div class="step-block">
+              <span class="step-block__heading">SELF-PICKUP</span>
+              <p class="step-block__desc">You can schedule your own courier to collect the finished products directly from our workshop.</p>
+            </div>
+
+            <div class="step-block">
+              <span class="step-block__heading">DIRECT SHIPPING</span>
+              <p class="step-block__desc">Contact us to arrange direct delivery. Shipping is calculated based on distance and charged strictly at actual cost—we keep zero hidden margins. (Note: All delivery and pickup costs are borne by the customer).</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 6: Thank You & Contact -->
+    <section id="slide-6" class="slide slide--thankyou">
+      <div class="slide-thankyou__top">
+        <h1 class="slide-thankyou__heading">
+          <span class="text-black">THANK </span><span class="text-red">YOU</span>
+        </h1>
+
+        <div class="slide-thankyou__contact">
+          <span>WhatsApp / Phone: +91 6289530227</span>
+          <span>Instagram: @kairobykartik</span>
+        </div>
+      </div>
+
+      <div class="slide-thankyou__terms">
+        <span class="terms-title">Terms &amp; Conditions:</span>
+        <ul class="terms-list">
+          <li>We hold no liability for any damage occurring to bottles during transit.</li>
+          <li>We are not liable for any delays in delivery due to unforeseen circumstances or third-party courier issues.</li>
+          <li>We hold no responsibility for errors arising from incorrect details or mismatches in the order list provided by the customer.</li>
+          <li>Please refer to our website prior to ordering to understand the final aesthetic, look, and finish of the upcycled products.</li>
+          <li>As these are custom upcycled crafts, natural variations in the glass may occur.</li>
+        </ul>
+      </div>
+    </section>
+
+  </main>
+
+</body>
+</html>

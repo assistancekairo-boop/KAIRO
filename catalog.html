@@ -1,0 +1,1148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+  <title>Full Catalog (57 SKUs) &mdash; KAIRO Upcycled Glassware Studio</title>
+  <meta name="description" content="Explore Kairo's complete 57-SKU collection of upcycled drinking glasses, sippers, and trays crafted from reclaimed spirit bottles.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Preloader Screen -->
+  <div class="preloader" id="preloader">
+    <div class="preloader__top">
+      <span>[ EST. 2026 ]</span>
+      <span>[ CATALOG INVENTORY ]</span>
+    </div>
+    <div class="preloader__center">
+      <h1 class="preloader__title">KAIRO</h1>
+      <div class="preloader__progress-bar">
+        <div class="preloader__progress-fill" id="progressFill"></div>
+      </div>
+    </div>
+    <div class="preloader__top" style="justify-content: center;">
+      <span>57 UPCYCLED RECLAIMED GLASS VESSEL SKUS</span>
+    </div>
+  </div>
+
+  <!-- Fixed Navigation Bar -->
+  <header class="header__inner">
+    <ul class="header__list header__list--left">
+      <li>
+        <button id="menuBtn" hover-link>
+          <span>[ Menu ]</span>
+        </button>
+      </li>
+    </ul>
+
+    <a href="index.html" class="header__logo">
+      <span class="header__logo-text">KAIRO</span>
+    </a>
+
+    <ul class="header__list header__list--right">
+      <li>
+        <button id="searchBtn" hover-link>
+          <span>[ Search ]</span>
+        </button>
+      </li>
+      <li>
+        <button id="cartBtn" hover-link>
+          <span>[ Bag.<span id="cartCount">0</span> ]</span>
+        </button>
+      </li>
+    </ul>
+  </header>
+
+  <main style="padding-top: 12rem;">
+    <!-- Catalog Header -->
+    <section class="section-header" style="padding: 4rem 3.4rem 2rem;">
+      <div class="section-title-wrap">
+        <span class="section-subtitle">[ COMPLETE INVENTORY &middot; 57 VERIFIED SKUS ]</span>
+        <h1 style="font-size: clamp(3.2rem, 6vw, 7rem); text-transform: uppercase; font-weight: 800; line-height: 1.05;">STUDIO CATALOG.</h1>
+      </div>
+      <p style="font-size: clamp(1.6rem, 2vw, 2.2rem); color: var(--Grey-2); max-width: 75rem; margin-top: 2rem; line-height: 1.5;">
+        Every vessel in our catalog is diamond-cut, fire-polished, and handcrafted from authentic reclaimed spirit bottles. Filter by product form or brand origin below.
+      </p>
+    </section>
+
+    <!-- Two-Category Filter System UI -->
+    <div class="catalog-filter-controls" style="padding: 0 3.4rem; margin-bottom: 4rem; display: flex; flex-direction: column; gap: 2rem;">
+      
+      <!-- Category 1: Filter via Product -->
+      <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 1.6rem;">
+        <span class="mono-text" style="color: var(--Red-Main); font-weight: 600; min-width: 14rem; display: inline-block;">[ FILTER PRODUCT ]</span>
+        <div id="productTypeFilters" style="display: flex; flex-wrap: wrap; gap: 0.8rem;">
+          <button class="brand-pill active" data-type-filter="all">[ ALL TYPES ]</button>
+          <button class="brand-pill" data-type-filter="glass">[ GLASSES & SIPPERS ]</button>
+          <button class="brand-pill" data-type-filter="tray">[ TRAYS ]</button>
+          <button class="brand-pill" data-type-filter="container">[ CONTAINERS ]</button>
+          <button class="brand-pill" data-type-filter="combo">[ COMBOS & BUNDLES ]</button>
+        </div>
+      </div>
+
+      <!-- Category 2: Filter via Brand -->
+      <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 1.6rem; border-top: 1px solid var(--Red-1); padding-top: 1.6rem;">
+        <span class="mono-text" style="color: var(--Red-Main); font-weight: 600; min-width: 14rem; display: inline-block;">[ FILTER BRAND ]</span>
+        <div id="brandFilters" style="display: flex; flex-wrap: wrap; gap: 0.8rem;">
+          <button class="brand-pill active" data-brand-filter="all">[ ALL BRANDS ]</button>
+          <button class="brand-pill" data-brand-filter="Absolut Vodka">Absolut Vodka</button>
+          <button class="brand-pill" data-brand-filter="Bombay Sapphire">Bombay Sapphire</button>
+          <button class="brand-pill" data-brand-filter="Grey Goose">Grey Goose</button>
+          <button class="brand-pill" data-brand-filter="Old Monk Face">Old Monk</button>
+          <button class="brand-pill" data-brand-filter="J&auml;germeister">J&auml;germeister</button>
+          <button class="brand-pill" data-brand-filter="Jack Daniel's">Jack Daniel's</button>
+          <button class="brand-pill" data-brand-filter="Tanqueray">Tanqueray</button>
+          <button class="brand-pill" data-brand-filter="Black Label">Black Label / Gold Label</button>
+          <button class="brand-pill" data-brand-filter="Ciroc">Ciroc</button>
+          <button class="brand-pill" data-brand-filter="1800 Tequila">1800 Tequila</button>
+          <button class="brand-pill" data-brand-filter="Blue Label">Blue Label</button>
+          <button class="brand-pill" data-brand-filter="Don Julio 1942">Don Julio 1942</button>
+          <button class="brand-pill" data-brand-filter="Altius GG">Altius GG</button>
+        </div>
+      </div>
+
+      <!-- Result Counter & Clear Filters Action -->
+      <div style="display: flex; align-items: center; justify-content: space-between; border-top: 1px solid var(--Red-1); padding-top: 1.2rem; margin-top: 0.4rem;">
+        <span class="mono-text" style="color: var(--Grey-2);" id="catalogResultCount">SHOWING 57 OF 57 PRODUCTS</span>
+        <button class="bracket-btn" id="resetFiltersBtn" style="background: transparent; border: none; color: var(--Red-Main); cursor: pointer; padding: 0;">[ CLEAR FILTERS / VIEW ALL ]</button>
+      </div>
+
+    </div>
+
+    <!-- Catalog 4-Column Grid -->
+    <section style="padding: 0 0 12rem;">
+      <div class="arrivals-grid" id="catalogGrid">
+        <!-- SKU 1 -->
+        <a href="product.html?id=1" class="arrivals-card" data-id="1" data-brand="Absolut Vodka" data-type="glass" data-form="Sippers" data-name="Absolut Vodka - Sipper Single" data-price="799">
+          <div class="arrivals-card__img-wrapper">
+            <span class="arrivals-card__badge">SINGLE</span>
+            <span class="arrivals-card__prices">&#8377;799</span>
+            <img src="images/Absolut%20Vodka%20Sipper%20Single.png" alt="Absolut Vodka - Sipper Single" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
+          </div>
+          <div class="arrivals-card__info">
+            <span class="arrivals-card__brand">ABSOLUT VODKA</span>
+            <h3 class="arrivals-card__title">Absolut Vodka - Sipper Single</h3>
+            <div class="arrivals-card__meta">
+              <span class="arrivals-card__price-val">&#8377;799</span>
+              <span>Single Sipper &middot; Upcycled</span>
+            </div>
+          </div>
+        </a>        <!-- SKU 2 -->
+        <a href="product.html?id=2" class="arrivals-card" data-id="2" data-brand="Absolut Vodka" data-type="glass" data-form="Sippers" data-name="Absolut Vodka - Sipper Set of 2" data-price="1499">
+          <div class="arrivals-card__img-wrapper">
+            <span class="arrivals-card__badge">SET OF 2</span>
+            <span class="arrivals-card__prices">&#8377;1499</span>
+            <img src="images/Absolut%20Vodka%20Sipper%20Set%20of%202.png" alt="Absolut Vodka - Sipper Set of 2" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
+          </div>
+          <div class="arrivals-card__info">
+            <span class="arrivals-card__brand">ABSOLUT VODKA</span>
+            <h3 class="arrivals-card__title">Absolut Vodka - Sipper Set of 2</h3>
+            <div class="arrivals-card__meta">
+              <span class="arrivals-card__price-val">&#8377;1499</span>
+              <span>Dual Sipper Set &middot; Upcycled</span>
+            </div>
+          </div>
+        </a>        <!-- SKU 3 -->
+        <a href="product.html?id=3" class="arrivals-card" data-id="3" data-brand="Absolut Vodka" data-type="glass" data-form="Sippers" data-name="Absolut Vodka - Sipper Set of 5" data-price="3499">
+          <div class="arrivals-card__img-wrapper">
+            <span class="arrivals-card__badge">SET OF 5</span>
+            <span class="arrivals-card__prices">&#8377;3499</span>
+            <img src="images/Absolut%20Vodka%20Sipper%20Set%20of%205.png" alt="Absolut Vodka - Sipper Set of 5" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
+          </div>
+          <div class="arrivals-card__info">
+            <span class="arrivals-card__brand">ABSOLUT VODKA</span>
+            <h3 class="arrivals-card__title">Absolut Vodka - Sipper Set of 5</h3>
+            <div class="arrivals-card__meta">
+              <span class="arrivals-card__price-val">&#8377;3499</span>
+              <span>Quintet Sipper Collection</span>
+            </div>
+          </div>
+        </a>        <!-- SKU 4 -->
+        <a href="product.html?id=4" class="arrivals-card" data-id="4" data-brand="Bombay Sapphire" data-type="glass" data-form="Glasses" data-name="Bombay Sapphire - Glass Set of 2" data-price="799">
+          <div class="arrivals-card__img-wrapper">
+            <span class="arrivals-card__badge">SET OF 2</span>
+            <span class="arrivals-card__prices">&#8377;799</span>
+            <img src="images/Bombay%20Sapphire%20Glass%20Set%20of%202.png" alt="Bombay Sapphire - Glass Set of 2" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
+          </div>
+          <div class="arrivals-card__info">
+            <span class="arrivals-card__brand">BOMBAY SAPPHIRE</span>
+            <h3 class="arrivals-card__title">Bombay Sapphire - Glass Set of 2</h3>
+            <div class="arrivals-card__meta">
+              <span class="arrivals-card__price-val">&#8377;799</span>
+              <span>Sapphire Blue Tumbler Set of 2</span>
+            </div>
+          </div>
+        </a>        <!-- SKU 5 -->
+        <a href="product.html?id=5" class="arrivals-card" data-id="5" data-brand="Bombay Sapphire" data-type="glass" data-form="Glasses" data-name="Bombay Sapphire - Glass Set of 4" data-price="1499">
+          <div class="arrivals-card__img-wrapper">
+            <span class="arrivals-card__badge">SET OF 4</span>
+            <span class="arrivals-card__prices">&#8377;1499</span>
+            <img src="images/Bombay%20Sapphire%20Glass%20Set%20of%204.png" alt="Bombay Sapphire - Glass Set of 4" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
+          </div>
+          <div class="arrivals-card__info">
+            <span class="arrivals-card__brand">BOMBAY SAPPHIRE</span>
+            <h3 class="arrivals-card__title">Bombay Sapphire - Glass Set of 4</h3>
+            <div class="arrivals-card__meta">
+              <span class="arrivals-card__price-val">&#8377;1499</span>
+              <span>Sapphire Blue Tumbler Set of 4</span>
+            </div>
+          </div>
+        </a>        <!-- SKU 6 -->
+        <a href="product.html?id=6" class="arrivals-card" data-id="6" data-brand="Bombay Sapphire" data-type="glass" data-form="Glasses" data-name="Bombay Sapphire - Glass Set of 6" data-price="1999">
+          <div class="arrivals-card__img-wrapper">
+            <span class="arrivals-card__badge">SET OF 6</span>
+            <span class="arrivals-card__prices">&#8377;1999</span>
+            <img src="images/Bombay%20Sapphire%20Glass%20Set%20of%206.png" alt="Bombay Sapphire - Glass Set of 6" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
+          </div>
+          <div class="arrivals-card__info">
+            <span class="arrivals-card__brand">BOMBAY SAPPHIRE</span>
+            <h3 class="arrivals-card__title">Bombay Sapphire - Glass Set of 6</h3>
+            <div class="arrivals-card__meta">
+              <span class="arrivals-card__price-val">&#8377;1999</span>
+              <span>Sapphire Blue Tumbler Set of 6</span>
+            </div>
+          </div>
+        </a>        <!-- SKU 7 -->
+        <a href="product.html?id=7" class="arrivals-card" data-id="7" data-brand="Bombay Sapphire" data-type="tray" data-form="Trays" data-name="Bombay Sapphire - Tray Single" data-price="799">
+          <div class="arrivals-card__img-wrapper">
+            <span class="arrivals-card__badge">TRAY</span>
+            <span class="arrivals-card__prices">&#8377;799</span>
+            <img src="images/Bombay%20Sapphire%20Tray%20Single.png" alt="Bombay Sapphire - Tray Single" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
+          </div>
+          <div class="arrivals-card__info">
+            <span class="arrivals-card__brand">BOMBAY SAPPHIRE</span>
+            <h3 class="arrivals-card__title">Bombay Sapphire - Tray Single</h3>
+            <div class="arrivals-card__meta">
+              <span class="arrivals-card__price-val">&#8377;799</span>
+              <span>Single Reclaimed Bottle Tray</span>
+            </div>
+          </div>
+        </a>        <!-- SKU 8 -->
+        <a href="product.html?id=8" class="arrivals-card" data-id="8" data-brand="Bombay Sapphire" data-type="tray" data-form="Trays" data-name="Bombay Sapphire - Tray Set of 2" data-price="1499">
+          <div class="arrivals-card__img-wrapper">
+            <span class="arrivals-card__badge">SET OF 2</span>
+            <span class="arrivals-card__prices">&#8377;1499</span>
+            <img src="images/Bombay%20Sapphire%20Tray%20Set%20of%202.png" alt="Bombay Sapphire - Tray Set of 2" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
+          </div>
+          <div class="arrivals-card__info">
+            <span class="arrivals-card__brand">BOMBAY SAPPHIRE</span>
+            <h3 class="arrivals-card__title">Bombay Sapphire - Tray Set of 2</h3>
+            <div class="arrivals-card__meta">
+              <span class="arrivals-card__price-val">&#8377;1499</span>
+              <span>Dual Bottle Tray Set</span>
+            </div>
+          </div>
+        </a>        <!-- SKU 9 -->
+        <a href="product.html?id=9" class="arrivals-card" data-id="9" data-brand="Bombay Sapphire" data-type="combo" data-form="Combos" data-name="Bombay Sapphire - Tray Single + Glass Set of 4" data-price="2199">
+          <div class="arrivals-card__img-wrapper">
+            <span class="arrivals-card__badge">COMBO</span>
+            <span class="arrivals-card__prices">&#8377;2199</span>
+            <img src="images/Bombay%20Sapphire%20Tray%20Single%20%2B%20Glass%20Set%20of%202.png" alt="Bombay Sapphire - Tray Single + Glass Set of 4" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
+          </div>
+          <div class="arrivals-card__info">
+            <span class="arrivals-card__brand">BOMBAY SAPPHIRE</span>
+            <h3 class="arrivals-card__title">Bombay Sapphire - Tray Single + Glass Set of 4</h3>
+            <div class="arrivals-card__meta">
+              <span class="arrivals-card__price-val">&#8377;2199</span>
+              <span>Tray Single + 4 Glasses Combo</span>
+            </div>
+          </div>
+        </a>        <!-- SKU 10 -->
+        <a href="product.html?id=10" class="arrivals-card" data-id="10" data-brand="Bombay Sapphire" data-type="combo" data-form="Combos" data-name="Bombay Sapphire - Tray Set of 2 + Glass Set of 6" data-price="3299">
+          <div class="arrivals-card__img-wrapper">
+            <span class="arrivals-card__badge">ULTIMATE</span>
+            <span class="arrivals-card__prices">&#8377;3299</span>
+            <img src="images/Bombay%20Sapphire%20Tray%20Set%20of%202%20%2B%20Glass%20Set%20of%206.png" alt="Bombay Sapphire - Tray Set of 2 + Glass Set of 6" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
+          </div>
+          <div class="arrivals-card__info">
+            <span class="arrivals-card__brand">BOMBAY SAPPHIRE</span>
+            <h3 class="arrivals-card__title">Bombay Sapphire - Tray Set of 2 + Glass Set of 6</h3>
+            <div class="arrivals-card__meta">
+              <span class="arrivals-card__price-val">&#8377;3299</span>
+              <span>Tray Set of 2 + 6 Glasses Combo</span>
+            </div>
+          </div>
+        </a>        <!-- SKU 11 -->
+        <a href="product.html?id=11" class="arrivals-card" data-id="11" data-brand="Grey Goose" data-type="glass" data-form="Glasses" data-name="Grey Goose - Glass Set of 2" data-price="899">
+          <div class="arrivals-card__img-wrapper">
+            <span class="arrivals-card__badge">SET OF 2</span>
+            <span class="arrivals-card__prices">&#8377;899</span>
+            <img src="images/Grey%20Goose%20Glass%20Set%20of%202.png" alt="Grey Goose - Glass Set of 2" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
+          </div>
+          <div class="arrivals-card__info">
+            <span class="arrivals-card__brand">GREY GOOSE</span>
+            <h3 class="arrivals-card__title">Grey Goose - Glass Set of 2</h3>
+            <div class="arrivals-card__meta">
+              <span class="arrivals-card__price-val">&#8377;899</span>
+              <span>Frosted Highball Glass Set of 2</span>
+            </div>
+          </div>
+        </a>        <!-- SKU 12 -->
+        <a href="product.html?id=12" class="arrivals-card" data-id="12" data-brand="Grey Goose" data-type="glass" data-form="Glasses" data-name="Grey Goose - Glass Set of 4" data-price="1599">
+          <div class="arrivals-card__img-wrapper">
+            <span class="arrivals-card__badge">SET OF 4</span>
+            <span class="arrivals-card__prices">&#8377;1599</span>
+            <img src="images/Grey%20Goose%20Glass%20Set%20of%204.png" alt="Grey Goose - Glass Set of 4" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
+          </div>
+          <div class="arrivals-card__info">
+            <span class="arrivals-card__brand">GREY GOOSE</span>
+            <h3 class="arrivals-card__title">Grey Goose - Glass Set of 4</h3>
+            <div class="arrivals-card__meta">
+              <span class="arrivals-card__price-val">&#8377;1599</span>
+              <span>Frosted Highball Glass Set of 4</span>
+            </div>
+          </div>
+        </a>        <!-- SKU 13 -->
+        <a href="product.html?id=13" class="arrivals-card" data-id="13" data-brand="Grey Goose" data-type="glass" data-form="Glasses" data-name="Grey Goose - Glass Set of 6" data-price="2299">
+          <div class="arrivals-card__img-wrapper">
+            <span class="arrivals-card__badge">SET OF 6</span>
+            <span class="arrivals-card__prices">&#8377;2299</span>
+            <img src="images/Grey%20Goose%20Glass%20Set%20of%206.png" alt="Grey Goose - Glass Set of 6" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
+          </div>
+          <div class="arrivals-card__info">
+            <span class="arrivals-card__brand">GREY GOOSE</span>
+            <h3 class="arrivals-card__title">Grey Goose - Glass Set of 6</h3>
+            <div class="arrivals-card__meta">
+              <span class="arrivals-card__price-val">&#8377;2299</span>
+              <span>Frosted Highball Glass Set of 6</span>
+            </div>
+          </div>
+        </a>        <!-- SKU 14 -->
+        <a href="product.html?id=14" class="arrivals-card" data-id="14" data-brand="Old Monk Face" data-type="glass" data-form="Glasses" data-name="Old Monk Face - Glass Set of 2" data-price="799">
+          <div class="arrivals-card__img-wrapper">
+            <span class="arrivals-card__badge">SET OF 2</span>
+            <span class="arrivals-card__prices">&#8377;799</span>
+            <img src="images/Old%20Monk%20Glass%20Set%20of%202.png" alt="Old Monk Face - Glass Set of 2" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
+          </div>
+          <div class="arrivals-card__info">
+            <span class="arrivals-card__brand">OLD MONK FACE</span>
+            <h3 class="arrivals-card__title">Old Monk Face - Glass Set of 2</h3>
+            <div class="arrivals-card__meta">
+              <span class="arrivals-card__price-val">&#8377;799</span>
+              <span>Embossed Face Glass Set of 2</span>
+            </div>
+          </div>
+        </a>        <!-- SKU 15 -->
+        <a href="product.html?id=15" class="arrivals-card" data-id="15" data-brand="Old Monk Face" data-type="glass" data-form="Glasses" data-name="Old Monk Face - Glass Set of 4" data-price="1499">
+          <div class="arrivals-card__img-wrapper">
+            <span class="arrivals-card__badge">SET OF 4</span>
+            <span class="arrivals-card__prices">&#8377;1499</span>
+            <img src="images/Old%20Monk%20Glass%20Set%20of%204.png" alt="Old Monk Face - Glass Set of 4" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
+          </div>
+          <div class="arrivals-card__info">
+            <span class="arrivals-card__brand">OLD MONK FACE</span>
+            <h3 class="arrivals-card__title">Old Monk Face - Glass Set of 4</h3>
+            <div class="arrivals-card__meta">
+              <span class="arrivals-card__price-val">&#8377;1499</span>
+              <span>Embossed Face Glass Set of 4</span>
+            </div>
+          </div>
+        </a>        <!-- SKU 16 -->
+        <a href="product.html?id=16" class="arrivals-card" data-id="16" data-brand="Old Monk Face" data-type="glass" data-form="Glasses" data-name="Old Monk Face - Glass Set of 6" data-price="1999">
+          <div class="arrivals-card__img-wrapper">
+            <span class="arrivals-card__badge">SET OF 6</span>
+            <span class="arrivals-card__prices">&#8377;1999</span>
+            <img src="images/Old%20Monk%20Glass%20Set%20of%206.png" alt="Old Monk Face - Glass Set of 6" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
+          </div>
+          <div class="arrivals-card__info">
+            <span class="arrivals-card__brand">OLD MONK FACE</span>
+            <h3 class="arrivals-card__title">Old Monk Face - Glass Set of 6</h3>
+            <div class="arrivals-card__meta">
+              <span class="arrivals-card__price-val">&#8377;1999</span>
+              <span>Embossed Face Glass Set of 6</span>
+            </div>
+          </div>
+        </a>        <!-- SKU 17 -->
+        <a href="product.html?id=17" class="arrivals-card" data-id="17" data-brand="J&auml;germeister" data-type="glass" data-form="Sippers" data-name="J&auml;germeister - Sipper Single" data-price="899">
+          <div class="arrivals-card__img-wrapper">
+            <span class="arrivals-card__badge">SINGLE</span>
+            <span class="arrivals-card__prices">&#8377;899</span>
+            <img src="images/J%C3%A4germeister%20Sipper%20Single.png?v=2" alt="J&auml;germeister - Sipper Single" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
+          </div>
+          <div class="arrivals-card__info">
+            <span class="arrivals-card__brand">J&Auml;GERMEISTER</span>
+            <h3 class="arrivals-card__title">J&auml;germeister - Sipper Single</h3>
+            <div class="arrivals-card__meta">
+              <span class="arrivals-card__price-val">&#8377;899</span>
+              <span>Dark Green Single Sipper</span>
+            </div>
+          </div>
+        </a>        <!-- SKU 18 -->
+        <a href="product.html?id=18" class="arrivals-card" data-id="18" data-brand="J&auml;germeister" data-type="glass" data-form="Sippers" data-name="J&auml;germeister - Sipper Set of 2" data-price="1699">
+          <div class="arrivals-card__img-wrapper">
+            <span class="arrivals-card__badge">SET OF 2</span>
+            <span class="arrivals-card__prices">&#8377;1699</span>
+            <img src="images/J%C3%A4germeister%20Sipper%20Set%20of%202.png?v=2" alt="J&auml;germeister - Sipper Set of 2" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
+          </div>
+          <div class="arrivals-card__info">
+            <span class="arrivals-card__brand">J&Auml;GERMEISTER</span>
+            <h3 class="arrivals-card__title">J&auml;germeister - Sipper Set of 2</h3>
+            <div class="arrivals-card__meta">
+              <span class="arrivals-card__price-val">&#8377;1699</span>
+              <span>Dark Green Sipper Set of 2</span>
+            </div>
+          </div>
+        </a>        <!-- SKU 19 -->
+        <a href="product.html?id=19" class="arrivals-card" data-id="19" data-brand="J&auml;germeister" data-type="tray" data-form="Trays" data-name="J&auml;germeister - Tray Single" data-price="999">
+          <div class="arrivals-card__img-wrapper">
+            <span class="arrivals-card__badge">TRAY</span>
+            <span class="arrivals-card__prices">&#8377;999</span>
+            <img src="images/J%C3%A4germeister%20Tray%20Single.png?v=2" alt="J&auml;germeister - Tray Single" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
+          </div>
+          <div class="arrivals-card__info">
+            <span class="arrivals-card__brand">J&Auml;GERMEISTER</span>
+            <h3 class="arrivals-card__title">J&auml;germeister - Tray Single</h3>
+            <div class="arrivals-card__meta">
+              <span class="arrivals-card__price-val">&#8377;999</span>
+              <span>Single Square Bottle Tray</span>
+            </div>
+          </div>
+        </a>        <!-- SKU 20 -->
+        <a href="product.html?id=20" class="arrivals-card" data-id="20" data-brand="J&auml;germeister" data-type="tray" data-form="Trays" data-name="J&auml;germeister - Tray Set of 2" data-price="1799">
+          <div class="arrivals-card__img-wrapper">
+            <span class="arrivals-card__badge">SET OF 2</span>
+            <span class="arrivals-card__prices">&#8377;1799</span>
+            <img src="images/J%C3%A4germeister%20Tray%20Set%20of%202.png?v=2" alt="J&auml;germeister - Tray Set of 2" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
+          </div>
+          <div class="arrivals-card__info">
+            <span class="arrivals-card__brand">J&Auml;GERMEISTER</span>
+            <h3 class="arrivals-card__title">J&auml;germeister - Tray Set of 2</h3>
+            <div class="arrivals-card__meta">
+              <span class="arrivals-card__price-val">&#8377;1799</span>
+              <span>Dual Square Bottle Trays</span>
+            </div>
+          </div>
+        </a>        <!-- SKU 21 -->
+        <a href="product.html?id=21" class="arrivals-card" data-id="21" data-brand="J&auml;germeister" data-type="combo" data-form="Combos" data-name="J&auml;germeister - Tray Single + Sipper Single" data-price="1699">
+          <div class="arrivals-card__img-wrapper">
+            <span class="arrivals-card__badge">COMBO</span>
+            <span class="arrivals-card__prices">&#8377;1699</span>
+            <img src="images/J%C3%A4germeister%20Tray%20Single%20%2B%20Sipper%20Single.png?v=2" alt="J&auml;germeister - Tray Single + Sipper Single" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
+          </div>
+          <div class="arrivals-card__info">
+            <span class="arrivals-card__brand">J&Auml;GERMEISTER</span>
+            <h3 class="arrivals-card__title">J&auml;germeister - Tray Single + Sipper Single</h3>
+            <div class="arrivals-card__meta">
+              <span class="arrivals-card__price-val">&#8377;1699</span>
+              <span>Tray Single + Sipper Single</span>
+            </div>
+          </div>
+        </a>        <!-- SKU 22 -->
+        <a href="product.html?id=22" class="arrivals-card" data-id="22" data-brand="J&auml;germeister" data-type="combo" data-form="Combos" data-name="J&auml;germeister - Tray Set of 2 + Sipper Set of 2" data-price="3299">
+          <div class="arrivals-card__img-wrapper">
+            <span class="arrivals-card__badge">COMBO</span>
+            <span class="arrivals-card__prices">&#8377;3299</span>
+            <img src="images/J%C3%A4germeister%20Tray%20Set%20of%202%20%2B%20Sipper%20Set%20of%202.png?v=2" alt="J&auml;germeister - Tray Set of 2 + Sipper Set of 2" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
+          </div>
+          <div class="arrivals-card__info">
+            <span class="arrivals-card__brand">J&Auml;GERMEISTER</span>
+            <h3 class="arrivals-card__title">J&auml;germeister - Tray Set of 2 + Sipper Set of 2</h3>
+            <div class="arrivals-card__meta">
+              <span class="arrivals-card__price-val">&#8377;3299</span>
+              <span>Tray Set of 2 + Sipper Set of 2</span>
+            </div>
+          </div>
+        </a>        <!-- SKU 23 -->
+        <a href="product.html?id=23" class="arrivals-card" data-id="23" data-brand="Jack Daniel's" data-type="tray" data-form="Trays" data-name="Jack Daniel's - Tray Single" data-price="999">
+          <div class="arrivals-card__img-wrapper">
+            <span class="arrivals-card__badge">TRAY</span>
+            <span class="arrivals-card__prices">&#8377;999</span>
+            <img src="images/Jack%20Daniel's%20Tray%20Single.png" alt="Jack Daniel's - Tray Single" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
+          </div>
+          <div class="arrivals-card__info">
+            <span class="arrivals-card__brand">JACK DANIEL'S</span>
+            <h3 class="arrivals-card__title">Jack Daniel's - Tray Single</h3>
+            <div class="arrivals-card__meta">
+              <span class="arrivals-card__price-val">&#8377;999</span>
+              <span>Single Square Craft Tray</span>
+            </div>
+          </div>
+        </a>        <!-- SKU 24 -->
+        <a href="product.html?id=24" class="arrivals-card" data-id="24" data-brand="Jack Daniel's" data-type="tray" data-form="Trays" data-name="Jack Daniel's - Tray Set of 2" data-price="1799">
+          <div class="arrivals-card__img-wrapper">
+            <span class="arrivals-card__badge">SET OF 2</span>
+            <span class="arrivals-card__prices">&#8377;1799</span>
+            <img src="images/Jack%20Daniel's%20Tray%20Set%20of%202.png" alt="Jack Daniel's - Tray Set of 2" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
+          </div>
+          <div class="arrivals-card__info">
+            <span class="arrivals-card__brand">JACK DANIEL'S</span>
+            <h3 class="arrivals-card__title">Jack Daniel's - Tray Set of 2</h3>
+            <div class="arrivals-card__meta">
+              <span class="arrivals-card__price-val">&#8377;1799</span>
+              <span>Dual Square Craft Trays</span>
+            </div>
+          </div>
+        </a>        <!-- SKU 25 -->
+        <a href="product.html?id=25" class="arrivals-card" data-id="25" data-brand="Tanqueray" data-type="container" data-form="Containers" data-name="Tanqueray - Container Single" data-price="999">
+          <div class="arrivals-card__img-wrapper">
+            <span class="arrivals-card__badge">SINGLE</span>
+            <span class="arrivals-card__prices">&#8377;999</span>
+            <img src="images/Tanqueray%20Container%20Single.png" alt="Tanqueray - Container Single" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
+          </div>
+          <div class="arrivals-card__info">
+            <span class="arrivals-card__brand">TANQUERAY</span>
+            <h3 class="arrivals-card__title">Tanqueray - Container Single</h3>
+            <div class="arrivals-card__meta">
+              <span class="arrivals-card__price-val">&#8377;999</span>
+              <span>Single Green Glass Container</span>
+            </div>
+          </div>
+        </a>        <!-- SKU 26 -->
+        <a href="product.html?id=26" class="arrivals-card" data-id="26" data-brand="Tanqueray" data-type="container" data-form="Containers" data-name="Tanqueray - Container Set of 3" data-price="2699">
+          <div class="arrivals-card__img-wrapper">
+            <span class="arrivals-card__badge">SET OF 3</span>
+            <span class="arrivals-card__prices">&#8377;2699</span>
+            <img src="images/Tanqueray%20Container%20Set%20of%203.png" alt="Tanqueray - Container Set of 3" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
+          </div>
+          <div class="arrivals-card__info">
+            <span class="arrivals-card__brand">TANQUERAY</span>
+            <h3 class="arrivals-card__title">Tanqueray - Container Set of 3</h3>
+            <div class="arrivals-card__meta">
+              <span class="arrivals-card__price-val">&#8377;2699</span>
+              <span>Trio Green Glass Containers</span>
+            </div>
+          </div>
+        </a>        <!-- SKU 27 -->
+        <a href="product.html?id=27" class="arrivals-card" data-id="27" data-brand="Black Label" data-type="glass" data-form="Glasses" data-name="Black Label Gold Label - Glass Set of 2" data-price="1299">
+          <div class="arrivals-card__img-wrapper">
+            <span class="arrivals-card__badge">SET OF 2</span>
+            <span class="arrivals-card__prices">&#8377;1299</span>
+            <img src="images/Black%20Label%20Gold%20Label%20Glass%20Set%20of%202.png" alt="Black Label Gold Label - Glass Set of 2" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
+          </div>
+          <div class="arrivals-card__info">
+            <span class="arrivals-card__brand">BLACK LABEL</span>
+            <h3 class="arrivals-card__title">Black Label Gold Label - Glass Set of 2</h3>
+            <div class="arrivals-card__meta">
+              <span class="arrivals-card__price-val">&#8377;1299</span>
+              <span>Dual Beveled Gold Highballs</span>
+            </div>
+          </div>
+        </a>        <!-- SKU 28 -->
+        <a href="product.html?id=28" class="arrivals-card" data-id="28" data-brand="Black Label" data-type="glass" data-form="Glasses" data-name="Black Label Gold Label - Glass Set of 4" data-price="2499">
+          <div class="arrivals-card__img-wrapper">
+            <span class="arrivals-card__badge">SET OF 4</span>
+            <span class="arrivals-card__prices">&#8377;2499</span>
+            <img src="images/Black%20Label%20Gold%20Label%20Glass%20Set%20of%204.png" alt="Black Label Gold Label - Glass Set of 4" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
+          </div>
+          <div class="arrivals-card__info">
+            <span class="arrivals-card__brand">BLACK LABEL</span>
+            <h3 class="arrivals-card__title">Black Label Gold Label - Glass Set of 4</h3>
+            <div class="arrivals-card__meta">
+              <span class="arrivals-card__price-val">&#8377;2499</span>
+              <span>Quad Beveled Gold Highballs</span>
+            </div>
+          </div>
+        </a>        <!-- SKU 29 -->
+        <a href="product.html?id=29" class="arrivals-card" data-id="29" data-brand="Black Label" data-type="glass" data-form="Glasses" data-name="Black Label Gold Label - Glass Set of 6" data-price="3699">
+          <div class="arrivals-card__img-wrapper">
+            <span class="arrivals-card__badge">SET OF 6</span>
+            <span class="arrivals-card__prices">&#8377;3699</span>
+            <img src="images/Black%20Label%20Gold%20Label%20Glass%20Set%20of%206.png" alt="Black Label Gold Label - Glass Set of 6" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
+          </div>
+          <div class="arrivals-card__info">
+            <span class="arrivals-card__brand">BLACK LABEL</span>
+            <h3 class="arrivals-card__title">Black Label Gold Label - Glass Set of 6</h3>
+            <div class="arrivals-card__meta">
+              <span class="arrivals-card__price-val">&#8377;3699</span>
+              <span>Sextet Beveled Gold Highballs</span>
+            </div>
+          </div>
+        </a>        <!-- SKU 30 -->
+        <a href="product.html?id=30" class="arrivals-card" data-id="30" data-brand="Black Label" data-type="tray" data-form="Trays" data-name="Black Label Gold Label - Tray Single" data-price="1199">
+          <div class="arrivals-card__img-wrapper">
+            <span class="arrivals-card__badge">TRAY</span>
+            <span class="arrivals-card__prices">&#8377;1199</span>
+            <img src="images/Black%20Label%20Gold%20Label%20Tray%20Single.png" alt="Black Label Gold Label - Tray Single" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
+          </div>
+          <div class="arrivals-card__info">
+            <span class="arrivals-card__brand">BLACK LABEL</span>
+            <h3 class="arrivals-card__title">Black Label Gold Label - Tray Single</h3>
+            <div class="arrivals-card__meta">
+              <span class="arrivals-card__price-val">&#8377;1199</span>
+              <span>Reclaimed Gold Glass Tray</span>
+            </div>
+          </div>
+        </a>        <!-- SKU 31 -->
+        <a href="product.html?id=31" class="arrivals-card" data-id="31" data-brand="Black Label" data-type="tray" data-form="Trays" data-name="Black Label Gold Label - Tray Set of 2" data-price="1499">
+          <div class="arrivals-card__img-wrapper">
+            <span class="arrivals-card__badge">SET OF 2</span>
+            <span class="arrivals-card__prices">&#8377;1499</span>
+            <img src="images/Black%20label%20Gold%20Label%20Tray%20Set%20of%202.png" alt="Black Label Gold Label - Tray Set of 2" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
+          </div>
+          <div class="arrivals-card__info">
+            <span class="arrivals-card__brand">BLACK LABEL</span>
+            <h3 class="arrivals-card__title">Black Label Gold Label - Tray Set of 2</h3>
+            <div class="arrivals-card__meta">
+              <span class="arrivals-card__price-val">&#8377;1499</span>
+              <span>Dual Reclaimed Gold Glass Trays</span>
+            </div>
+          </div>
+        </a>        <!-- SKU 32 -->
+        <a href="product.html?id=32" class="arrivals-card" data-id="32" data-brand="Black Label" data-type="combo" data-form="Combos" data-name="Black Label Gold Label - Tray Single + Glass Set of 4" data-price="3499">
+          <div class="arrivals-card__img-wrapper">
+            <span class="arrivals-card__badge">COMBO</span>
+            <span class="arrivals-card__prices">&#8377;3499</span>
+            <img src="images/Black%20label%20Gold%20Label%20Tray%20Single%20%2B%20Glass%20Set%20of%204.png" alt="Black Label Gold Label - Tray Single + Glass Set of 4" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
+          </div>
+          <div class="arrivals-card__info">
+            <span class="arrivals-card__brand">BLACK LABEL</span>
+            <h3 class="arrivals-card__title">Black Label Gold Label - Tray Single + Glass Set of 4</h3>
+            <div class="arrivals-card__meta">
+              <span class="arrivals-card__price-val">&#8377;3499</span>
+              <span>Tray Single + 4 Glasses Combo</span>
+            </div>
+          </div>
+        </a>        <!-- SKU 33 -->
+        <a href="product.html?id=33" class="arrivals-card" data-id="33" data-brand="Black Label" data-type="combo" data-form="Combos" data-name="Black Label Gold Label - Tray Set of 2 + Glass Set of 6" data-price="4999">
+          <div class="arrivals-card__img-wrapper">
+            <span class="arrivals-card__badge">ULTIMATE</span>
+            <span class="arrivals-card__prices">&#8377;4999</span>
+            <img src="images/Black%20label%20Gold%20Label%20Tray%20Set%20of%202%20%2B%20Glass%20Set%20of%206.png" alt="Black Label Gold Label - Tray Set of 2 + Glass Set of 6" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
+          </div>
+          <div class="arrivals-card__info">
+            <span class="arrivals-card__brand">BLACK LABEL</span>
+            <h3 class="arrivals-card__title">Black Label Gold Label - Tray Set of 2 + Glass Set of 6</h3>
+            <div class="arrivals-card__meta">
+              <span class="arrivals-card__price-val">&#8377;4999</span>
+              <span>Tray Set of 2 + 6 Glasses Combo</span>
+            </div>
+          </div>
+        </a>        <!-- SKU 34 -->
+        <a href="product.html?id=34" class="arrivals-card" data-id="34" data-brand="Ciroc" data-type="glass" data-form="Glasses" data-name="Ciroc - Glass Single" data-price="849">
+          <div class="arrivals-card__img-wrapper">
+            <span class="arrivals-card__badge">SINGLE</span>
+            <span class="arrivals-card__prices">&#8377;849</span>
+            <img src="images/Ciroc%20Glass%20Single.png" alt="Ciroc - Glass Single" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
+          </div>
+          <div class="arrivals-card__info">
+            <span class="arrivals-card__brand">CIROC</span>
+            <h3 class="arrivals-card__title">Ciroc - Glass Single</h3>
+            <div class="arrivals-card__meta">
+              <span class="arrivals-card__price-val">&#8377;849</span>
+              <span>Single Cobalt Blue Tumbler</span>
+            </div>
+          </div>
+        </a>        <!-- SKU 35 -->
+        <a href="product.html?id=35" class="arrivals-card" data-id="35" data-brand="Ciroc" data-type="glass" data-form="Glasses" data-name="Ciroc - Glass Set of 2" data-price="1599">
+          <div class="arrivals-card__img-wrapper">
+            <span class="arrivals-card__badge">SET OF 2</span>
+            <span class="arrivals-card__prices">&#8377;1599</span>
+            <img src="images/Ciroc%20Glass%20Set%20of%202.png" alt="Ciroc - Glass Set of 2" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
+          </div>
+          <div class="arrivals-card__info">
+            <span class="arrivals-card__brand">CIROC</span>
+            <h3 class="arrivals-card__title">Ciroc - Glass Set of 2</h3>
+            <div class="arrivals-card__meta">
+              <span class="arrivals-card__price-val">&#8377;1599</span>
+              <span>Dual Cobalt Blue Tumblers</span>
+            </div>
+          </div>
+        </a>        <!-- SKU 36 -->
+        <a href="product.html?id=36" class="arrivals-card" data-id="36" data-brand="Ciroc" data-type="glass" data-form="Glasses" data-name="Ciroc - Glass Set of 4" data-price="2999">
+          <div class="arrivals-card__img-wrapper">
+            <span class="arrivals-card__badge">SET OF 4</span>
+            <span class="arrivals-card__prices">&#8377;2999</span>
+            <img src="images/Ciroc%20Glass%20Set%20of%204.png" alt="Ciroc - Glass Set of 4" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
+          </div>
+          <div class="arrivals-card__info">
+            <span class="arrivals-card__brand">CIROC</span>
+            <h3 class="arrivals-card__title">Ciroc - Glass Set of 4</h3>
+            <div class="arrivals-card__meta">
+              <span class="arrivals-card__price-val">&#8377;2999</span>
+              <span>Quad Cobalt Blue Tumblers</span>
+            </div>
+          </div>
+        </a>        <!-- SKU 37 -->
+        <a href="product.html?id=37" class="arrivals-card" data-id="37" data-brand="Ciroc" data-type="glass" data-form="Glasses" data-name="Ciroc - Glass Set of 6" data-price="3999">
+          <div class="arrivals-card__img-wrapper">
+            <span class="arrivals-card__badge">SET OF 6</span>
+            <span class="arrivals-card__prices">&#8377;3999</span>
+            <img src="images/Ciroc%20Glass%20Set%20of%206.png" alt="Ciroc - Glass Set of 6" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
+          </div>
+          <div class="arrivals-card__info">
+            <span class="arrivals-card__brand">CIROC</span>
+            <h3 class="arrivals-card__title">Ciroc - Glass Set of 6</h3>
+            <div class="arrivals-card__meta">
+              <span class="arrivals-card__price-val">&#8377;3999</span>
+              <span>Sextet Cobalt Blue Tumblers</span>
+            </div>
+          </div>
+        </a>        <!-- SKU 38 -->
+        <a href="product.html?id=38" class="arrivals-card" data-id="38" data-brand="1800 Tequila" data-type="tray" data-form="Trays" data-name="1800 Tequila - Tray Single" data-price="999">
+          <div class="arrivals-card__img-wrapper">
+            <span class="arrivals-card__badge">TRAY</span>
+            <span class="arrivals-card__prices">&#8377;999</span>
+            <img src="images/1800%20Tequila%20Tray%20Single.png" alt="1800 Tequila - Tray Single" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
+          </div>
+          <div class="arrivals-card__info">
+            <span class="arrivals-card__brand">1800 TEQUILA</span>
+            <h3 class="arrivals-card__title">1800 Tequila - Tray Single</h3>
+            <div class="arrivals-card__meta">
+              <span class="arrivals-card__price-val">&#8377;999</span>
+              <span>Single Pyramid Glass Tray</span>
+            </div>
+          </div>
+        </a>        <!-- SKU 39 -->
+        <a href="product.html?id=39" class="arrivals-card" data-id="39" data-brand="1800 Tequila" data-type="tray" data-form="Trays" data-name="1800 Tequila - Tray Set of 2" data-price="1699">
+          <div class="arrivals-card__img-wrapper">
+            <span class="arrivals-card__badge">SET OF 2</span>
+            <span class="arrivals-card__prices">&#8377;1699</span>
+            <img src="images/1800%20Tequila%20Tray%20Set%20of%202.png" alt="1800 Tequila - Tray Set of 2" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
+          </div>
+          <div class="arrivals-card__info">
+            <span class="arrivals-card__brand">1800 TEQUILA</span>
+            <h3 class="arrivals-card__title">1800 Tequila - Tray Set of 2</h3>
+            <div class="arrivals-card__meta">
+              <span class="arrivals-card__price-val">&#8377;1699</span>
+              <span>Dual Pyramid Glass Trays</span>
+            </div>
+          </div>
+        </a>        <!-- SKU 40 -->
+        <a href="product.html?id=40" class="arrivals-card" data-id="40" data-brand="1800 Tequila" data-type="tray" data-form="Trays" data-name="1800 Tequila Cristalino - Tray Single" data-price="1499">
+          <div class="arrivals-card__img-wrapper">
+            <span class="arrivals-card__badge">CRISTALINO</span>
+            <span class="arrivals-card__prices">&#8377;1499</span>
+            <img src="images/1800%20Tequila%20Cristalino%20Tray%20Single.png" alt="1800 Tequila Cristalino - Tray Single" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
+          </div>
+          <div class="arrivals-card__info">
+            <span class="arrivals-card__brand">1800 TEQUILA</span>
+            <h3 class="arrivals-card__title">1800 Tequila Cristalino - Tray Single</h3>
+            <div class="arrivals-card__meta">
+              <span class="arrivals-card__price-val">&#8377;1499</span>
+              <span>Single Cristalino Glass Tray</span>
+            </div>
+          </div>
+        </a>        <!-- SKU 41 -->
+        <a href="product.html?id=41" class="arrivals-card" data-id="41" data-brand="1800 Tequila" data-type="tray" data-form="Trays" data-name="1800 Tequila Cristalino - Tray Set of 2" data-price="2599">
+          <div class="arrivals-card__img-wrapper">
+            <span class="arrivals-card__badge">CRISTALINO</span>
+            <span class="arrivals-card__prices">&#8377;2599</span>
+            <img src="images/1800%20Tequila%20Cristalino%20Tray%20Set%20of%202.png" alt="1800 Tequila Cristalino - Tray Set of 2" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
+          </div>
+          <div class="arrivals-card__info">
+            <span class="arrivals-card__brand">1800 TEQUILA</span>
+            <h3 class="arrivals-card__title">1800 Tequila Cristalino - Tray Set of 2</h3>
+            <div class="arrivals-card__meta">
+              <span class="arrivals-card__price-val">&#8377;2599</span>
+              <span>Dual Cristalino Glass Trays</span>
+            </div>
+          </div>
+        </a>        <!-- SKU 42 -->
+        <a href="product.html?id=42" class="arrivals-card" data-id="42" data-brand="Blue Label" data-type="glass" data-form="Glasses" data-name="Blue Label - Glass Single" data-price="999">
+          <div class="arrivals-card__img-wrapper">
+            <span class="arrivals-card__badge">PREMIUM</span>
+            <span class="arrivals-card__prices">&#8377;999</span>
+            <img src="images/Blue%20Label%20Glass%20Single.png" alt="Blue Label - Glass Single" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
+          </div>
+          <div class="arrivals-card__info">
+            <span class="arrivals-card__brand">BLUE LABEL</span>
+            <h3 class="arrivals-card__title">Blue Label - Glass Single</h3>
+            <div class="arrivals-card__meta">
+              <span class="arrivals-card__price-val">&#8377;999</span>
+              <span>Heavy Cut Single Rocks Glass</span>
+            </div>
+          </div>
+        </a>        <!-- SKU 43 -->
+        <a href="product.html?id=43" class="arrivals-card" data-id="43" data-brand="Blue Label" data-type="glass" data-form="Glasses" data-name="Blue Label - Glass Set of 2" data-price="1799">
+          <div class="arrivals-card__img-wrapper">
+            <span class="arrivals-card__badge">PREMIUM</span>
+            <span class="arrivals-card__prices">&#8377;1799</span>
+            <img src="images/Blue%20Label%20Glass%20Set%20of%202.png" alt="Blue Label - Glass Set of 2" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
+          </div>
+          <div class="arrivals-card__info">
+            <span class="arrivals-card__brand">BLUE LABEL</span>
+            <h3 class="arrivals-card__title">Blue Label - Glass Set of 2</h3>
+            <div class="arrivals-card__meta">
+              <span class="arrivals-card__price-val">&#8377;1799</span>
+              <span>Heavy Cut Dual Rocks Glasses</span>
+            </div>
+          </div>
+        </a>        <!-- SKU 44 -->
+        <a href="product.html?id=44" class="arrivals-card" data-id="44" data-brand="Blue Label" data-type="glass" data-form="Glasses" data-name="Blue Label - Glass Set of 4" data-price="3499">
+          <div class="arrivals-card__img-wrapper">
+            <span class="arrivals-card__badge">PREMIUM</span>
+            <span class="arrivals-card__prices">&#8377;3499</span>
+            <img src="images/Blue%20Label%20Glass%20Set%20of%204.png" alt="Blue Label - Glass Set of 4" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
+          </div>
+          <div class="arrivals-card__info">
+            <span class="arrivals-card__brand">BLUE LABEL</span>
+            <h3 class="arrivals-card__title">Blue Label - Glass Set of 4</h3>
+            <div class="arrivals-card__meta">
+              <span class="arrivals-card__price-val">&#8377;3499</span>
+              <span>Heavy Cut Quad Rocks Glasses</span>
+            </div>
+          </div>
+        </a>        <!-- SKU 45 -->
+        <a href="product.html?id=45" class="arrivals-card" data-id="45" data-brand="Blue Label" data-type="glass" data-form="Glasses" data-name="Blue Label - Glass Set of 6" data-price="4999">
+          <div class="arrivals-card__img-wrapper">
+            <span class="arrivals-card__badge">PREMIUM</span>
+            <span class="arrivals-card__prices">&#8377;4999</span>
+            <img src="images/Blue%20Label%20Glass%20Set%20of%206.png" alt="Blue Label - Glass Set of 6" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
+          </div>
+          <div class="arrivals-card__info">
+            <span class="arrivals-card__brand">BLUE LABEL</span>
+            <h3 class="arrivals-card__title">Blue Label - Glass Set of 6</h3>
+            <div class="arrivals-card__meta">
+              <span class="arrivals-card__price-val">&#8377;4999</span>
+              <span>Heavy Cut Sextet Rocks Glasses</span>
+            </div>
+          </div>
+        </a>        <!-- SKU 46 -->
+        <a href="product.html?id=46" class="arrivals-card" data-id="46" data-brand="Blue Label" data-type="tray" data-form="Trays" data-name="Blue Label - Tray Single" data-price="1499">
+          <div class="arrivals-card__img-wrapper">
+            <span class="arrivals-card__badge">PREMIUM</span>
+            <span class="arrivals-card__prices">&#8377;1499</span>
+            <img src="images/Blue%20Label%20Tray%20Single.png" alt="Blue Label - Tray Single" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
+          </div>
+          <div class="arrivals-card__info">
+            <span class="arrivals-card__brand">BLUE LABEL</span>
+            <h3 class="arrivals-card__title">Blue Label - Tray Single</h3>
+            <div class="arrivals-card__meta">
+              <span class="arrivals-card__price-val">&#8377;1499</span>
+              <span>Executive Cut Glass Serving Tray</span>
+            </div>
+          </div>
+        </a>        <!-- SKU 47 -->
+        <a href="product.html?id=47" class="arrivals-card" data-id="47" data-brand="Blue Label" data-type="tray" data-form="Trays" data-name="Blue Label - Tray Set of 2" data-price="2599">
+          <div class="arrivals-card__img-wrapper">
+            <span class="arrivals-card__badge">PREMIUM</span>
+            <span class="arrivals-card__prices">&#8377;2599</span>
+            <img src="images/Blue%20Label%20Tray%20Set%20of%202.png" alt="Blue Label - Tray Set of 2" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
+          </div>
+          <div class="arrivals-card__info">
+            <span class="arrivals-card__brand">BLUE LABEL</span>
+            <h3 class="arrivals-card__title">Blue Label - Tray Set of 2</h3>
+            <div class="arrivals-card__meta">
+              <span class="arrivals-card__price-val">&#8377;2599</span>
+              <span>Dual Executive Cut Glass Trays</span>
+            </div>
+          </div>
+        </a>        <!-- SKU 48 -->
+        <a href="product.html?id=48" class="arrivals-card" data-id="48" data-brand="Blue Label" data-type="combo" data-form="Combos" data-name="Blue Label - Tray Single + Glass Set of 4" data-price="4499">
+          <div class="arrivals-card__img-wrapper">
+            <span class="arrivals-card__badge">EXECUTIVE</span>
+            <span class="arrivals-card__prices">&#8377;4499</span>
+            <img src="images/Blue%20Label%20Tray%20Single%20%2B%20Glass%20Set%20of%204.png" alt="Blue Label - Tray Single + Glass Set of 4" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
+          </div>
+          <div class="arrivals-card__info">
+            <span class="arrivals-card__brand">BLUE LABEL</span>
+            <h3 class="arrivals-card__title">Blue Label - Tray Single + Glass Set of 4</h3>
+            <div class="arrivals-card__meta">
+              <span class="arrivals-card__price-val">&#8377;4499</span>
+              <span>Tray Single + 4 Glasses Combo</span>
+            </div>
+          </div>
+        </a>        <!-- SKU 49 -->
+        <a href="product.html?id=49" class="arrivals-card" data-id="49" data-brand="Blue Label" data-type="combo" data-form="Combos" data-name="Blue Label - Tray Set of 2 + Glass Set of 6" data-price="6999">
+          <div class="arrivals-card__img-wrapper">
+            <span class="arrivals-card__badge">ULTIMATE</span>
+            <span class="arrivals-card__prices">&#8377;6999</span>
+            <img src="images/Blue%20Label%20Tray%20Set%20of%202%20%2B%20Glass%20Set%20of%206.png" alt="Blue Label - Tray Set of 2 + Glass Set of 6" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
+          </div>
+          <div class="arrivals-card__info">
+            <span class="arrivals-card__brand">BLUE LABEL</span>
+            <h3 class="arrivals-card__title">Blue Label - Tray Set of 2 + Glass Set of 6</h3>
+            <div class="arrivals-card__meta">
+              <span class="arrivals-card__price-val">&#8377;6999</span>
+              <span>Heavy Cut Glass Set + Executive Tray</span>
+            </div>
+          </div>
+        </a>        <!-- SKU 50 -->
+        <a href="product.html?id=50" class="arrivals-card" data-id="50" data-brand="Don Julio 1942" data-type="glass" data-form="Glasses" data-name="Don Julio 1942 - Glass Single" data-price="999">
+          <div class="arrivals-card__img-wrapper">
+            <span class="arrivals-card__badge">RARE</span>
+            <span class="arrivals-card__prices">&#8377;999</span>
+            <img src="images/Don%20Julio%201942%20Glass%20Single.png" alt="Don Julio 1942 - Glass Single" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
+          </div>
+          <div class="arrivals-card__info">
+            <span class="arrivals-card__brand">DON JULIO 1942</span>
+            <h3 class="arrivals-card__title">Don Julio 1942 - Glass Single</h3>
+            <div class="arrivals-card__meta">
+              <span class="arrivals-card__price-val">&#8377;999</span>
+              <span>Tall Tequila Vessel Single</span>
+            </div>
+          </div>
+        </a>        <!-- SKU 51 -->
+        <a href="product.html?id=51" class="arrivals-card" data-id="51" data-brand="Don Julio 1942" data-type="glass" data-form="Glasses" data-name="Don Julio 1942 - Glass Set of 2" data-price="1799">
+          <div class="arrivals-card__img-wrapper">
+            <span class="arrivals-card__badge">RARE</span>
+            <span class="arrivals-card__prices">&#8377;1799</span>
+            <img src="images/Don%20Julio%201942%20Glass%20Set%20of%202.png" alt="Don Julio 1942 - Glass Set of 2" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
+          </div>
+          <div class="arrivals-card__info">
+            <span class="arrivals-card__brand">DON JULIO 1942</span>
+            <h3 class="arrivals-card__title">Don Julio 1942 - Glass Set of 2</h3>
+            <div class="arrivals-card__meta">
+              <span class="arrivals-card__price-val">&#8377;1799</span>
+              <span>Tall Tequila Vessels Set of 2</span>
+            </div>
+          </div>
+        </a>        <!-- SKU 52 -->
+        <a href="product.html?id=52" class="arrivals-card" data-id="52" data-brand="Don Julio 1942" data-type="glass" data-form="Glasses" data-name="Don Julio 1942 - Glass Set of 4" data-price="3499">
+          <div class="arrivals-card__img-wrapper">
+            <span class="arrivals-card__badge">RARE</span>
+            <span class="arrivals-card__prices">&#8377;3499</span>
+            <img src="images/Don%20Julio%201942%20Glass%20Set%20of%204.png" alt="Don Julio 1942 - Glass Set of 4" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
+          </div>
+          <div class="arrivals-card__info">
+            <span class="arrivals-card__brand">DON JULIO 1942</span>
+            <h3 class="arrivals-card__title">Don Julio 1942 - Glass Set of 4</h3>
+            <div class="arrivals-card__meta">
+              <span class="arrivals-card__price-val">&#8377;3499</span>
+              <span>Tall Tequila Vessels Set of 4</span>
+            </div>
+          </div>
+        </a>        <!-- SKU 53 -->
+        <a href="product.html?id=53" class="arrivals-card" data-id="53" data-brand="Don Julio 1942" data-type="glass" data-form="Glasses" data-name="Don Julio 1942 - Glass Set of 6" data-price="4999">
+          <div class="arrivals-card__img-wrapper">
+            <span class="arrivals-card__badge">RARE</span>
+            <span class="arrivals-card__prices">&#8377;4999</span>
+            <img src="images/Don%20Julio%201942%20Glass%20Set%20of%206.png" alt="Don Julio 1942 - Glass Set of 6" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
+          </div>
+          <div class="arrivals-card__info">
+            <span class="arrivals-card__brand">DON JULIO 1942</span>
+            <h3 class="arrivals-card__title">Don Julio 1942 - Glass Set of 6</h3>
+            <div class="arrivals-card__meta">
+              <span class="arrivals-card__price-val">&#8377;4999</span>
+              <span>Tall Tequila Vessels Set of 6</span>
+            </div>
+          </div>
+        </a>        <!-- SKU 54 -->
+        <a href="product.html?id=54" class="arrivals-card" data-id="54" data-brand="Altius GG" data-type="glass" data-form="Glasses" data-name="Altius GG - Glass Single" data-price="999">
+          <div class="arrivals-card__img-wrapper">
+            <span class="arrivals-card__badge">CRYSTAL</span>
+            <span class="arrivals-card__prices">&#8377;999</span>
+            <img src="images/Altius%20Grey%20Goose%20Glass%20Single.png" alt="Altius GG - Glass Single" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
+          </div>
+          <div class="arrivals-card__info">
+            <span class="arrivals-card__brand">ALTIUS GG</span>
+            <h3 class="arrivals-card__title">Altius GG - Glass Single</h3>
+            <div class="arrivals-card__meta">
+              <span class="arrivals-card__price-val">&#8377;999</span>
+              <span>Crystal Cut Highball Single</span>
+            </div>
+          </div>
+        </a>        <!-- SKU 55 -->
+        <a href="product.html?id=55" class="arrivals-card" data-id="55" data-brand="Altius GG" data-type="glass" data-form="Glasses" data-name="Altius GG - Glass Set of 2" data-price="1799">
+          <div class="arrivals-card__img-wrapper">
+            <span class="arrivals-card__badge">SET OF 2</span>
+            <span class="arrivals-card__prices">&#8377;1799</span>
+            <img src="images/Altius%20Grey%20Goose%20Glass%20Set%20of%202.png" alt="Altius GG - Glass Set of 2" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
+          </div>
+          <div class="arrivals-card__info">
+            <span class="arrivals-card__brand">ALTIUS GG</span>
+            <h3 class="arrivals-card__title">Altius GG - Glass Set of 2</h3>
+            <div class="arrivals-card__meta">
+              <span class="arrivals-card__price-val">&#8377;1799</span>
+              <span>Crystal Cut Highball Set of 2</span>
+            </div>
+          </div>
+        </a>        <!-- SKU 56 -->
+        <a href="product.html?id=56" class="arrivals-card" data-id="56" data-brand="Altius GG" data-type="glass" data-form="Glasses" data-name="Altius GG - Glass Set of 4" data-price="3499">
+          <div class="arrivals-card__img-wrapper">
+            <span class="arrivals-card__badge">SET OF 4</span>
+            <span class="arrivals-card__prices">&#8377;3499</span>
+            <img src="images/Altius%20Grey%20Goose%20Glass%20Set%20of%204.png" alt="Altius GG - Glass Set of 4" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
+          </div>
+          <div class="arrivals-card__info">
+            <span class="arrivals-card__brand">ALTIUS GG</span>
+            <h3 class="arrivals-card__title">Altius GG - Glass Set of 4</h3>
+            <div class="arrivals-card__meta">
+              <span class="arrivals-card__price-val">&#8377;3499</span>
+              <span>Crystal Cut Highball Set of 4</span>
+            </div>
+          </div>
+        </a>        <!-- SKU 57 -->
+        <a href="product.html?id=57" class="arrivals-card" data-id="57" data-brand="Altius GG" data-type="glass" data-form="Glasses" data-name="Altius GG - Glass Set of 6" data-price="4499">
+          <div class="arrivals-card__img-wrapper">
+            <span class="arrivals-card__badge">SET OF 6</span>
+            <span class="arrivals-card__prices">&#8377;4499</span>
+            <img src="images/Altius%20Grey%20Goose%20Glass%20Set%20of%206.png" alt="Altius GG - Glass Set of 6" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
+          </div>
+          <div class="arrivals-card__info">
+            <span class="arrivals-card__brand">ALTIUS GG</span>
+            <h3 class="arrivals-card__title">Altius GG - Glass Set of 6</h3>
+            <div class="arrivals-card__meta">
+              <span class="arrivals-card__price-val">&#8377;4499</span>
+              <span>Crystal Cut Highball Set of 6</span>
+            </div>
+          </div>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer" id="footer">
+    <div class="footer__top">
+      <div class="footer__newsletter">
+        <h3>STAY INFORMED ON NEW DROPS</h3>
+        <p style="color: var(--Grey-2);">Receive exclusive updates on small-batch bottle runs and studio releases.</p>
+        <form class="newsletter-form" onsubmit="const btn=this.querySelector('.newsletter-btn'); const input=this.querySelector('.newsletter-input'); if(btn){btn.textContent='SUBSCRIBED!';} if(input){input.value='';} return false;">
+          <input type="email" class="newsletter-input" placeholder="ENTER YOUR EMAIL..." required>
+          <input type="tel" class="newsletter-input" placeholder="PHONE NUMBER..." required>
+          <button type="submit" class="newsletter-btn">SUBSCRIBE</button>
+        </form>
+      </div>
+
+      <div class="footer__col">
+        <span class="footer__col-title">[ BRAND COLLECTIONS ]</span>
+        <ul class="footer__links">
+          <li><a href="catalog.html?origin=Absolut%20Vodka">Absolut Vodka</a></li>
+          <li><a href="catalog.html?origin=Bombay%20Sapphire">Bombay Sapphire</a></li>
+          <li><a href="catalog.html?origin=Grey%20Goose">Grey Goose</a></li>
+          <li><a href="catalog.html?origin=Old%20Monk">Old Monk</a></li>
+          <li><a href="catalog.html?origin=J%C3%A4germeister">J&auml;germeister</a></li>
+          <li><a href="catalog.html?origin=Jack%20Daniel's">Jack Daniel's</a></li>
+          <li><a href="catalog.html?origin=Tanqueray">Tanqueray</a></li>
+        </ul>
+      </div>
+
+      <div class="footer__col">
+        <span class="footer__col-title" style="visibility: hidden;">[ MORE BRANDS ]</span>
+        <ul class="footer__links">
+          <li><a href="catalog.html?origin=Black%20Label">Black Label</a></li>
+          <li><a href="catalog.html?origin=Ciroc">Ciroc</a></li>
+          <li><a href="catalog.html?origin=1800%20Tequila">1800 Tequila</a></li>
+          <li><a href="catalog.html?origin=Blue%20Label">Blue Label</a></li>
+          <li><a href="catalog.html?origin=Don%20Julio%201942">Don Julio 1942</a></li>
+          <li><a href="catalog.html?origin=Altius%20GG">Altius GG</a></li>
+        </ul>
+      </div>
+
+      <div class="footer__col">
+        <span class="footer__col-title">[ LEGAL ]</span>
+        <ul class="footer__links">
+          <li><a href="privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="refund-policy.html">Refund &amp; Return Policy</a></li>
+          <li><a href="refund-policy.html#terms">Terms of Service</a></li>
+        </ul>
+      </div>
+
+      <div class="footer__col">
+        <span class="footer__col-title">[ CONTACT ]</span>
+        <ul class="footer__links">
+          <li><a href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=assistance.kairo@gmail.com" target="_blank" rel="noopener noreferrer">assistance.kairo@gmail.com</a></li>
+          <li><a href="https://www.instagram.com/kairo.studio.in?igsh=MXIxYXQ4YWIxc3RhNQ%3D%3D&amp;igsi=MXIxYXQ4YWIxc3RhNQ%3D%3D&amp;utm_source=qr" target="_blank" rel="noopener noreferrer">Instagram (@kairo.studio.in)</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <span>&copy; 2026 KAIRO GLASSWARE. ALL RIGHTS RESERVED.</span>
+      <span>HANDCRAFTED FROM RECLAIMED GLASS &middot; AUTO-SCROLLING CAROUSEL</span>
+    </div>
+  </footer>
+
+  <!-- Side-Sliding Navigation Menu Drawer -->
+  <div class="menu-drawer" id="menuDrawer">
+    <div class="menu-drawer__top">
+      <span class="mono-text" style="color:var(--Red-Main);">[ KAIRO STUDIO NAV ]</span>
+      <button class="close-btn" id="closeNavBtn">[ CLOSE X ]</button>
+    </div>
+
+    <div class="menu-drawer__content">
+      <!-- Catalog Accordion Category (Closed by Default) -->
+      <div class="nav-accordion-item" id="navCatalogAccordion">
+        <div class="nav-accordion-header">
+          <span class="nav-link-main">[ 01 ] CATALOG</span>
+          <span class="nav-accordion-icon">+</span>
+        </div>
+
+        <div class="nav-accordion-body">
+          <!-- Featured Top Action: SHOP ALL -->
+          <div class="nav-sub-col" style="margin-bottom: 2rem; padding-bottom: 1.6rem; border-bottom: 1px solid #E0E0E0;">
+            <a href="catalog.html" class="nav-shop-all-link">
+              <span>SHOP ALL</span>
+              <span class="nav-shop-all-badge">[ VIEW ALL SKUS &rarr; ]</span>
+            </a>
+          </div>
+
+          <div class="nav-sub-col">
+            <span class="nav-sub-title">[ SHOP BY PRODUCT FORM ]</span>
+            <ul class="nav-sub-list">
+              <li><a href="catalog.html?form=Glasses">The Glasses</a></li>
+              <li><a href="catalog.html?form=Sippers">The Sippers</a></li>
+              <li><a href="catalog.html?form=Trays">The Trays</a></li>
+              <li><a href="catalog.html?form=Containers">The Containers</a></li>
+            </ul>
+          </div>
+
+          <div class="nav-sub-col">
+            <span class="nav-sub-title">[ SHOP BY BRAND ORIGIN ]</span>
+            <ul class="nav-sub-list">
+              <li><a href="catalog.html?origin=Absolut%20Vodka">Absolut Vodka</a></li>
+              <li><a href="catalog.html?origin=Bombay%20Sapphire">Bombay Sapphire</a></li>
+              <li><a href="catalog.html?origin=Grey%20Goose">Grey Goose</a></li>
+              <li><a href="catalog.html?origin=Old%20Monk">Old Monk</a></li>
+              <li><a href="catalog.html?origin=J%C3%A4germeister">J&auml;germeister</a></li>
+              <li><a href="catalog.html?origin=Jack%20Daniel's">Jack Daniel's</a></li>
+              <li><a href="catalog.html?origin=Tanqueray">Tanqueray</a></li>
+              <li><a href="catalog.html?origin=Black%20Label">Black Label</a></li>
+              <li><a href="catalog.html?origin=Ciroc">Ciroc</a></li>
+              <li><a href="catalog.html?origin=1800%20Tequila">1800 Tequila</a></li>
+              <li><a href="catalog.html?origin=Blue%20Label">Blue Label</a></li>
+              <li><a href="catalog.html?origin=Don%20Julio%201942">Don Julio 1942</a></li>
+              <li><a href="catalog.html?origin=Altius%20GG">Altius GG</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 02: BYOB -->
+      <div class="nav-accordion-item">
+        <a href="byob.html" class="nav-link-main" id="navByobBtn">[ 02 ] BYOB</a>
+      </div>
+
+      <!-- Item 03: Customized -->
+      <div class="nav-accordion-item">
+        <a href="customized.html" class="nav-link-main" id="navCustomizedBtn">[ 03 ] CUSTOMIZED</a>
+      </div>
+
+      <!-- Item 04: Contact Us -->
+      <div class="nav-accordion-item">
+        <a href="index.html#footer" class="nav-link-main" id="navContactBtn">[ 04 ] CONTACT US</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide-out Cart Drawer -->
+  <div class="drawer-backdrop" id="drawerBackdrop"></div>
+
+  <div class="drawer" id="cartDrawer">
+    <div class="drawer__header">
+      <h3 class="drawer__title">YOUR SHOPPING BAG</h3>
+      <button class="close-btn" id="closeCartBtn">[ CLOSE X ]</button>
+    </div>
+
+    <div class="cart__items-list" id="cartItemList">
+      <p class="mono-text" style="color: var(--Grey-2); text-align: center; margin-top: 4rem;">YOUR BAG IS CURRENTLY EMPTY.</p>
+    </div>
+
+    <div class="drawer__footer">
+      <div class="cart-total-row">
+        <span>SUBTOTAL</span>
+        <span id="cartSubtotal">&#8377;0</span>
+      </div>
+      <button class="primary-btn" style="width: 100%;" onclick="if(typeof window.openCheckoutModal==='function') window.openCheckoutModal();">
+        [ PROCEED TO CHECKOUT ]
+      </button>
+    </div>
+  </div>
+
+  <!-- Fullscreen Search Modal -->
+  <div class="search-modal" id="searchModal">
+    <div class="search-modal__top">
+      <span class="mono-text" style="color:var(--Red-Main);">[ SEARCH KAIRO COLLECTION ]</span>
+      <button class="close-btn" id="closeSearchBtn">[ CLOSE X ]</button>
+    </div>
+    <div class="search-input-container">
+      <input type="text" class="search-input" id="searchInput" placeholder="TYPE TO SEARCH">
+    </div>
+    <div class="arrivals-grid" id="searchResults" style="margin-top: 4rem; padding: 0;"></div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
