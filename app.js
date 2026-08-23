@@ -1782,7 +1782,7 @@ document.addEventListener('DOMContentLoaded', () => {
           currency: orderData.currency || 'INR',
           name: 'KAIRO Studio',
           description: `Upcycled Glassware Order (₹${currentCalculatedTotal})`,
-          image: 'images/Founder Kairo.jpg',
+          image: 'images/Founder%20Kairo.jpg',
           order_id: orderData.order_id,
           handler: async function (response) {
             btnPaySecurely.innerHTML = '[ VERIFYING PAYMENT... ]';
