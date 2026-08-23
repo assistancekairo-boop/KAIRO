@@ -1758,7 +1758,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // STEP 2: Configure Razorpay Checkout Modal
         const options = {
-          key: orderData.key_id || 'rzp_test_TTCyE4D1lkVnsw',
+          key: orderData.key_id || 'rzp_test_TTDNQa83wQenBT',
           amount: orderData.amount,
           currency: orderData.currency || 'INR',
           name: 'KAIRO Studio',
