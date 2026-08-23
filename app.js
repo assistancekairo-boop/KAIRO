@@ -70,10 +70,15 @@ document.addEventListener('DOMContentLoaded', () => {
     link.addEventListener('click', () => toggleMenuDrawer(false));
   });
 
-  // 3. Scroll-Triggered Reveal Animations (Intersection Observer)
+  // 3. Scroll-Triggered Reveal Animations (Intersection Observer optimized for touch-scrolling)
   const revealSections = document.querySelectorAll('.reveal-section');
   if ('IntersectionObserver' in window && revealSections.length > 0) {
-    const observerOptions = { root: null, rootMargin: '0px 0px -10% 0px', threshold: 0.1 };
+    const isMobileViewport = window.innerWidth <= 768;
+    const observerOptions = {
+      root: null,
+      rootMargin: isMobileViewport ? '0px 0px 5% 0px' : '0px 0px -10% 0px',
+      threshold: isMobileViewport ? 0.02 : 0.1
+    };
     const sectionObserver = new IntersectionObserver((entries, observer) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -926,7 +931,7 @@ document.addEventListener('DOMContentLoaded', () => {
     toggleHeaderOpaque();
   }
 
-  // 12. Section 6: Campaign Film Strict Sticky Scroll-Lock, Fullscreen Overlay & Dead-Zone Pause
+  // 12. Section 6: Campaign Film Strict Sticky Scroll-Lock, Fullscreen Overlay & Touch-Scroll Optimizations
   const track6 = document.getElementById('section6Track');
   const placeholder6 = document.getElementById('section6Placeholder');
 
@@ -934,15 +939,16 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!track6 || !placeholder6) return;
 
     const trackRect = track6.getBoundingClientRect();
-    const windowHeight = window.innerHeight;
+    const windowHeight = window.visualViewport ? window.visualViewport.height : window.innerHeight;
     const totalScrollable = track6.offsetHeight - windowHeight;
     const currentScroll = -trackRect.top;
 
-    const rawProgress = Math.max(0, Math.min(1, currentScroll / totalScrollable));
+    const rawProgress = Math.max(0, Math.min(1, currentScroll / (totalScrollable || 1)));
     const animProgress = Math.min(1, rawProgress / 0.75);
 
-    const width = 60 + (animProgress * 40);
-    const height = 45 + (animProgress * 55);
+    const isMobile = window.innerWidth <= 768;
+    const width = isMobile ? (85 + (animProgress * 15)) : (60 + (animProgress * 40));
+    const height = isMobile ? (35 + (animProgress * 60)) : (45 + (animProgress * 55));
     const radius = 1.6 * (1 - animProgress);
 
     placeholder6.style.width = `${width}vw`;
@@ -961,6 +967,19 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('scroll', updateSection6Scale, { passive: true });
   window.addEventListener('resize', updateSection6Scale);
   updateSection6Scale();
+
+  // Mobile Filter Collapsible Toggle Logic
+  const mobileFilterToggle = document.getElementById('mobileFilterToggle');
+  const catalogFilterControls = document.getElementById('catalogFilterControls');
+  if (mobileFilterToggle && catalogFilterControls) {
+    mobileFilterToggle.addEventListener('click', () => {
+      catalogFilterControls.classList.toggle('active');
+      const isExpanded = catalogFilterControls.classList.contains('active');
+      mobileFilterToggle.innerHTML = isExpanded 
+        ? '<span>[ HIDE FILTERS − ]</span><span style="font-size: 1.1rem; color: var(--Red-Main);">▲ TAP TO COLLAPSE</span>' 
+        : '<span>[ FILTERS + ]</span><span style="font-size: 1.1rem; color: var(--Red-Main);">▼ TAP TO EXPAND</span>';
+    });
+  }
 
   // 13. Customized Page 2-Step Flow Interactive Logic
   const customBrandInput = document.getElementById('customBrandInput');

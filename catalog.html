@@ -72,13 +72,21 @@
         <span class="section-subtitle">[ COMPLETE INVENTORY &middot; 57 VERIFIED SKUS ]</span>
         <h1 style="font-size: clamp(3.2rem, 6vw, 7rem); text-transform: uppercase; font-weight: 800; line-height: 1.05;">STUDIO CATALOG.</h1>
       </div>
-      <p style="font-size: clamp(1.6rem, 2vw, 2.2rem); color: var(--Grey-2); max-width: 75rem; margin-top: 2rem; line-height: 1.5;">
+      <p class="header-subtext" style="font-size: clamp(1.6rem, 2vw, 2.2rem); color: var(--Grey-2); max-width: 75rem; margin-top: 2rem; line-height: 1.5;">
         Every vessel in our catalog is diamond-cut, fire-polished, and handcrafted from authentic reclaimed spirit bottles. Filter by product form or brand origin below.
       </p>
     </section>
 
+    <!-- Collapsible Mobile Filter Toggle Button (Mobile Only) -->
+    <div style="padding: 0 1.6rem;">
+      <button id="mobileFilterToggle" class="mobile-filter-toggle">
+        <span>[ FILTERS + ]</span>
+        <span style="font-size: 1.1rem; color: var(--Red-Main);">▼ TAP TO EXPAND</span>
+      </button>
+    </div>
+
     <!-- Two-Category Filter System UI -->
-    <div class="catalog-filter-controls" style="padding: 0 3.4rem; margin-bottom: 4rem; display: flex; flex-direction: column; gap: 2rem;">
+    <div class="catalog-filter-controls" id="catalogFilterControls" style="padding: 0 3.4rem; margin-bottom: 4rem; display: flex; flex-direction: column; gap: 2rem;">
       
       <!-- Category 1: Filter via Product -->
       <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 1.6rem;">
