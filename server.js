@@ -166,6 +166,14 @@ app.post('/api/verify-payment', (req, res) => {
   }
 });
 
+// Fallback 404 handler returning JSON format
+app.use((req, res) => {
+  res.status(404).json({
+    success: false,
+    message: `API Endpoint ${req.method} ${req.url} not found`
+  });
+});
+
 // Start Express Server
 app.listen(PORT, () => {
   console.log(`===================================================`);

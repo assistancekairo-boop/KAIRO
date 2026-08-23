@@ -1751,10 +1751,19 @@ document.addEventListener('DOMContentLoaded', () => {
       btnPaySecurely.innerHTML = '[ INITIALIZING RAZORPAY... ]';
 
       try {
-        // STEP 1: Call Backend to Create Order (Amount sent in Paise: 1 INR = 100 Paise)
+        // Determine backend API host URL dynamically (supports file:// and external dev server ports)
+        const getApiHost = () => {
+          const origin = window.location.origin || '';
+          if (origin.includes(':8080') || origin.includes('localhost:8080') || origin.includes('127.0.0.1:8080')) {
+            return '';
+          }
+          return 'http://localhost:8080';
+        };
+
+        const apiHost = getApiHost();
         const amountInPaise = Math.round(currentCalculatedTotal * 100);
 
-        const orderResponse = await fetch('/api/create-order', {
+        const orderResponse = await fetch(`${apiHost}/api/create-order`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
@@ -1764,7 +1773,15 @@ document.addEventListener('DOMContentLoaded', () => {
           })
         });
 
-        const orderData = await orderResponse.json();
+        let orderData;
+        const contentType = orderResponse.headers.get('content-type') || '';
+        if (contentType.includes('application/json')) {
+          orderData = await orderResponse.json();
+        } else {
+          const rawText = await orderResponse.text();
+          console.error('Server returned non-JSON response:', rawText);
+          throw new Error(`Payment backend returned non-JSON response (${orderResponse.status}). Please open http://localhost:8080 in your browser.`);
+        }
 
         if (!orderResponse.ok || !orderData.success) {
           throw new Error(orderData.message || 'Failed to initialize payment gateway.');
@@ -1789,7 +1806,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
             try {
               // STEP 3: Verify Payment Signature on Backend
-              const verifyResponse = await fetch('/api/verify-payment', {
+              const verifyResponse = await fetch(`${apiHost}/api/verify-payment`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -1799,7 +1816,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 })
               });
 
-              const verifyData = await verifyResponse.json();
+              let verifyData;
+              const verifyContentType = verifyResponse.headers.get('content-type') || '';
+              if (verifyContentType.includes('application/json')) {
+                verifyData = await verifyResponse.json();
+              } else {
+                throw new Error('Payment verification backend returned a non-JSON response.');
+              }
 
               if (verifyResponse.ok && verifyData.success) {
                 // Payment Verified Successfully!
