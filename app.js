@@ -1693,27 +1693,158 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
 
-    // Final Payment Handshake
-    btnPaySecurely?.addEventListener('click', () => {
-      const selectedGateway = document.querySelector('input[name="paymentGateway"]:checked')?.value || 'UPI';
+    // Final Payment Handshake (Razorpay Web Checkout & COD Support)
+    btnPaySecurely?.addEventListener('click', async () => {
+      const selectedGateway = document.querySelector('input[name="paymentGateway"]:checked')?.value || 'ONLINE';
       const name = document.getElementById('checkoutName')?.value.trim();
       const phone = document.getElementById('checkoutPhone')?.value.trim();
       const address = document.getElementById('checkoutAddress')?.value.trim();
       const city = document.getElementById('checkoutCity')?.value.trim();
       const pincode = document.getElementById('checkoutPincode')?.value.trim();
 
-      const itemsSummary = cart.map(i => `${i.name} (x${i.qty}) - ₹${i.price * i.qty}`).join('\n');
-      const subject = `KAIRO Order Payment Handshake - ${name} (₹${currentCalculatedTotal})`;
-      const body = `KAIRO GLASSWARE - ORDER PAYMENT HANDSHAKE\n\nORDER SUMMARY:\n${itemsSummary}\n\nCOST BREAKDOWN:\n- Subtotal: ₹${currentSubtotal}\n- Discount (${activeAppliedCode || 'N/A'}): ${isDiscountApplied ? '-₹' + currentDiscountAmount : 'N/A'}\n- Shipping: ₹${FIXED_SHIPPING_COST}\n- COD Fee: ${currentCodFee ? '₹49' : '₹0'}\n- TOTAL PAYABLE: ₹${currentCalculatedTotal}\n\nDELIVERY ADDRESS:\nName: ${name}\nPhone/WhatsApp: ${phone}\nAddress: ${address}, ${city} - ${pincode}\n\nPAYMENT METHOD: ${selectedGateway}\n\nSubmitted via Kairo Studio Secure Checkout.`;
+      if (!name || !phone || !address || !city || !pincode) {
+        const errorEl = document.getElementById('checkoutStep1Error');
+        if (errorEl) {
+          errorEl.textContent = 'Please fill in all required delivery details before proceeding.';
+          errorEl.style.display = 'block';
+        }
+        return;
+      }
 
-      const mailtoUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=assistance.kairo@gmail.com&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      // Handle Cash on Delivery (COD)
+      if (selectedGateway === 'COD') {
+        const itemsSummary = cart.map(i => `${i.name} (x${i.qty}) - ₹${i.price * i.qty}`).join('\n');
+        const subject = `KAIRO Order (COD) - ${name} (₹${currentCalculatedTotal})`;
+        const body = `KAIRO GLASSWARE - CASH ON DELIVERY ORDER\n\nORDER SUMMARY:\n${itemsSummary}\n\nCOST BREAKDOWN:\n- Subtotal: ₹${currentSubtotal}\n- Discount (${activeAppliedCode || 'N/A'}): ${isDiscountApplied ? '-₹' + currentDiscountAmount : 'N/A'}\n- Shipping: ₹${FIXED_SHIPPING_COST}\n- COD Fee: ₹49\n- TOTAL PAYABLE: ₹${currentCalculatedTotal}\n\nDELIVERY ADDRESS:\nName: ${name}\nPhone/WhatsApp: ${phone}\nAddress: ${address}, ${city} - ${pincode}\n\nPAYMENT METHOD: Cash on Delivery\n\nSubmitted via Kairo Studio Secure Checkout.`;
 
-      window.open(mailtoUrl, '_blank', 'noopener,noreferrer');
+        const mailtoUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=assistance.kairo@gmail.com&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        window.open(mailtoUrl, '_blank', 'noopener,noreferrer');
 
-      // Clear cart & close checkout seamlessly without modal browser alert blocking
-      cart = [];
-      if (typeof updateCartUI === 'function') updateCartUI();
-      checkoutModal.classList.remove('active');
+        cart = [];
+        if (typeof updateCartUI === 'function') updateCartUI();
+        checkoutModal.classList.remove('active');
+        return;
+      }
+
+      // Online Payment via Razorpay Gateway Integration
+      const originalBtnText = btnPaySecurely.innerHTML;
+      btnPaySecurely.disabled = true;
+      btnPaySecurely.innerHTML = '[ INITIALIZING RAZORPAY... ]';
+
+      try {
+        // STEP 1: Call Backend to Create Order (Amount sent in Paise: 1 INR = 100 Paise)
+        const amountInPaise = Math.round(currentCalculatedTotal * 100);
+
+        const orderResponse = await fetch('/api/create-order', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            amount: amountInPaise,
+            currency: 'INR',
+            receipt: `rcpt_${Date.now()}`
+          })
+        });
+
+        const orderData = await orderResponse.json();
+
+        if (!orderResponse.ok || !orderData.success) {
+          throw new Error(orderData.message || 'Failed to initialize payment gateway.');
+        }
+
+        // Check if Razorpay Checkout SDK is loaded
+        if (typeof Razorpay === 'undefined') {
+          throw new Error('Razorpay Checkout SDK failed to load. Please check your internet connection.');
+        }
+
+        // STEP 2: Configure Razorpay Checkout Modal
+        const options = {
+          key: orderData.key_id || 'rzp_test_TTCyE4D1lkVnsw',
+          amount: orderData.amount,
+          currency: orderData.currency || 'INR',
+          name: 'KAIRO Studio',
+          description: `Upcycled Glassware Order (₹${currentCalculatedTotal})`,
+          image: 'images/Founder Kairo.jpg',
+          order_id: orderData.order_id,
+          handler: async function (response) {
+            btnPaySecurely.innerHTML = '[ VERIFYING PAYMENT... ]';
+            
+            try {
+              // STEP 3: Verify Payment Signature on Backend
+              const verifyResponse = await fetch('/api/verify-payment', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                  razorpay_payment_id: response.razorpay_payment_id,
+                  razorpay_order_id: response.razorpay_order_id,
+                  razorpay_signature: response.razorpay_signature
+                })
+              });
+
+              const verifyData = await verifyResponse.json();
+
+              if (verifyResponse.ok && verifyData.success) {
+                // Payment Verified Successfully!
+                const itemsSummary = cart.map(i => `${i.name} (x${i.qty}) - ₹${i.price * i.qty}`).join('\n');
+                const subject = `KAIRO Paid Order #${response.razorpay_order_id} - ${name} (₹${currentCalculatedTotal})`;
+                const body = `KAIRO GLASSWARE - ONLINE PAYMENT SUCCESSFUL\n\nRAZORPAY TRANSACTION DETAILS:\n- Payment ID: ${response.razorpay_payment_id}\n- Order ID: ${response.razorpay_order_id}\n- Status: VERIFIED & PAID\n\nORDER SUMMARY:\n${itemsSummary}\n\nCOST BREAKDOWN:\n- Subtotal: ₹${currentSubtotal}\n- Discount (${activeAppliedCode || 'N/A'}): ${isDiscountApplied ? '-₹' + currentDiscountAmount : 'N/A'}\n- Shipping: ₹${FIXED_SHIPPING_COST}\n- TOTAL PAID: ₹${currentCalculatedTotal}\n\nDELIVERY ADDRESS:\nName: ${name}\nPhone/WhatsApp: ${phone}\nAddress: ${address}, ${city} - ${pincode}\n\nSubmitted via Kairo Studio Razorpay Checkout.`;
+
+                const mailtoUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=assistance.kairo@gmail.com&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+                window.open(mailtoUrl, '_blank', 'noopener,noreferrer');
+
+                // Clear cart & reset UI
+                cart = [];
+                if (typeof updateCartUI === 'function') updateCartUI();
+                checkoutModal.classList.remove('active');
+
+                // Display Payment Success Banner
+                const successMsg = document.createElement('div');
+                successMsg.style.cssText = 'position:fixed; top:20px; right:20px; background:#27ae60; color:#fff; padding:16px 24px; border-radius:8px; z-index:9999; font-family:sans-serif; font-size:14px; box-shadow:0 8px 24px rgba(0,0,0,0.2);';
+                successMsg.innerHTML = `<strong>✓ Payment Successful!</strong><br>Payment ID: ${response.razorpay_payment_id}`;
+                document.body.appendChild(successMsg);
+                setTimeout(() => successMsg.remove(), 6000);
+              } else {
+                throw new Error(verifyData.message || 'Payment signature verification failed.');
+              }
+            } catch (verifyError) {
+              console.error('Payment Verification Error:', verifyError);
+              alert(`Payment Verification Failed: ${verifyError.message}`);
+              btnPaySecurely.disabled = false;
+              btnPaySecurely.innerHTML = originalBtnText;
+            }
+          },
+          prefill: {
+            name: name,
+            contact: phone,
+            email: 'customer@kairo.studio'
+          },
+          theme: {
+            color: '#ED3834'
+          },
+          modal: {
+            ondismiss: function() {
+              console.log('Razorpay payment modal closed by user.');
+              btnPaySecurely.disabled = false;
+              btnPaySecurely.innerHTML = originalBtnText;
+            }
+          }
+        };
+
+        const rzp = new Razorpay(options);
+        
+        rzp.on('payment.failed', function (failedResponse) {
+          console.error('Razorpay Payment Failed:', failedResponse.error);
+          alert(`Payment Failed: ${failedResponse.error.description || failedResponse.error.reason}`);
+          btnPaySecurely.disabled = false;
+          btnPaySecurely.innerHTML = originalBtnText;
+        });
+
+        rzp.open();
+      } catch (err) {
+        console.error('Razorpay Error:', err);
+        alert(`Payment Initialization Error: ${err.message}`);
+        btnPaySecurely.disabled = false;
+        btnPaySecurely.innerHTML = originalBtnText;
+      }
     });
 
     // Delegate click on document for any PROCEED TO CHECKOUT button
