@@ -113,8 +113,33 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 5. Shopping Bag Cart State Management
-  let cart = [];
+  // 5. Shopping Bag Cart State Management (with localStorage Persistence & Hydration)
+  const CART_STORAGE_KEY = 'kairo_cart_state';
+
+  function loadCartFromStorage() {
+    try {
+      const stored = localStorage.getItem(CART_STORAGE_KEY);
+      if (stored) {
+        const parsed = JSON.parse(stored);
+        if (Array.isArray(parsed)) {
+          return parsed;
+        }
+      }
+    } catch (e) {
+      console.warn('Unable to load cart from localStorage:', e);
+    }
+    return [];
+  }
+
+  function saveCartToStorage() {
+    try {
+      localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cart));
+    } catch (e) {
+      console.warn('Unable to save cart to localStorage:', e);
+    }
+  }
+
+  let cart = loadCartFromStorage();
   let activePdpItem = null;
 
   const cartBtn = document.getElementById('cartBtn');
@@ -176,14 +201,38 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
       cart.push({ id: String(id), name, price: pNum, qty: qNum });
     }
+    saveCartToStorage();
     updateCartUI();
     toggleCart(true);
   };
 
   window.removeFromCart = function(id) {
     cart = cart.filter(item => String(item.id) !== String(id));
+    saveCartToStorage();
     updateCartUI();
   };
+
+  // Re-hydrate cart state on page navigation (Back / Forward / bfcache restores)
+  window.addEventListener('pageshow', () => {
+    cart = loadCartFromStorage();
+    updateCartUI();
+  });
+
+  window.addEventListener('popstate', () => {
+    cart = loadCartFromStorage();
+    updateCartUI();
+  });
+
+  // Cross-tab cart synchronization
+  window.addEventListener('storage', (e) => {
+    if (e.key === CART_STORAGE_KEY) {
+      cart = loadCartFromStorage();
+      updateCartUI();
+    }
+  });
+
+  // Immediate UI hydration on load
+  updateCartUI();
 
   // 6. Product Display Page (PDP) Modal Logic
   const pdpModal = document.getElementById('pdpModal');
@@ -1790,6 +1839,7 @@ document.addEventListener('DOMContentLoaded', () => {
         window.open(mailtoUrl, '_blank', 'noopener,noreferrer');
 
         cart = [];
+        saveCartToStorage();
         if (typeof updateCartUI === 'function') updateCartUI();
         checkoutModal.classList.remove('active');
         return;
@@ -1905,6 +1955,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Clear cart & reset UI
             cart = [];
+            saveCartToStorage();
             if (typeof updateCartUI === 'function') updateCartUI();
             checkoutModal.classList.remove('active');
 
