@@ -1751,17 +1751,39 @@ document.addEventListener('DOMContentLoaded', () => {
       btnPaySecurely.innerHTML = '[ INITIALIZING RAZORPAY... ]';
 
       try {
-        // Determine backend API host URL dynamically (supports file:// and external dev server ports)
+        // Determine backend API host URL dynamically (supports file://, local server, and production host)
         const getApiHost = () => {
           const origin = window.location.origin || '';
-          if (origin.includes(':8080') || origin.includes('localhost:8080') || origin.includes('127.0.0.1:8080')) {
-            return '';
+          if (!origin || origin.startsWith('file:') || origin === 'null') {
+            return 'http://localhost:8080';
           }
-          return 'http://localhost:8080';
+          return ''; // Use relative path for all HTTP/HTTPS web origins
         };
 
         const apiHost = getApiHost();
-        const amountInPaise = Math.round(currentCalculatedTotal * 100);
+
+        // Fail-safe total calculation in case currentCalculatedTotal is uninitialized
+        let calculatedTotal = Number(currentCalculatedTotal);
+        if (!calculatedTotal || isNaN(calculatedTotal) || calculatedTotal <= 0) {
+          const cartSubtotal = cart.reduce((acc, item) => acc + (item.price * item.qty), 0);
+          calculatedTotal = cartSubtotal > 0 ? (cartSubtotal + FIXED_SHIPPING_COST) : 599;
+        }
+        const amountInPaise = Math.round(calculatedTotal * 100);
+
+        // Auto-inject Razorpay Checkout SDK if missing or blocked
+        if (typeof Razorpay === 'undefined') {
+          try {
+            await new Promise((resolve, reject) => {
+              const script = document.createElement('script');
+              script.src = 'https://checkout.razorpay.com/v1/checkout.js';
+              script.onload = resolve;
+              script.onerror = () => reject(new Error('Razorpay Checkout SDK script failed to load. Please check your internet connection or ad-blockers.'));
+              document.head.appendChild(script);
+            });
+          } catch (sdkError) {
+            throw new Error('Razorpay Checkout SDK is unavailable. Please refresh the page and try again.');
+          }
+        }
 
         const orderResponse = await fetch(`${apiHost}/api/create-order`, {
           method: 'POST',
@@ -1780,16 +1802,11 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
           const rawText = await orderResponse.text();
           console.error('Server returned non-JSON response:', rawText);
-          throw new Error(`Payment backend returned non-JSON response (${orderResponse.status}). Please open http://localhost:8080 in your browser.`);
+          throw new Error(`Payment backend returned non-JSON response (${orderResponse.status}). Please ensure server is running.`);
         }
 
         if (!orderResponse.ok || !orderData.success) {
           throw new Error(orderData.message || 'Failed to initialize payment gateway.');
-        }
-
-        // Check if Razorpay Checkout SDK is loaded
-        if (typeof Razorpay === 'undefined') {
-          throw new Error('Razorpay Checkout SDK failed to load. Please check your internet connection.');
         }
 
         // STEP 2: Configure Razorpay Checkout Modal
