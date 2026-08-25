@@ -1114,13 +1114,14 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   if (modalContactForm) {
-    modalContactForm.addEventListener('submit', (e) => {
+    modalContactForm.addEventListener('submit', async (e) => {
       e.preventDefault();
       
       const customerName = document.getElementById('modalCustomerName')?.value.trim();
+      const customerEmail = document.getElementById('modalCustomerEmail')?.value.trim();
       const customerPhone = document.getElementById('modalCustomerPhone')?.value.trim();
 
-      if (!customerName || !customerPhone) {
+      if (!customerName || !customerPhone || !customerEmail) {
         if (modalConfirmSubmitBtn) {
           modalConfirmSubmitBtn.style.background = 'var(--Red-Main)';
           modalConfirmSubmitBtn.innerHTML = '[ PLEASE FILL ALL REQUIRED FIELDS ]';
@@ -1138,43 +1139,56 @@ document.addEventListener('DOMContentLoaded', () => {
         modalConfirmSubmitBtn.innerHTML = '[ SENDING... ]';
       }
 
-      setTimeout(() => {
-        let subject = '';
-        let bodyText = '';
+      let subject = '';
+      let bodyText = '';
 
-        if (pendingSubmissionType === 'CUSTOMIZED') {
-          const brandVal = document.getElementById('customBrandInput')?.value || 'DOM PERIGNON';
-          const formVal = document.getElementById('selForm')?.textContent || 'GLASSES';
-          subject = `New Customized Commission Request - ${customerName}`;
-          bodyText = `KAIRO STUDIO CUSTOMIZED COMMISSION REQUEST\n\nCUSTOMER DETAILS:\n- Full Name: ${customerName}\n- WhatsApp Number: ${customerPhone}\n\nCOMMISSION SPECIFICATIONS:\n- Target Bottle Brand: ${brandVal}\n- Vessel Form Choice: ${formVal}\n\nSubmitted via Kairo Studio Website.`;
-        } else {
-          subject = `New BYOB Craft Request - ${customerName}`;
-          bodyText = `KAIRO STUDIO BRING YOUR OWN BOTTLE (BYOB) REQUEST\n\nCUSTOMER DETAILS:\n- Full Name: ${customerName}\n- WhatsApp Number: ${customerPhone}\n\nSERVICE DETAILS:\n- Service: Bring Your Own Bottle Upcycling Craft\n\nSubmitted via Kairo Studio Website.`;
-        }
+      if (pendingSubmissionType === 'CUSTOMIZED') {
+        const brandVal = document.getElementById('customBrandInput')?.value || 'DOM PERIGNON';
+        const formVal = document.getElementById('selForm')?.textContent || 'GLASSES';
+        subject = `New Bespoke Commission Request - ${customerName}`;
+        bodyText = `KAIRO STUDIO CUSTOMIZED COMMISSION REQUEST\n\nCUSTOMER DETAILS:\n- Full Name: ${customerName}\n- Email: ${customerEmail}\n- WhatsApp Number: ${customerPhone}\n\nCOMMISSION SPECIFICATIONS:\n- Target Bottle Brand: ${brandVal}\n- Vessel Form Choice: ${formVal}\n\nSubmitted via Kairo Studio Website.`;
+      } else {
+        subject = `New BYOB Craft Request - ${customerName}`;
+        bodyText = `KAIRO STUDIO BRING YOUR OWN BOTTLE (BYOB) REQUEST\n\nCUSTOMER DETAILS:\n- Full Name: ${customerName}\n- Email: ${customerEmail}\n- WhatsApp Number: ${customerPhone}\n\nSERVICE DETAILS:\n- Service: Bring Your Own Bottle Upcycling Craft\n\nSubmitted via Kairo Studio Website.`;
+      }
 
-        // Open Gmail compose pre-filled with merged payload
-        const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=assistance.kairo@gmail.com&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyText)}`;
-        window.open(gmailUrl, '_blank', 'noopener,noreferrer');
+      // Submit payload directly to Web3Forms API (Access Key: 90f096b2-ec87-44b8-8e55-35b80a00472c)
+      try {
+        const web3Data = new FormData();
+        web3Data.append('access_key', '90f096b2-ec87-44b8-8e55-35b80a00472c');
+        web3Data.append('subject', subject);
+        web3Data.append('from_name', 'KAIRO Studio Website');
+        web3Data.append('name', customerName);
+        web3Data.append('email', customerEmail);
+        web3Data.append('phone', customerPhone);
+        web3Data.append('message', bodyText);
 
-        // Close modal
-        closeContactModal();
+        await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          body: web3Data
+        });
+      } catch (err) {
+        console.warn('Web3Forms form submission warning:', err);
+      }
 
-        // Render clean success banner on the main page
-        const existingBanner = document.getElementById('submissionSuccessBanner');
-        if (existingBanner) existingBanner.remove();
+      // Close modal
+      closeContactModal();
 
-        const successBanner = document.createElement('div');
-        successBanner.id = 'submissionSuccessBanner';
-        successBanner.className = 'mono-text';
-        successBanner.style.cssText = 'background: #0d0d0d; color: var(--White-Main); border: 1.5px solid var(--Red-Main); padding: 2.4rem; border-radius: 0.6rem; text-align: center; margin: 3rem auto; max-width: 650px; box-shadow: 0 15px 40px rgba(0,0,0,0.2); animation: modalSlideUp 0.3s ease;';
-        successBanner.innerHTML = `<span style="color: var(--Red-Main); font-weight: 700; font-size: 1.6rem;">[ REQUEST SENT SUCCESSFULLY ]</span><br><br>Thank you, <strong>${customerName}</strong>! Your request payload has been compiled and dispatched to <strong>assistance.kairo@gmail.com</strong>.<br><br><span style="color: var(--Grey-2); font-size: 1.2rem;">Our studio team will contact you on WhatsApp (${customerPhone}) shortly regarding your commission.</span>`;
+      // Render clean success banner on the main page
+      const existingBanner = document.getElementById('submissionSuccessBanner');
+      if (existingBanner) existingBanner.remove();
 
-        const mainSection = document.querySelector('main');
-        if (mainSection) {
-          mainSection.prepend(successBanner);
-          successBanner.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }
-      }, 500);
+      const successBanner = document.createElement('div');
+      successBanner.id = 'submissionSuccessBanner';
+      successBanner.className = 'mono-text';
+      successBanner.style.cssText = 'background: #0d0d0d; color: var(--White-Main); border: 1.5px solid var(--Red-Main); padding: 2.4rem; border-radius: 0.6rem; text-align: center; margin: 3rem auto; max-width: 650px; box-shadow: 0 15px 40px rgba(0,0,0,0.2); animation: modalSlideUp 0.3s ease;';
+      successBanner.innerHTML = `<span style="color: var(--Red-Main); font-weight: 700; font-size: 1.6rem;">[ REQUEST SUBMITTED SUCCESSFULLY ]</span><br><br>Thank you, <strong>${customerName}</strong>! Your request payload has been submitted directly to our studio team.<br><br><span style="color: var(--Grey-2); font-size: 1.2rem;">We will contact you on WhatsApp (${customerPhone}) or Email (${customerEmail}) shortly regarding your request.</span>`;
+
+      const mainSection = document.querySelector('main');
+      if (mainSection) {
+        mainSection.prepend(successBanner);
+        successBanner.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
     });
   }
 

@@ -121,16 +121,27 @@
         Please provide your details below so our studio team can connect with you regarding your upcycling craft request.
       </p>
 
-      <form id="modalContactForm">
+      <form action="https://api.web3forms.com/submit" method="POST" id="modalContactForm">
+        <input type="hidden" name="access_key" value="90f096b2-ec87-44b8-8e55-35b80a00472c">
+        <input type="hidden" name="subject" value="New BYOB Upcycling Craft Request">
+        <input type="hidden" name="from_name" value="KAIRO Studio BYOB Service">
+
         <div class="modal-input-group">
           <label for="modalCustomerName" class="modal-input-label">FULL NAME *</label>
-          <input type="text" id="modalCustomerName" required class="modal-input" autocomplete="name">
+          <input type="text" id="modalCustomerName" name="name" required class="modal-input" autocomplete="name" placeholder="e.g. Rahul Sharma">
+        </div>
+
+        <div class="modal-input-group">
+          <label for="modalCustomerEmail" class="modal-input-label">EMAIL ADDRESS *</label>
+          <input type="email" id="modalCustomerEmail" name="email" required class="modal-input" autocomplete="email" placeholder="e.g. rahul@example.com">
         </div>
 
         <div class="modal-input-group">
           <label for="modalCustomerPhone" class="modal-input-label">WHATSAPP NUMBER *</label>
-          <input type="tel" id="modalCustomerPhone" required class="modal-input" autocomplete="tel">
+          <input type="tel" id="modalCustomerPhone" name="phone" required class="modal-input" autocomplete="tel" placeholder="e.g. +91 98765 43210">
         </div>
+
+        <textarea name="message" id="modalCustomerMessage" style="display:none;" required></textarea>
 
         <p class="modal-disclaimer">This is for contacting you regarding your request.</p>
 
