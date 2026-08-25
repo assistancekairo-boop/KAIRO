@@ -1409,45 +1409,33 @@ document.addEventListener('DOMContentLoaded', () => {
               </div>
             </div>
 
-            <!-- Shipping & Contact Details Form with Web3Forms Integration -->
-            <form action="https://api.web3forms.com/submit" method="POST" id="web3FormsCheckoutForm" onsubmit="return false;">
-              <input type="hidden" name="access_key" value="90f096b2-ec87-44b8-8e55-35b80a00472c">
-              <input type="hidden" name="subject" value="New KAIRO Studio Bill Summary & Order Submission">
-              <input type="hidden" name="from_name" value="KAIRO Studio Checkout">
-              <textarea name="message" id="web3FormsMessage" style="display:none;" required></textarea>
-
-              <div class="checkout-form-grid">
-                <div class="modal-input-group checkout-form-full">
-                  <label class="modal-input-label" for="checkoutName">Full Name *</label>
-                  <input type="text" id="checkoutName" name="name" class="modal-input" placeholder="e.g. Rahul Sharma" required>
-                </div>
-
-                <div class="modal-input-group checkout-form-full">
-                  <label class="modal-input-label" for="checkoutEmail">Email Address *</label>
-                  <input type="email" id="checkoutEmail" name="email" class="modal-input" placeholder="e.g. rahul@example.com" required>
-                </div>
-
-                <div class="modal-input-group checkout-form-full">
-                  <label class="modal-input-label" for="checkoutPhone">Phone / WhatsApp Number *</label>
-                  <input type="tel" id="checkoutPhone" name="phone" class="modal-input" placeholder="e.g. +91 98765 43210" required>
-                </div>
-
-                <div class="modal-input-group checkout-form-full">
-                  <label class="modal-input-label" for="checkoutAddress">Delivery Address *</label>
-                  <input type="text" id="checkoutAddress" name="address" class="modal-input" placeholder="House/Flat No., Building, Street Name" required>
-                </div>
-
-                <div class="modal-input-group">
-                  <label class="modal-input-label" for="checkoutCity">City *</label>
-                  <input type="text" id="checkoutCity" name="city" class="modal-input" placeholder="e.g. Mumbai" required>
-                </div>
-
-                <div class="modal-input-group">
-                  <label class="modal-input-label" for="checkoutPincode">Pincode *</label>
-                  <input type="text" id="checkoutPincode" name="pincode" class="modal-input" placeholder="e.g. 400001" required>
-                </div>
+            <!-- Shipping & Contact Details Form -->
+            <div class="checkout-form-grid">
+              <div class="modal-input-group checkout-form-full">
+                <label class="modal-input-label" for="checkoutName">Full Name *</label>
+                <input type="text" id="checkoutName" class="modal-input" placeholder="e.g. Rahul Sharma" required>
               </div>
-            </form>
+
+              <div class="modal-input-group checkout-form-full">
+                <label class="modal-input-label" for="checkoutPhone">Phone / WhatsApp Number *</label>
+                <input type="tel" id="checkoutPhone" class="modal-input" placeholder="e.g. +91 98765 43210" required>
+              </div>
+
+              <div class="modal-input-group checkout-form-full">
+                <label class="modal-input-label" for="checkoutAddress">Delivery Address *</label>
+                <input type="text" id="checkoutAddress" class="modal-input" placeholder="House/Flat No., Building, Street Name" required>
+              </div>
+
+              <div class="modal-input-group">
+                <label class="modal-input-label" for="checkoutCity">City *</label>
+                <input type="text" id="checkoutCity" class="modal-input" placeholder="e.g. Mumbai" required>
+              </div>
+
+              <div class="modal-input-group">
+                <label class="modal-input-label" for="checkoutPincode">Pincode *</label>
+                <input type="text" id="checkoutPincode" class="modal-input" placeholder="e.g. 400001" required>
+              </div>
+            </div>
 
             <div id="checkoutStep1Error" style="color:var(--Red-Main); font-family:var(--Font-Secondary), 'Inter', sans-serif; font-size:1.3rem; margin-bottom:1.6rem; display:none; text-align:center; font-weight:600;">
               Please fill in all required shipping and contact details before proceeding.
@@ -1724,59 +1712,23 @@ document.addEventListener('DOMContentLoaded', () => {
       checkoutModal.classList.remove('active');
     });
 
-    // Web3Forms Order & Bill Summary Dispatcher Function (Access Key: 90f096b2-ec87-44b8-8e55-35b80a00472c)
-    const sendWeb3FormsOrderSummary = async (paymentMethod, paymentStatus = 'PENDING GATEWAY HANDOFF') => {
-      const name = document.getElementById('checkoutName')?.value.trim() || 'Customer';
-      const email = document.getElementById('checkoutEmail')?.value.trim() || 'customer@kairo.studio';
-      const phone = document.getElementById('checkoutPhone')?.value.trim() || 'N/A';
-      const address = document.getElementById('checkoutAddress')?.value.trim() || '';
-      const city = document.getElementById('checkoutCity')?.value.trim() || '';
-      const pincode = document.getElementById('checkoutPincode')?.value.trim() || '';
-
-      const itemsSummary = cart.map(i => `${i.name} (x${i.qty}) - ₹${i.price * i.qty}`).join('\n');
-      const formattedMessage = `KAIRO GLASSWARE - BILL SUMMARY & ORDER SUBMISSION\n\nCUSTOMER DETAILS:\n- Full Name: ${name}\n- Email: ${email}\n- Phone/WhatsApp: ${phone}\n- Delivery Address: ${address}, ${city} - ${pincode}\n\nBILL SUMMARY:\n- Subtotal: ₹${currentSubtotal}\n- Discount (${activeAppliedCode || 'N/A'}): ${isDiscountApplied ? '-₹' + currentDiscountAmount : 'N/A'}\n- Shipping: ₹${FIXED_SHIPPING_COST}\n- TOTAL PAYABLE: ₹${currentCalculatedTotal}\n\nORDERED ITEMS:\n${itemsSummary}\n\nPAYMENT DETAILS:\n- Method: ${paymentMethod}\n- Gateway Status: ${paymentStatus}\n\nSubmitted via Kairo Studio Checkout with Web3Forms Integration.`;
-
-      try {
-        const formData = new FormData();
-        formData.append('access_key', '90f096b2-ec87-44b8-8e55-35b80a00472c');
-        formData.append('subject', `New KAIRO Studio Bill Summary & Order - ${name} (₹${currentCalculatedTotal})`);
-        formData.append('from_name', 'KAIRO Studio Checkout');
-        formData.append('name', name);
-        formData.append('email', email);
-        formData.append('phone', phone);
-        formData.append('address', `${address}, ${city} - ${pincode}`);
-        formData.append('message', formattedMessage);
-
-        fetch('https://api.web3forms.com/submit', {
-          method: 'POST',
-          body: formData
-        }).catch(err => console.warn('Web3Forms background dispatch warning:', err));
-      } catch (err) {
-        console.warn('Web3Forms dispatch error:', err);
-      }
-    };
-
-    // Step 1 -> Step 2 Transition with Form Validation & Web3Forms Submission
+    // Step 1 -> Step 2 Transition with Form Validation
     btnProceedToPayment?.addEventListener('click', () => {
       const name = document.getElementById('checkoutName')?.value.trim();
-      const email = document.getElementById('checkoutEmail')?.value.trim();
       const phone = document.getElementById('checkoutPhone')?.value.trim();
       const address = document.getElementById('checkoutAddress')?.value.trim();
       const city = document.getElementById('checkoutCity')?.value.trim();
       const pincode = document.getElementById('checkoutPincode')?.value.trim();
 
-      if (!name || !email || !phone || !address || !city || !pincode) {
+      if (!name || !phone || !address || !city || !pincode) {
         if (checkoutStep1Error) {
-          checkoutStep1Error.textContent = 'Please fill in all required shipping, email, and contact details before proceeding.';
+          checkoutStep1Error.textContent = 'Please fill in all required shipping and contact details before proceeding.';
           checkoutStep1Error.style.display = 'block';
         }
         return;
       }
 
       if (checkoutStep1Error) checkoutStep1Error.style.display = 'none';
-
-      // Submit Bill Summary to Web3Forms API immediately before payment gateway
-      sendWeb3FormsOrderSummary('Step 1 - Bill Summary Review', 'PROCEEDED TO PAYMENT GATEWAY');
 
       // Update Step 2 Details
       recalculateTotals();
@@ -1829,8 +1781,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // Handle Cash on Delivery (COD)
       if (selectedGateway === 'COD') {
-        sendWeb3FormsOrderSummary('Cash on Delivery (COD)', 'CONFIRMED ORDER (COD)');
-        
         const itemsSummary = cart.map(i => `${i.name} (x${i.qty}) - ₹${i.price * i.qty}`).join('\n');
         const subject = `KAIRO Order (COD) - ${name} (₹${currentCalculatedTotal})`;
         const body = `KAIRO GLASSWARE - CASH ON DELIVERY ORDER\n\nORDER SUMMARY:\n${itemsSummary}\n\nCOST BREAKDOWN:\n- Subtotal: ₹${currentSubtotal}\n- Discount (${activeAppliedCode || 'N/A'}): ${isDiscountApplied ? '-₹' + currentDiscountAmount : 'N/A'}\n- Shipping: ₹${FIXED_SHIPPING_COST}\n- COD Fee: ₹49\n- TOTAL PAYABLE: ₹${currentCalculatedTotal}\n\nDELIVERY ADDRESS:\nName: ${name}\nPhone/WhatsApp: ${phone}\nAddress: ${address}, ${city} - ${pincode}\n\nPAYMENT METHOD: Cash on Delivery\n\nSubmitted via Kairo Studio Secure Checkout.`;
@@ -1942,9 +1892,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 console.warn('Backend verification skipped on static host mode:', vErr);
               }
             }
-
-            // Always Dispatch Web3Forms Notification with Payment ID & Order Details
-            sendWeb3FormsOrderSummary('Online Payment (Razorpay)', `VERIFIED & PAID (Payment ID: ${response.razorpay_payment_id})`);
 
             const itemsSummary = cart.map(i => `${i.name} (x${i.qty}) - ₹${i.price * i.qty}`).join('\n');
             const subject = `KAIRO Paid Order - ${name} (₹${calculatedTotal})`;
