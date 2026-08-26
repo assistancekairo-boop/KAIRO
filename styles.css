@@ -1286,9 +1286,13 @@ body.drawer-open {
   }
 
   .pdp-wrapper,
-  .pdp-modal {
+  .pdp-modal,
+  .pdp-related-section {
     padding-left: 1.6rem !important;
     padding-right: 1.6rem !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    overflow-x: hidden !important;
   }
 
   .footer {
