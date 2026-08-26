@@ -108,7 +108,7 @@ h1, h2, h3, h4, h5, h6 { font-family: var(--Font-Primary); font-weight: 500; tex
 } .campaign-section__marquee { white-space: nowrap; display: flex; gap: clamp(2rem, 3vw, 4rem); animation: marquee 25s linear infinite; width: 100%; padding-top: clamp(2rem, 3vw, 4rem); z-index: 5;
 } @keyframes marquee { 0% { transform: translateX(0%); } 100% { transform: translateX(-50%); }
 } .marquee-text { font-size: clamp(3rem, 5vw, 8rem); font-weight: 900; text-transform: uppercase; letter-spacing: -0.1rem; color: var(--White-Main);
-} .campaign-section__placeholder { width: clamp(40vw, 60vw, 80vw); height: clamp(30vh, 45vh, 60vh); margin: auto; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: rgba(255, 255, 255, 0.12); border: 1px dashed rgba(255, 255, 255, 0.4); border-radius: 1.6rem; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 1.6rem; z-index: 10; transition: width 0.05s linear, height 0.05s linear, border-radius 0.05s linear, background-color 0.05s linear; will-change: width, height, border-radius;
+} .campaign-section__placeholder { width: clamp(40vw, 60vw, 80vw); height: clamp(30vh, 45vh, 60vh); margin: auto; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: rgba(255, 255, 255, 0.12); border: 1px dashed rgba(255, 255, 255, 0.4); border-radius: 1.6rem; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 1.6rem; z-index: 10; will-change: width, height, border-radius;
 } .campaign-section__placeholder span { font-family: var(--Font-Mono); font-size: 1.2rem; color: var(--White-Main); letter-spacing: 0.1rem;
 } .campaign-img-desktop { display: block;
 } .campaign-img-mobile { display: none;

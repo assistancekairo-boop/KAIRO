@@ -988,25 +988,31 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!track6 || !placeholder6) return;
 
     const trackRect = track6.getBoundingClientRect();
-    const windowHeight = window.visualViewport ? window.visualViewport.height : window.innerHeight;
+    const windowHeight = window.innerHeight || document.documentElement.clientHeight;
     const totalScrollable = track6.offsetHeight - windowHeight;
     const currentScroll = -trackRect.top;
 
+    // Smooth real-time progress calculation without delay or viewport jump
     const rawProgress = Math.max(0, Math.min(1, currentScroll / (totalScrollable || 1)));
-    const animProgress = Math.min(1, rawProgress / 0.75);
+    const animProgress = Math.max(0, Math.min(1, rawProgress / 0.85));
 
     const isMobile = window.innerWidth <= 768;
-    const width = isMobile ? (85 + (animProgress * 15)) : (60 + (animProgress * 40));
-    const height = isMobile ? (35 + (animProgress * 60)) : (45 + (animProgress * 55));
+    
+    // Balanced mobile portrait aspect ratio (88vw x 55vh) to eliminate starting squish and misplacement
+    const startW = isMobile ? 88 : 60;
+    const startH = isMobile ? 55 : 45;
+    
+    const width = startW + (animProgress * (100 - startW));
+    const height = startH + (animProgress * (100 - startH));
     const radius = 1.6 * (1 - animProgress);
 
-    placeholder6.style.width = `${width}vw`;
-    placeholder6.style.height = `${height}vh`;
-    placeholder6.style.borderRadius = `${radius}rem`;
+    placeholder6.style.width = animProgress >= 0.98 ? '100vw' : `${width}vw`;
+    placeholder6.style.height = animProgress >= 0.98 ? '100vh' : `${height}vh`;
+    placeholder6.style.borderRadius = animProgress >= 0.98 ? '0px' : `${radius}rem`;
 
     if (animProgress >= 0.95) {
       placeholder6.style.border = 'none';
-      placeholder6.style.background = 'rgba(255, 255, 255, 0.18)';
+      placeholder6.style.background = 'transparent';
     } else {
       placeholder6.style.border = '1px dashed rgba(255, 255, 255, 0.4)';
       placeholder6.style.background = 'rgba(255, 255, 255, 0.12)';
