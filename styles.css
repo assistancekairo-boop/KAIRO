@@ -1499,11 +1499,29 @@ body.drawer-open {
   .campaign-img-mobile {
     display: block !important;
   }
+
+  /* 12. Homepage Section 1 Revolving Cylinder Carousel Mobile Image Swap */
+  .cylinder-img-desktop {
+    display: none !important;
+  }
+
+  .cylinder-img-mobile {
+    display: block !important;
+  }
 }
 
 /* Desktop Hide for Mobile Toggle */
 .mobile-filter-toggle {
   display: none;
+}
+
+/* Revolving Carousel Slot Image Default Desktop Visibility */
+.cylinder-img-desktop {
+  display: block !important;
+}
+
+.cylinder-img-mobile {
+  display: none !important;
 }
 
 
