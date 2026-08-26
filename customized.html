@@ -170,7 +170,10 @@
         Please provide your details below so our studio team can connect with you regarding your upcycling commission.
       </p>
 
-      <form action="https://api.web3forms.com/submit" method="POST" id="modalContactForm">
+      <!-- Hidden iframe target for seamless Web3Forms background submission -->
+      <iframe name="web3forms_iframe" id="web3forms_iframe" style="display:none;"></iframe>
+
+      <form action="https://api.web3forms.com/submit" method="POST" target="web3forms_iframe" id="modalContactForm">
         <input type="hidden" name="access_key" value="90f096b2-ec87-44b8-8e55-35b80a00472c">
         <input type="hidden" name="subject" value="New Bespoke Glassware Commission Request">
         <input type="hidden" name="from_name" value="KAIRO Studio Customized Service">
@@ -190,7 +193,10 @@
           <input type="tel" id="modalCustomerPhone" name="phone" required class="modal-input" autocomplete="tel" placeholder="e.g. +91 98765 43210">
         </div>
 
-        <textarea name="message" id="modalCustomerMessage" style="display:none;" required></textarea>
+        <div class="modal-input-group">
+          <label for="modalCustomerMessage" class="modal-input-label">MESSAGE / REQUEST NOTES</label>
+          <textarea id="modalCustomerMessage" name="message" class="modal-input" placeholder="Describe your custom engraving, bottle specs, or instructions..." style="height: 7rem; resize: vertical;"></textarea>
+        </div>
 
         <p class="modal-disclaimer">This is for contacting you regarding your request.</p>
 
