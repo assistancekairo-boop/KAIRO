@@ -352,11 +352,11 @@ a.collection-card,
     padding: 0 0.2rem;
   }
   .hero-main-title {
-    -webkit-text-stroke: 4px #FFFFFF;
-    text-stroke: 4px #FFFFFF;
-    font-size: clamp(16.25rem, 70vw, 45rem);
-    line-height: 0.85;
-    margin-bottom: 1.5rem;
+    -webkit-text-stroke: 4px #FFFFFF !important;
+    text-stroke: 4px #FFFFFF !important;
+    font-size: clamp(16.25rem, 70vw, 45rem) !important;
+    line-height: 0.85 !important;
+    margin-bottom: 1.5rem !important;
   }
   .hero-sub-title {
     -webkit-text-stroke: 1.5px #FFFFFF;
@@ -1155,6 +1155,15 @@ body.drawer-open {
   color: var(--Grey-2);
 }
 
+/* Revolving Carousel Slot Image Default Desktop Visibility */
+.cylinder-img-desktop {
+  display: block;
+}
+
+.cylinder-img-mobile {
+  display: none;
+}
+
 /* ==========================================================================
    Mobile Smartphone Optimization Media Query (@media (max-width: 768px))
    Strictly isolated to phone viewports under 768px without affecting desktop.
@@ -1199,8 +1208,8 @@ body.drawer-open {
     padding-right: 1.6rem !important;
   }
 
-  /* 2. Fluid Typography Downsizing for Mobile */
-  h1 {
+  /* 2. Fluid Typography Downsizing for Mobile (Excluding Section 1 Hero Title) */
+  h1:not(.hero-main-title) {
     font-size: clamp(3.2rem, 8.5vw, 5.2rem) !important;
     line-height: 0.95 !important;
     letter-spacing: -0.08rem !important;
@@ -1513,15 +1522,6 @@ body.drawer-open {
 /* Desktop Hide for Mobile Toggle */
 .mobile-filter-toggle {
   display: none;
-}
-
-/* Revolving Carousel Slot Image Default Desktop Visibility */
-.cylinder-img-desktop {
-  display: block !important;
-}
-
-.cylinder-img-mobile {
-  display: none !important;
 }
 
 
