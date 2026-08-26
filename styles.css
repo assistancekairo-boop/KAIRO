@@ -293,6 +293,58 @@ a.collection-card,
 .hero-split__right { width: 100%; height: 100%; background: #0d0d0d; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; filter: grayscale(100%); pointer-events: none; }
 .hero-split__gradient-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(13,13,13,0.95) 0%, rgba(13,13,13,0.2) 50%, rgba(13,13,13,0.95) 100%); z-index: 8; pointer-events: none; }
 
+/* Homepage Centered Hero Title & Subtitle (Scoped, Fluid & Diffuse Layered White Glow) */
+.hero-title-container {
+  position: absolute;
+  top: 8.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 20;
+  width: 90%;
+  max-width: 120rem;
+  text-align: center;
+  pointer-events: none;
+}
+
+.hero-main-title {
+  font-family: var(--Font-Primary), 'Syne', sans-serif;
+  font-size: clamp(4rem, 10vw, 9.5rem);
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #000000;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  margin: 0 0 0.8rem 0;
+  text-shadow: 
+    0 0 5px #FFFFFF,
+    0 0 10px #FFFFFF,
+    0 0 20px #FFFFFF,
+    0 0 35px #FFFFFF,
+    0 0 50px #FFFFFF;
+}
+
+.hero-sub-title {
+  font-family: var(--Font-Primary), 'Syne', sans-serif;
+  font-size: clamp(1.3rem, 2.5vw, 2.4rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #000000;
+  line-height: 1.2;
+  letter-spacing: 0.06em;
+  margin: 0;
+  text-shadow: 
+    0 0 4px #FFFFFF,
+    0 0 8px #FFFFFF,
+    0 0 15px #FFFFFF,
+    0 0 25px #FFFFFF;
+}
+
+@media (max-width: 768px) {
+  .hero-title-container {
+    top: 7.5rem;
+  }
+}
+
 /* Seamless Butter-Smooth Infinite Looping Marquee Track - 3-Slot Continuous Loop */
 .cylinder-stage {
   width: 100%;
