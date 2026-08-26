@@ -352,11 +352,11 @@ a.collection-card,
     padding: 0 0.2rem;
   }
   .hero-main-title {
-    -webkit-text-stroke: 4px #FFFFFF !important;
-    text-stroke: 4px #FFFFFF !important;
-    font-size: clamp(16.25rem, 70vw, 45rem) !important;
+    -webkit-text-stroke: 3.2px #FFFFFF !important;
+    text-stroke: 3.2px #FFFFFF !important;
+    font-size: clamp(12.2rem, 52.5vw, 33.75rem) !important;
     line-height: 0.85 !important;
-    margin-bottom: 1.5rem !important;
+    margin-bottom: 1.2rem !important;
   }
   .hero-sub-title {
     -webkit-text-stroke: 1.5px #FFFFFF;
