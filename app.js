@@ -992,11 +992,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const totalScrollable = track6.offsetHeight - windowHeight;
     const currentScroll = -trackRect.top;
 
-    // Smooth real-time progress calculation without delay or viewport jump
-    const rawProgress = Math.max(0, Math.min(1, currentScroll / (totalScrollable || 1)));
-    const animProgress = Math.max(0, Math.min(1, rawProgress / 0.85));
-
     const isMobile = window.innerWidth <= 768;
+
+    // Smooth real-time progress calculation (continuous 1.0 progress on mobile to eliminate extra footer gap)
+    const rawProgress = Math.max(0, Math.min(1, currentScroll / (totalScrollable || 1)));
+    const animProgress = isMobile ? Math.max(0, Math.min(1, rawProgress)) : Math.max(0, Math.min(1, rawProgress / 0.85));
     
     // Balanced mobile portrait aspect ratio (88vw x 55vh) to eliminate starting squish and misplacement
     const startW = isMobile ? 88 : 60;

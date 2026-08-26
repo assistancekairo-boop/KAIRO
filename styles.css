@@ -1551,6 +1551,11 @@ body.drawer-open {
     display: block !important;
   }
 
+  /* Section 6 Campaign Film Track Mobile Height (No Extra Footer Space) */
+  .section-6-track {
+    height: 250vh !important;
+  }
+
   /* 13. Mobile Typographic Orphan Fix (Strict Bracket Protection) */
   .footer__col-title,
   .checkout-steps-badge,
