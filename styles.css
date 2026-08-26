@@ -349,12 +349,14 @@ a.collection-card,
 
 @media (max-width: 768px) {
   .hero-title-container {
-    padding: 0 0.4rem;
+    padding: 0 0.2rem;
   }
   .hero-main-title {
-    -webkit-text-stroke: 3px #FFFFFF;
-    text-stroke: 3px #FFFFFF;
-    font-size: clamp(6.5rem, 28vw, 18rem);
+    -webkit-text-stroke: 4px #FFFFFF;
+    text-stroke: 4px #FFFFFF;
+    font-size: clamp(16.25rem, 70vw, 45rem);
+    line-height: 0.85;
+    margin-bottom: 1.5rem;
   }
   .hero-sub-title {
     -webkit-text-stroke: 1.5px #FFFFFF;
@@ -362,6 +364,7 @@ a.collection-card,
     font-size: clamp(1rem, 3.5vw, 1.8rem);
     white-space: normal;
     padding: 0 1rem;
+    margin-top: 0;
   }
 }
 
