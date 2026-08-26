@@ -348,10 +348,13 @@ a.collection-card,
 }
 
 @media (max-width: 768px) {
+  .hero-title-container {
+    padding: 0 0.4rem;
+  }
   .hero-main-title {
     -webkit-text-stroke: 3px #FFFFFF;
     text-stroke: 3px #FFFFFF;
-    font-size: clamp(4.5rem, 17vw, 12rem);
+    font-size: clamp(6.5rem, 28vw, 18rem);
   }
   .hero-sub-title {
     -webkit-text-stroke: 1.5px #FFFFFF;
