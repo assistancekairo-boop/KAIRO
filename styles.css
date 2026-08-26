@@ -1334,12 +1334,41 @@ body.drawer-open {
   }
 
   .checkout-card {
+    position: relative !important;
     width: 100% !important;
     max-width: 100% !important;
     padding: 2.4rem 1.6rem !important;
     border-radius: 0.6rem !important;
     box-sizing: border-box !important;
     margin: 0 auto !important;
+  }
+
+  .checkout-card #closeCheckoutBtn,
+  .checkout-card .close-btn {
+    position: absolute !important;
+    top: 1.4rem !important;
+    right: 1.4rem !important;
+    font-size: 1.2rem !important;
+    z-index: 30 !important;
+  }
+
+  .checkout-header {
+    padding-right: 8rem !important;
+    margin-bottom: 1.8rem !important;
+    box-sizing: border-box !important;
+  }
+
+  .checkout-steps-badge {
+    white-space: normal !important;
+    word-break: break-word !important;
+    line-height: 1.35 !important;
+    margin-bottom: 0.6rem !important;
+    font-size: 0.95rem !important;
+  }
+
+  .checkout-title {
+    font-size: 1.8rem !important;
+    line-height: 1.15 !important;
   }
 
   .checkout-form-grid {
