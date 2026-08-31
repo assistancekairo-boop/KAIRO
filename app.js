@@ -657,7 +657,7 @@ document.addEventListener('DOMContentLoaded', () => {
         cardLink.innerHTML = `
           <div class="arrivals-card__img-wrapper" style="aspect-ratio: 1 / 1; width: 100%; border: 1px solid var(--Red-1); border-radius: 0.4rem; overflow: hidden; position: relative;">
             <span class="arrivals-card__badge" style="background: var(--Red-Main); color: white; position: absolute; top: 1rem; left: 1rem; padding: 0.3rem 0.8rem; font-size: 1rem; font-family: var(--Font-Mono); z-index: 2;">BRAND COLLECTION</span>
-            <img src="images/${encodeURIComponent(brandName)}%20Glass%20Set%20of%202.png" onerror="this.src='images/Absolut%20Vodka%20Sipper%20Single.png';" alt="${brandName}" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
+            <img src="images/${encodeURIComponent(brandName)}%20Glass%20Set%20of%202.webp" loading="lazy" decoding="async" onerror="this.src='images/Absolut%20Vodka%20Sipper%20Single.webp';" alt="${brandName}" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
           </div>
           <div class="arrivals-card__info" style="margin-top: 1.2rem;">
             <span class="arrivals-card__brand" style="color: var(--Red-Main); font-family: var(--Font-Primary); font-size: 1.6rem; font-weight: 700;">BRAND DIRECTORY</span>
@@ -676,7 +676,7 @@ document.addEventListener('DOMContentLoaded', () => {
         'Glasses': 'images/categories/Glasses%20Collection%20.jpeg',
         'Sippers': 'images/categories/Sipper%20Collection.jpeg',
         'Trays': 'images/categories/Tray%20Collection.jpeg',
-        'Containers': 'images/Tanqueray%20Container%20Single.png'
+        'Containers': 'images/Tanqueray%20Container%20Single.webp'
       };
 
       matchedForms.forEach(formObj => {
@@ -763,14 +763,15 @@ document.addEventListener('DOMContentLoaded', () => {
           cardLink.style.textDecoration = 'none';
           cardLink.style.color = 'inherit';
           
-          let cardImg = item.img || `images/${encodeURIComponent(item.name)}.png`;
+          let cardImg = item.img || `images/${encodeURIComponent(item.name)}.webp`;
           if (!cardImg.startsWith('images/')) cardImg = 'images/' + cardImg;
+          if (cardImg.endsWith('.png')) cardImg = cardImg.replace(/\.png$/i, '.webp');
 
           cardLink.innerHTML = `
             <div class="arrivals-card__img-wrapper" style="aspect-ratio: 1 / 1; width: 100%; border: 1px solid var(--Red-1); border-radius: 0.4rem; overflow: hidden; position: relative;">
               <span class="arrivals-card__badge" style="background: var(--Red-Main); color: white; position: absolute; top: 1rem; left: 1rem; padding: 0.3rem 0.8rem; font-size: 1rem; font-family: var(--Font-Mono); z-index: 2;">${item.badge || 'UPCYCLE'}</span>
               <span class="arrivals-card__prices" style="position: absolute; top: 1rem; right: 1rem; background: white; border: 1px solid var(--Red-1); padding: 0.3rem 0.8rem; font-size: 1.1rem; font-family: var(--Font-Mono); border-radius: 99rem; font-weight: 600; color: var(--Black); z-index: 2;">&#8377;${item.price}</span>
-              <img src="${cardImg}" onerror="this.src='images/Absolut%20Vodka%20Sipper%20Single.png';" alt="${item.name}" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
+              <img src="${cardImg}" loading="lazy" decoding="async" onerror="this.src='images/Absolut%20Vodka%20Sipper%20Single.webp';" alt="${item.name}" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
             </div>
             <div class="arrivals-card__info" style="margin-top: 1.2rem; display: flex; flex-direction: column; gap: 0.4rem;">
               <span class="arrivals-card__brand" style="font-family: var(--Font-Primary); font-size: 1.6rem; font-weight: 700; text-transform: uppercase;">${(item.brand || '').toUpperCase()}</span>

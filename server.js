@@ -14,8 +14,17 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// Serve static frontend files from current directory
-app.use(express.static(__dirname));
+// Serve static frontend files from current directory with Cache-Control headers
+app.use(express.static(__dirname, {
+  maxAge: '1d',
+  setHeaders: (res, filepath) => {
+    if (filepath.endsWith('.webp') || filepath.endsWith('.jpg') || filepath.endsWith('.png') || filepath.endsWith('.woff2')) {
+      res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
+    } else if (filepath.endsWith('.css') || filepath.endsWith('.js')) {
+      res.setHeader('Cache-Control', 'public, max-age=86400');
+    }
+  }
+}));
 
 // Initialize Razorpay SDK instance using environment variables
 const razorpay = new Razorpay({
