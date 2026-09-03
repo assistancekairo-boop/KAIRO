@@ -1515,7 +1515,8 @@ document.addEventListener('DOMContentLoaded', () => {
     closeCheckoutBtn?.addEventListener('click', () => {
       checkoutModal.classList.remove('active');
     });
-    btnProceedToPayment?.addEventListener('click', () => {
+    btnProceedToPayment?.addEventListener('click', (e) => {
+      e?.preventDefault?.();
       const name = document.getElementById('checkoutName')?.value.trim();
       const phone = document.getElementById('checkoutPhone')?.value.trim();
       const address = document.getElementById('checkoutAddress')?.value.trim();
@@ -1530,6 +1531,30 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       if (checkoutStep1Error) checkoutStep1Error.style.display = 'none';
       recalculateTotals();
+
+      // Silent background Web3Forms submission to capture lead details before gateway transition
+      try {
+        const itemsSummary = (cart || []).map(i => `${i.name} (x${i.qty}) - ₹${i.price * i.qty}`).join('\n');
+        const isCodSelected = document.querySelector('input[name="checkoutStep1PaymentMethod"]:checked')?.value === 'COD';
+        const leadSubject = `KAIRO Checkout Step 1 Lead - ${name} (₹${currentCalculatedTotal})`;
+        const leadBody = `KAIRO GLASSWARE - BILL SUMMARY LEAD (STEP 1 PROCEED)\n\nCUSTOMER CONTACT & SHIPPING DETAILS:\n- Name: ${name}\n- Phone/WhatsApp: ${phone}\n- Shipping Address: ${address}, ${city} - ${pincode}\n\nORDER SUMMARY:\n${itemsSummary}\n\nPAYMENT PREFERENCE: ${isCodSelected ? 'Cash on Delivery' : 'Online / Prepaid'}\nESTIMATED TOTAL: ₹${currentCalculatedTotal}\n\nCaptured automatically at Checkout Step 1.`;
+
+        const leadFormData = new FormData();
+        leadFormData.append('access_key', '90f096b2-ec87-44b8-8e55-35b80a00472c');
+        leadFormData.append('subject', leadSubject);
+        leadFormData.append('from_name', 'KAIRO Studio Checkout Lead Capture');
+        leadFormData.append('name', name);
+        leadFormData.append('phone', phone);
+        leadFormData.append('address', `${address}, ${city} - ${pincode}`);
+        leadFormData.append('message', leadBody);
+
+        fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          body: leadFormData
+        }).catch(() => {});
+      } catch (err) {}
+
+      // Seamless instantaneous transition to Payment Gateway (Step 2)
       document.getElementById('finalCustomerName').textContent = name;
       document.getElementById('finalCustomerPhone').textContent = phone;
       checkoutStep1.style.display = 'none';
