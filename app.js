@@ -1559,8 +1559,39 @@ document.addEventListener('DOMContentLoaded', () => {
         const itemsSummary = cart.map(i => `${i.name} (x${i.qty}) - ₹${i.price * i.qty}`).join('\n');
         const subject = `KAIRO Order (COD) - ${name} (₹${currentCalculatedTotal})`;
         const body = `KAIRO GLASSWARE - CASH ON DELIVERY ORDER\n\nORDER SUMMARY:\n${itemsSummary}\n\nCOST BREAKDOWN:\n- Subtotal: ₹${currentSubtotal}\n- Discount (${activeAppliedCode || 'N/A'}): ${isDiscountApplied ? '-₹' + currentDiscountAmount : 'N/A'}\n- Shipping: ₹${FIXED_SHIPPING_COST}\n- COD Fee: ₹49\n- TOTAL PAYABLE: ₹${currentCalculatedTotal}\n\nDELIVERY ADDRESS:\nName: ${name}\nPhone/WhatsApp: ${phone}\nAddress: ${address}, ${city} - ${pincode}\n\nPAYMENT METHOD: Cash on Delivery\n\nSubmitted via Kairo Studio Secure Checkout.`;
-        const mailtoUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=assistance.kairo@gmail.com&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-        window.open(mailtoUrl, '_blank', 'noopener,noreferrer');
+
+        // Send order notification via Web3Forms API in background without opening email client
+        try {
+          const codFormData = new FormData();
+          codFormData.append('access_key', '90f096b2-ec87-44b8-8e55-35b80a00472c');
+          codFormData.append('subject', subject);
+          codFormData.append('from_name', 'KAIRO Studio COD Checkout');
+          codFormData.append('name', name);
+          codFormData.append('phone', phone);
+          codFormData.append('address', `${address}, ${city} - ${pincode}`);
+          codFormData.append('message', body);
+          fetch('https://api.web3forms.com/submit', {
+            method: 'POST',
+            body: codFormData
+          }).catch(() => {});
+        } catch (err) {}
+
+        // Show inline order confirmation modal
+        const successModal = document.createElement('div');
+        successModal.style.cssText = 'position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.85); z-index:99999; display:flex; align-items:center; justify-content:center; padding:2rem;';
+        successModal.innerHTML = `
+          <div style="background:var(--Off-White, #F7F5F0); border:2px solid var(--Red-Main, #D32F2F); max-width:480px; width:100%; padding:3rem; text-align:center; box-shadow:0 20px 40px rgba(0,0,0,0.5);">
+            <h2 style="font-family:var(--Font-Display, 'Syne', sans-serif); font-size:2.2rem; color:var(--Black, #111); margin-bottom:1rem;">[ ORDER CONFIRMED ]</h2>
+            <p style="font-family:var(--Font-Mono, monospace); font-size:1.3rem; color:var(--Red-Main, #D32F2F); font-weight:600; margin-bottom:1.5rem;">CASH ON DELIVERY ORDER PLACED</p>
+            <p style="font-family:var(--Font-Body, 'Inter', sans-serif); font-size:1.3rem; color:var(--Grey-1, #333); line-height:1.6; margin-bottom:2.5rem;">
+              Thank you, <strong>${name}</strong>! Your order for <strong>&#8377;${currentCalculatedTotal}</strong> has been successfully placed. We will contact you at <strong>${phone}</strong> for dispatch confirmation.
+            </p>
+            <button id="closeCodSuccessBtn" class="primary-btn" style="width:100%; padding:1.4rem; background:var(--Black, #111); color:white; border:none; font-family:var(--Font-Mono, monospace); font-size:1.2rem; cursor:pointer;">[ RETURN TO STORE ]</button>
+          </div>
+        `;
+        document.body.appendChild(successModal);
+        document.getElementById('closeCodSuccessBtn')?.addEventListener('click', () => successModal.remove());
+
         cart = [];
         saveCartToStorage();
         if (typeof updateCartUI === 'function') updateCartUI();
