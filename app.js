@@ -827,29 +827,42 @@ document.addEventListener('DOMContentLoaded', () => {
       searchAutosuggest?.classList.remove('active');
     }
   });
+  // 10. Custom Interactive Floating Cursor - Restricted to Revolving Photo Grid on Desktop (> 768px)
   const cursor = document.getElementById('customCursor');
   if (cursor) {
     let mouseX = 0, mouseY = 0;
     let cursorTicking = false;
-    function bindCursorEvents() {
-      const hoverables = document.querySelectorAll('.arrivals-card, .carousel-card, .categories-card, .brand-origin-card, .brand-pill');
-      hoverables.forEach(el => {
-        el.addEventListener('mouseenter', () => cursor.classList.add('active'), { passive: true });
-        el.addEventListener('mouseleave', () => cursor.classList.remove('active'), { passive: true });
-      });
-    }
-    document.addEventListener('mousemove', (e) => {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
-      if (!cursorTicking) {
-        cursorTicking = true;
-        requestAnimationFrame(() => {
-          cursor.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0)`;
-          cursorTicking = false;
-        });
-      }
-    }, { passive: true });
-    bindCursorEvents();
+
+    // Target specific revolving photo grid / 3D cylinder containers only
+    const targetContainers = document.querySelectorAll('#heroSplitSection, .hero-split-section, .cylinder-stage, #carouselContainer, .carousel-track-container');
+
+    targetContainers.forEach(container => {
+      container.addEventListener('mouseenter', () => {
+        if (window.innerWidth > 768) {
+          cursor.classList.add('active');
+        }
+      }, { passive: true });
+
+      container.addEventListener('mouseleave', () => {
+        cursor.classList.remove('active');
+      }, { passive: true });
+
+      container.addEventListener('mousemove', (e) => {
+        if (window.innerWidth <= 768) {
+          cursor.classList.remove('active');
+          return;
+        }
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        if (!cursorTicking) {
+          cursorTicking = true;
+          requestAnimationFrame(() => {
+            cursor.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0)`;
+            cursorTicking = false;
+          });
+        }
+      }, { passive: true });
+    });
   }
   const globalHeader = document.querySelector('.header__inner');
   if (globalHeader) {
