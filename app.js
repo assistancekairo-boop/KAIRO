@@ -307,7 +307,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const rf = rawFormParam.toLowerCase().replace(/[-_]/g, ' ');
     if (rf.includes('glass')) mappedForm = 'Glasses';
     else if (rf.includes('sipper')) mappedForm = 'Sippers';
-    else if (rf.includes('tray') || rf.includes('combo')) mappedForm = 'Trays';
+    else if (rf.includes('platter') || rf.includes('combo')) mappedForm = 'Platters';
     else if (rf.includes('container')) mappedForm = 'Containers';
     currentFormFilter = mappedForm;
     formFilterPills.forEach(pill => {
@@ -447,7 +447,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const KAIRO_FORMS = [
     { key: 'Glasses', label: 'DRINKING GLASSES', queryAliases: ['glass', 'glasses', 'tumbler', 'drinking'] },
     { key: 'Sippers', label: 'GLASS SIPPERS', queryAliases: ['sipper', 'sippers', 'straw', 'sip'] },
-    { key: 'Trays', label: 'ARTISANAL TRAYS', queryAliases: ['tray', 'trays', 'combo', 'combos'] },
+    { key: 'Platters', label: 'ARTISANAL PLATTERS', queryAliases: ['platter', 'platters', 'combo', 'combos'] },
     { key: 'Containers', label: 'GLASS CONTAINERS', queryAliases: ['container', 'containers', 'jar', 'vessel'] }
   ];
   const KAIRO_MASTER_CATALOG = [
@@ -459,19 +459,19 @@ document.addEventListener('DOMContentLoaded', () => {
     { id: 6, brand: 'Bombay Sapphire', form: 'Glasses', name: 'Bombay Sapphire - Glass • Set of 2', price: 1299, badge: 'SET OF 2', quantityText: '2 Glasses • 100% Upcycled' },
     { id: 7, brand: 'Bombay Sapphire', form: 'Glasses', name: 'Bombay Sapphire - Glass • Set of 4', price: 599, badge: 'SET OF 4', quantityText: '4 Glasses • 100% Upcycled' },
     { id: 8, brand: 'Bombay Sapphire', form: 'Sippers', name: 'Bombay Sapphire - Wave Sipper • Single', price: 999, badge: 'SINGLE', quantityText: '1 Sipper • 100% Upcycled' },
-    { id: 9, brand: 'Bombay Sapphire', form: 'Trays', name: 'Bombay Sapphire - Reclaimed Tray', price: 1299, badge: 'ARTISANAL', quantityText: '1 Tray • Reclaimed Wood' },
+    { id: 9, brand: 'Bombay Sapphire', form: 'Platters', name: 'Bombay Sapphire - Reclaimed Platter', price: 1299, badge: 'ARTISANAL', quantityText: '1 Platter • Reclaimed Wood' },
     { id: 10, brand: 'Grey Goose', form: 'Glasses', name: 'Grey Goose - Highball Glass • Single', price: 1999, badge: 'SINGLE', quantityText: '1 Glass • 100% Upcycled' },
     { id: 11, brand: 'Grey Goose', form: 'Glasses', name: 'Grey Goose - Highball Glass • Set of 2', price: 599, badge: 'SET OF 2', quantityText: '2 Glasses • 100% Upcycled' },
     { id: 12, brand: 'Grey Goose', form: 'Sippers', name: 'Grey Goose - Frosted Sipper • Single', price: 999, badge: 'SINGLE', quantityText: '1 Sipper • 100% Upcycled' },
     { id: 13, brand: 'Old Monk Face', form: 'Glasses', name: 'Old Monk Face - Molded Tumbler • Single', price: 1299, badge: 'SINGLE', quantityText: '1 Glass • 100% Upcycled' },
     { id: 14, brand: 'Old Monk Face', form: 'Glasses', name: 'Old Monk Face - Molded Tumbler • Set of 2', price: 599, badge: 'SET OF 2', quantityText: '2 Glasses • 100% Upcycled' },
-    { id: 15, brand: 'Old Monk Face', form: 'Trays', name: 'Old Monk Face - Carved Tray', price: 999, badge: 'CARVED', quantityText: '1 Tray • Reclaimed Wood' },
+    { id: 15, brand: 'Old Monk Face', form: 'Platters', name: 'Old Monk Face - Carved Platter', price: 999, badge: 'CARVED', quantityText: '1 Platter • Reclaimed Wood' },
     { id: 16, brand: 'Jägermeister', form: 'Glasses', name: 'Jägermeister - Square Shot Glass • Set of 2', price: 1299, badge: 'SET OF 2', quantityText: '2 Glasses • 100% Upcycled' },
     { id: 17, brand: 'Jägermeister', form: 'Glasses', name: 'Jägermeister - Square Highball • Single', price: 699, badge: 'SINGLE', quantityText: '1 Glass • 100% Upcycled' },
     { id: 18, brand: 'Jägermeister', form: 'Containers', name: 'Jägermeister - Green Glass Storage Jar', price: 999, badge: 'CONTAINER', quantityText: '1 Container • Airtight Top' },
     { id: 19, brand: 'Jack Daniel\'s', form: 'Glasses', name: 'Jack Daniel\'s - Square Rocks Glass • Single', price: 799, badge: 'SINGLE', quantityText: '1 Glass • 100% Upcycled' },
     { id: 20, brand: 'Jack Daniel\'s', form: 'Glasses', name: 'Jack Daniel\'s - Square Rocks Glass • Set of 2', price: 1499, badge: 'SET OF 2', quantityText: '2 Glasses • 100% Upcycled' },
-    { id: 21, brand: 'Jack Daniel\'s', form: 'Trays', name: 'Jack Daniel\'s - Barrel Wood Tray Set', price: 1299, badge: 'BARREL WOOD', quantityText: '1 Tray Set • Reclaimed Oak' },
+    { id: 21, brand: 'Jack Daniel\'s', form: 'Platters', name: 'Jack Daniel\'s - Barrel Wood Platter Set', price: 1299, badge: 'BARREL WOOD', quantityText: '1 Platter Set • Reclaimed Oak' },
     { id: 22, brand: 'Tanqueray', form: 'Glasses', name: 'Tanqueray - Green Goblet Glass • Single', price: 1999, badge: 'SINGLE', quantityText: '1 Glass • 100% Upcycled' },
     { id: 23, brand: 'Tanqueray', form: 'Glasses', name: 'Tanqueray - Green Goblet Glass • Set of 2', price: 799, badge: 'SET OF 2', quantityText: '2 Glasses • 100% Upcycled' },
     { id: 24, brand: 'Black Label', form: 'Glasses', name: 'Black Label - Beveled Highball • Single', price: 1499, badge: 'SINGLE', quantityText: '1 Glass • 100% Upcycled' },
@@ -484,7 +484,7 @@ document.addEventListener('DOMContentLoaded', () => {
     { id: 31, brand: 'Blue Label', form: 'Glasses', name: 'Blue Label - Heavy Base Rocks Glass • Single', price: 999, badge: 'PREMIUM', quantityText: '1 Glass • Heavy Cut' },
     { id: 32, brand: 'Blue Label', form: 'Glasses', name: 'Blue Label - Heavy Base Rocks Glass • Set of 2', price: 1399, badge: 'PREMIUM', quantityText: '2 Glasses • Heavy Cut' },
     { id: 33, brand: 'Don Julio 1942', form: 'Glasses', name: 'Don Julio 1942 - Tall Tequila Vessel • Single', price: 2199, badge: 'RARE', quantityText: '1 Glass • 100% Upcycled' },
-    { id: 34, brand: 'Don Julio 1942', form: 'Trays', name: 'Don Julio 1942 - Agave Wood Serving Tray', price: 599, badge: 'EXCLUSIVE', quantityText: '1 Tray • Agave Wood' },
+    { id: 34, brand: 'Don Julio 1942', form: 'Platters', name: 'Don Julio 1942 - Agave Wood Serving Platter', price: 599, badge: 'EXCLUSIVE', quantityText: '1 Platter • Agave Wood' },
     { id: 35, brand: 'Altius GG', form: 'Glasses', name: 'Altius GG - Crystal Cut Highball • Single', price: 999, badge: 'CRYSTAL', quantityText: '1 Glass • 100% Upcycled' },
     { id: 36, brand: 'Altius GG', form: 'Glasses', name: 'Altius GG - Crystal Cut Highball • Set of 2', price: 1499, badge: 'SET OF 2', quantityText: '2 Glasses • 100% Upcycled' }
   ];
@@ -585,7 +585,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const formImageMap = {
         'Glasses': 'images/categories/Glasses%20Collection%20.webp',
         'Sippers': 'images/categories/Sipper%20Collection.webp',
-        'Trays': 'images/categories/Tray%20Collection.webp',
+        'Platters': 'images/categories/Tray%20Collection.webp',
         'Containers': 'images/Tanqueray%20Container%20Single.webp'
       };
       matchedForms.forEach(formObj => {
@@ -619,26 +619,26 @@ document.addEventListener('DOMContentLoaded', () => {
       const groups = {
         'DRINKING GLASSES': [],
         'GLASS SIPPERS': [],
-        'ARTISANAL TRAYS & COMBOS': [],
+        'ARTISANAL PLATTERS & COMBOS': [],
         'CONTAINERS': []
       };
       results.forEach(item => {
         const f = (item.form || '').toLowerCase();
         if (f.includes('glass')) groups['DRINKING GLASSES'].push(item);
         else if (f.includes('sipper')) groups['GLASS SIPPERS'].push(item);
-        else if (f.includes('tray') || f.includes('combo')) groups['ARTISANAL TRAYS & COMBOS'].push(item);
+        else if (f.includes('platter') || f.includes('combo')) groups['ARTISANAL PLATTERS & COMBOS'].push(item);
         else groups['CONTAINERS'].push(item);
       });
       const formParamMap = {
         'DRINKING GLASSES': 'Glasses',
         'GLASS SIPPERS': 'Sippers',
-        'ARTISANAL TRAYS & COMBOS': 'Trays',
+        'ARTISANAL PLATTERS & COMBOS': 'Platters',
         'CONTAINERS': 'Containers'
       };
       const groupSlugMap = {
         'DRINKING GLASSES': 'drinking-glasses',
         'GLASS SIPPERS': 'glass-sippers',
-        'ARTISANAL TRAYS & COMBOS': 'artisanal-trays',
+        'ARTISANAL PLATTERS & COMBOS': 'artisanal-platters',
         'CONTAINERS': 'containers'
       };
       Object.keys(groups).forEach(groupTitle => {
@@ -732,15 +732,15 @@ document.addEventListener('DOMContentLoaded', () => {
               </div>
             </div>
           </a>
-          <!-- Quick Link 3: TRAYS -->
-          <a href="catalog.html?form=Trays" class="arrivals-card collection-card zero-state-card" style="text-decoration:none; color:inherit;">
+          <!-- Quick Link 3: PLATTERS -->
+          <a href="catalog.html?form=Platters" class="arrivals-card collection-card zero-state-card" style="text-decoration:none; color:inherit;">
             <div class="arrivals-card__img-wrapper" style="aspect-ratio: 1 / 1; width: 100%; border: 1px solid var(--Red-1); border-radius: 0.4rem; overflow: hidden; position: relative;">
-              <span class="arrivals-card__badge" style="background: var(--Black); color: white; position: absolute; top: 1rem; left: 1rem; padding: 0.3rem 0.8rem; font-size: 1rem; font-family: var(--Font-Mono); z-index: 2;">ARTISANAL TRAYS</span>
-              <img src="images/categories/Tray%20Collection.webp" alt="TRAYS" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
+              <span class="arrivals-card__badge" style="background: var(--Black); color: white; position: absolute; top: 1rem; left: 1rem; padding: 0.3rem 0.8rem; font-size: 1rem; font-family: var(--Font-Mono); z-index: 2;">ARTISANAL PLATTERS</span>
+              <img src="images/categories/Tray%20Collection.webp" alt="PLATTERS" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
             </div>
             <div class="arrivals-card__info" style="margin-top: 1.2rem;">
               <span class="arrivals-card__brand" style="color: var(--Red-Main); font-family: var(--Font-Primary); font-size: 1.6rem; font-weight: 700;">CATEGORY DIRECTORY</span>
-              <h3 class="arrivals-card__title" style="font-family: var(--Font-Primary); font-size: 1.4rem; font-weight: 500; text-transform: uppercase;">TRAYS</h3>
+              <h3 class="arrivals-card__title" style="font-family: var(--Font-Primary); font-size: 1.4rem; font-weight: 500; text-transform: uppercase;">PLATTERS</h3>
               <div class="arrivals-card__meta" style="font-family: var(--Font-Mono); font-size: 1.2rem; color: var(--Grey-2); display: flex; justify-content: space-between; margin-top: 0.4rem;">
                 <span>Filtered Catalog View &rarr;</span>
                 <span>Complete Lineup</span>
@@ -1128,7 +1128,7 @@ document.addEventListener('DOMContentLoaded', () => {
       let targetType = 'all';
       const fLower = formParam.toLowerCase();
       if (fLower.includes('glass') || fLower.includes('sipper')) targetType = 'glass';
-      else if (fLower.includes('tray')) targetType = 'tray';
+      else if (fLower.includes('platter')) targetType = 'platter';
       else if (fLower.includes('container')) targetType = 'container';
       else if (fLower.includes('combo')) targetType = 'combo';
       const targetPill = document.querySelector(`#productTypeFilters [data-type-filter="${targetType}"]`);
