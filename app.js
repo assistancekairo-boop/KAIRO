@@ -1224,7 +1224,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 </tr>
                 <tr>
                   <td class="table-label">Shipping Cost <span style="font-size:1.1rem; color:var(--Grey-2);">(Standard Delivery)</span></td>
-                  <td class="table-val" id="summaryShipping">&#8377;199</td>
+                  <td class="table-val" id="summaryShipping">&#8377;99</td>
                 </tr>
                 <tr id="summaryCodRow" style="display: none;">
                   <td class="table-label">COD Convenience Fee</td>
@@ -1372,7 +1372,7 @@ document.addEventListener('DOMContentLoaded', () => {
     ];
     let currentCalculatedTotal = 0;
     let currentSubtotal = 0;
-    const FIXED_SHIPPING_COST = 199;
+    const FIXED_SHIPPING_COST = 99;
     let currentCodFee = 0;
     let isDiscountApplied = false;
     let activeAppliedCode = '';
