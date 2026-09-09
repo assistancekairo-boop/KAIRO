@@ -1223,12 +1223,17 @@ document.addEventListener('DOMContentLoaded', () => {
                   <td class="table-val" id="summaryDiscountVal" style="color:#27ae60; font-weight:700;">-&#8377;0</td>
                 </tr>
                 <tr>
+                <tr id="summaryShippingRow">
                   <td class="table-label">Shipping Cost <span style="font-size:1.1rem; color:var(--Grey-2);">(Standard Delivery)</span></td>
                   <td class="table-val" id="summaryShipping">&#8377;149</td>
                 </tr>
                 <tr id="summaryCodRow" style="display: none;">
                   <td class="table-label">COD Convenience Fee</td>
                   <td class="table-val" id="summaryCodFee" style="color:var(--Red-Main); font-weight:700;">&#8377;49</td>
+                </tr>
+                <tr id="summaryFounderRow" style="display: none;">
+                  <td class="table-label">Founder Delivery <span style="font-size:1.1rem; color:var(--Red-Main); font-weight:600;">(NCR Region VIP)</span></td>
+                  <td class="table-val" id="summaryFounderFee" style="color:var(--Red-Main); font-weight:700;">&#8377;1,499</td>
                 </tr>
                 <tr class="total-row">
                   <td class="table-label">Total Payable</td>
@@ -1254,6 +1259,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 </label>
                 <label style="display: flex; align-items: center; gap: 0.8rem; font-family: var(--Font-Secondary), 'Inter', sans-serif; font-size: 1.3rem; cursor: pointer; color: var(--Black); font-weight: 600;">
                   <input type="radio" name="checkoutStep1PaymentMethod" value="COD" style="accent-color: var(--Red-Main); width: 1.6rem; height: 1.6rem;"> Cash on Delivery (COD + &#8377;49)
+                </label>
+                <label style="display: flex; align-items: center; gap: 0.8rem; font-family: var(--Font-Secondary), 'Inter', sans-serif; font-size: 1.3rem; cursor: pointer; color: var(--Black); font-weight: 600;">
+                  <input type="radio" name="checkoutStep1PaymentMethod" value="FOUNDER" style="accent-color: var(--Red-Main); width: 1.6rem; height: 1.6rem;"> Delivery by the Founder (NCR Region Only - &#8377;1,499)
                 </label>
               </div>
             </div>
@@ -1332,6 +1340,13 @@ document.addEventListener('DOMContentLoaded', () => {
                   <span class="payment-method-desc">Pay cash upon delivery to your doorstep</span>
                 </div>
               </label>
+              <label class="payment-method-option">
+                <input type="radio" name="paymentGateway" value="FOUNDER">
+                <div class="payment-method-text">
+                  <span class="payment-method-title">Delivery by the Founder (NCR Region Only)</span>
+                  <span class="payment-method-desc">VIP Hand-Delivery by KAIRO Founder • Waives standard shipping & COD fees (&#8377;1,499 flat VIP fee)</span>
+                </div>
+              </label>
             </div>
             <button class="primary-btn" id="btnPaySecurely" style="width:100%; font-size:1.4rem; padding:1.6rem; margin-bottom:1.6rem;">
               PAY &#8377;<span id="btnPayAmount">0</span> SECURELY &rarr;
@@ -1380,23 +1395,35 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentDiscountAmount = 0;
     function recalculateTotals() {
       currentSubtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
-      const isCod = document.querySelector('input[name="checkoutStep1PaymentMethod"]:checked')?.value === 'COD';
+      const selectedMethod = document.querySelector('input[name="paymentGateway"]:checked')?.value
+        || document.querySelector('input[name="checkoutStep1PaymentMethod"]:checked')?.value
+        || 'ONLINE';
+      const isCod = selectedMethod === 'COD';
+      const isFounder = selectedMethod === 'FOUNDER';
+
       currentCodFee = isCod ? 49 : 0;
+      const currentShippingCost = isFounder ? 0 : FIXED_SHIPPING_COST;
+      const currentFounderFee = isFounder ? 1499 : 0;
+
       if (isDiscountApplied && activeDiscountRate > 0) {
         currentDiscountAmount = Math.round(currentSubtotal * activeDiscountRate);
       } else {
         currentDiscountAmount = 0;
       }
-      currentCalculatedTotal = currentSubtotal - currentDiscountAmount + FIXED_SHIPPING_COST + currentCodFee;
+      currentCalculatedTotal = currentSubtotal - currentDiscountAmount + currentShippingCost + currentCodFee + currentFounderFee;
+
       const summarySubtotal = document.getElementById('summarySubtotal');
       const summaryDiscountRow = document.getElementById('summaryDiscountRow');
       const summaryDiscountLabel = document.getElementById('summaryDiscountLabel');
       const summaryDiscountVal = document.getElementById('summaryDiscountVal');
+      const summaryShippingRow = document.getElementById('summaryShippingRow');
       const summaryShipping = document.getElementById('summaryShipping');
       const summaryCodRow = document.getElementById('summaryCodRow');
+      const summaryFounderRow = document.getElementById('summaryFounderRow');
       const summaryTotal = document.getElementById('summaryTotal');
       const finalPayableTotal = document.getElementById('finalPayableTotal');
       const btnPayAmount = document.getElementById('btnPayAmount');
+
       if (summarySubtotal) summarySubtotal.innerHTML = `&#8377;${currentSubtotal}`;
       if (summaryDiscountRow && summaryDiscountVal) {
         if (isDiscountApplied && currentDiscountAmount > 0) {
@@ -1409,8 +1436,10 @@ document.addEventListener('DOMContentLoaded', () => {
           summaryDiscountRow.style.display = 'none';
         }
       }
+      if (summaryShippingRow) summaryShippingRow.style.display = isFounder ? 'none' : 'table-row';
       if (summaryShipping) summaryShipping.innerHTML = `&#8377;${FIXED_SHIPPING_COST}`;
       if (summaryCodRow) summaryCodRow.style.display = isCod ? 'table-row' : 'none';
+      if (summaryFounderRow) summaryFounderRow.style.display = isFounder ? 'table-row' : 'none';
       if (summaryTotal) summaryTotal.innerHTML = `&#8377;${currentCalculatedTotal}`;
       if (finalPayableTotal) finalPayableTotal.innerHTML = `&#8377;${currentCalculatedTotal}`;
       if (btnPayAmount) btnPayAmount.textContent = currentCalculatedTotal;
@@ -1471,14 +1500,15 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     document.querySelectorAll('input[name="checkoutStep1PaymentMethod"]').forEach(radio => {
       radio.addEventListener('change', () => {
-        recalculateTotals();
-        const isCod = radio.value === 'COD';
-        const targetRadio = document.querySelector(`input[name="paymentGateway"][value="${isCod ? 'COD' : 'UPI'}"]`);
+        const val = radio.value;
+        const targetVal = val === 'FOUNDER' ? 'FOUNDER' : (val === 'COD' ? 'COD' : 'UPI');
+        const targetRadio = document.querySelector(`input[name="paymentGateway"][value="${targetVal}"]`);
         if (targetRadio) {
           targetRadio.checked = true;
           document.querySelectorAll('.payment-method-option').forEach(o => o.classList.remove('selected'));
           targetRadio.closest('.payment-method-option')?.classList.add('selected');
         }
+        recalculateTotals();
       });
     });
     window.openCheckoutModal = function() {
@@ -1535,9 +1565,13 @@ document.addEventListener('DOMContentLoaded', () => {
       // Silent background Web3Forms submission to capture lead details before gateway transition
       try {
         const itemsSummary = (cart || []).map(i => `${i.name} (x${i.qty}) - ₹${i.price * i.qty}`).join('\n');
-        const isCodSelected = document.querySelector('input[name="checkoutStep1PaymentMethod"]:checked')?.value === 'COD';
+        const step1Val = document.querySelector('input[name="checkoutStep1PaymentMethod"]:checked')?.value;
+        let prefText = 'Online Payment (Prepaid)';
+        if (step1Val === 'FOUNDER') prefText = 'Delivery by the Founder (NCR Region Only)';
+        else if (step1Val === 'COD') prefText = 'Cash on Delivery (COD + ₹49)';
+
         const leadSubject = `KAIRO Checkout Step 1 Lead - ${name} (₹${currentCalculatedTotal})`;
-        const leadBody = `KAIRO GLASSWARE - BILL SUMMARY LEAD (STEP 1 PROCEED)\n\nCUSTOMER CONTACT & SHIPPING DETAILS:\n- Name: ${name}\n- Phone/WhatsApp: ${phone}\n- Shipping Address: ${address}, ${city} - ${pincode}\n\nORDER SUMMARY:\n${itemsSummary}\n\nPAYMENT PREFERENCE: ${isCodSelected ? 'Cash on Delivery' : 'Online / Prepaid'}\nESTIMATED TOTAL: ₹${currentCalculatedTotal}\n\nCaptured automatically at Checkout Step 1.`;
+        const leadBody = `KAIRO GLASSWARE - BILL SUMMARY LEAD (STEP 1 PROCEED)\n\nCUSTOMER CONTACT & SHIPPING DETAILS:\n- Name: ${name}\n- Phone/WhatsApp: ${phone}\n- Shipping Address: ${address}, ${city} - ${pincode}\n\nORDER SUMMARY:\n${itemsSummary}\n\nPAYMENT PREFERENCE: ${prefText}\nESTIMATED TOTAL: ₹${currentCalculatedTotal}\n\nCaptured automatically at Checkout Step 1.`;
 
         const leadFormData = new FormData();
         leadFormData.append('access_key', '90f096b2-ec87-44b8-8e55-35b80a00472c');
@@ -1571,8 +1605,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const radio = opt.querySelector('input[type="radio"]');
         if (radio) {
           radio.checked = true;
-          const isCod = radio.value === 'COD';
-          const step1Radio = document.querySelector(`input[name="checkoutStep1PaymentMethod"][value="${isCod ? 'COD' : 'ONLINE'}"]`);
+          const val = radio.value;
+          const targetStep1Val = val === 'FOUNDER' ? 'FOUNDER' : (val === 'COD' ? 'COD' : 'ONLINE');
+          const step1Radio = document.querySelector(`input[name="checkoutStep1PaymentMethod"][value="${targetStep1Val}"]`);
           if (step1Radio) step1Radio.checked = true;
           recalculateTotals();
         }
@@ -1593,17 +1628,19 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         return;
       }
-      if (selectedGateway === 'COD') {
+      if (selectedGateway === 'COD' || selectedGateway === 'FOUNDER') {
         const itemsSummary = cart.map(i => `${i.name} (x${i.qty}) - ₹${i.price * i.qty}`).join('\n');
-        const subject = `KAIRO Order (COD) - ${name} (₹${currentCalculatedTotal})`;
-        const body = `KAIRO GLASSWARE - CASH ON DELIVERY ORDER\n\nORDER SUMMARY:\n${itemsSummary}\n\nCOST BREAKDOWN:\n- Subtotal: ₹${currentSubtotal}\n- Discount (${activeAppliedCode || 'N/A'}): ${isDiscountApplied ? '-₹' + currentDiscountAmount : 'N/A'}\n- Shipping: ₹${FIXED_SHIPPING_COST}\n- COD Fee: ₹49\n- TOTAL PAYABLE: ₹${currentCalculatedTotal}\n\nDELIVERY ADDRESS:\nName: ${name}\nPhone/WhatsApp: ${phone}\nAddress: ${address}, ${city} - ${pincode}\n\nPAYMENT METHOD: Cash on Delivery\n\nSubmitted via Kairo Studio Secure Checkout.`;
+        const isFounderOrder = selectedGateway === 'FOUNDER';
+        const orderTitle = isFounderOrder ? 'Delivery by the Founder (NCR Region Only)' : 'Cash on Delivery';
+        const subject = `KAIRO Order (${isFounderOrder ? 'Founder VIP Delivery' : 'COD'}) - ${name} (₹${currentCalculatedTotal})`;
+        const body = `KAIRO GLASSWARE - ${isFounderOrder ? 'DELIVERY BY THE FOUNDER (NCR REGION ONLY)' : 'CASH ON DELIVERY ORDER'}\n\nORDER SUMMARY:\n${itemsSummary}\n\nCOST BREAKDOWN:\n- Subtotal: ₹${currentSubtotal}\n- Discount (${activeAppliedCode || 'N/A'}): ${isDiscountApplied ? '-₹' + currentDiscountAmount : 'N/A'}\n${isFounderOrder ? '- Shipping: ₹0 (Waived for Founder Delivery)\n- COD Fee: ₹0 (Waived for Founder Delivery)\n- Founder Delivery Fee: ₹1,499' : '- Shipping: ₹' + FIXED_SHIPPING_COST + '\n- COD Fee: ₹49'}\n- TOTAL PAYABLE: ₹${currentCalculatedTotal}\n\nDELIVERY ADDRESS:\nName: ${name}\nPhone/WhatsApp: ${phone}\nAddress: ${address}, ${city} - ${pincode}\n\nPAYMENT & FULFILLMENT METHOD: ${orderTitle}\n\nSubmitted via Kairo Studio Secure Checkout.`;
 
         // Send order notification via Web3Forms API in background without opening email client
         try {
           const codFormData = new FormData();
           codFormData.append('access_key', '90f096b2-ec87-44b8-8e55-35b80a00472c');
           codFormData.append('subject', subject);
-          codFormData.append('from_name', 'KAIRO Studio COD Checkout');
+          codFormData.append('from_name', isFounderOrder ? 'KAIRO Studio Founder VIP Delivery' : 'KAIRO Studio COD Checkout');
           codFormData.append('name', name);
           codFormData.append('phone', phone);
           codFormData.append('address', `${address}, ${city} - ${pincode}`);
@@ -1619,10 +1656,10 @@ document.addEventListener('DOMContentLoaded', () => {
         successModal.style.cssText = 'position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.85); z-index:99999; display:flex; align-items:center; justify-content:center; padding:2rem;';
         successModal.innerHTML = `
           <div style="background:var(--Off-White, #F7F5F0); border:2px solid var(--Red-Main, #D32F2F); max-width:480px; width:100%; padding:3rem; text-align:center; box-shadow:0 20px 40px rgba(0,0,0,0.5);">
-            <h2 style="font-family:var(--Font-Display, 'Syne', sans-serif); font-size:2.2rem; color:var(--Black, #111); margin-bottom:1rem;">[ ORDER CONFIRMED ]</h2>
-            <p style="font-family:var(--Font-Mono, monospace); font-size:1.3rem; color:var(--Red-Main, #D32F2F); font-weight:600; margin-bottom:1.5rem;">CASH ON DELIVERY ORDER PLACED</p>
+            <h2 style="font-family:var(--Font-Display, 'Syne', sans-serif); font-size:2.2rem; color:var(--Black, #111); margin-bottom:1rem;">[ ${isFounderOrder ? 'VIP ORDER CONFIRMED' : 'ORDER CONFIRMED'} ]</h2>
+            <p style="font-family:var(--Font-Mono, monospace); font-size:1.3rem; color:var(--Red-Main, #D32F2F); font-weight:600; margin-bottom:1.5rem;">${isFounderOrder ? 'DELIVERY BY THE FOUNDER (NCR REGION ONLY)' : 'CASH ON DELIVERY ORDER PLACED'}</p>
             <p style="font-family:var(--Font-Body, 'Inter', sans-serif); font-size:1.3rem; color:var(--Grey-1, #333); line-height:1.6; margin-bottom:2.5rem;">
-              Thank you, <strong>${name}</strong>! Your order for <strong>&#8377;${currentCalculatedTotal}</strong> has been successfully placed. We will contact you at <strong>${phone}</strong> for dispatch confirmation.
+              Thank you, <strong>${name}</strong>! Your order for <strong>&#8377;${currentCalculatedTotal}</strong> has been successfully placed. ${isFounderOrder ? 'The KAIRO founder will personally contact you at <strong>' + phone + '</strong> to coordinate hand-delivery in NCR.' : 'We will contact you at <strong>' + phone + '</strong> for dispatch confirmation.'}
             </p>
             <button id="closeCodSuccessBtn" class="primary-btn" style="width:100%; padding:1.4rem; background:var(--Black, #111); color:white; border:none; font-family:var(--Font-Mono, monospace); font-size:1.2rem; cursor:pointer;">[ RETURN TO STORE ]</button>
           </div>
