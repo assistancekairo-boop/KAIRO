@@ -1030,33 +1030,99 @@ document.addEventListener('DOMContentLoaded', () => {
   const brandPills = document.querySelectorAll('#brandFilters [data-brand-filter]');
   const resetBtn = document.getElementById('resetFiltersBtn');
   const catalogCards = document.querySelectorAll('#catalogGrid .arrivals-card');
-  const resultCountEl = document.getElementById('catalogResultCount');
+  const brandCollectionsGrid = document.getElementById('brandCollectionsGrid');
+  const catalogGrid = document.getElementById('catalogGrid');
+
   if (catalogCards.length > 0) {
     let selectedType = 'all';
     let selectedBrand = 'all';
-    function applyCatalogFilters() {
-      let visibleCount = 0;
-      catalogCards.forEach(card => {
-        const cardType = card.getAttribute('data-type') || '';
-        const cardBrand = card.getAttribute('data-brand') || '';
-        const matchType = (selectedType === 'all') || (cardType === selectedType);
-        let matchBrand = false;
-        if (selectedBrand === 'all') {
-          matchBrand = true;
-        } else {
-          const bSelLower = selectedBrand.toLowerCase();
-          const bCardLower = cardBrand.toLowerCase();
-          matchBrand = bCardLower.includes(bSelLower) || bSelLower.includes(bCardLower);
-        }
-        if (matchType && matchBrand) {
-          card.style.display = 'flex';
-          visibleCount++;
-        } else {
-          card.style.display = 'none';
-        }
+
+    const BRAND_COLLECTIONS_DATA = [
+      { filterVal: 'Absolut Vodka', displayName: 'ABSOLUT VODKA', img: 'images/collections/Absolut%20Vodka%20Sipper%20Set%20of%202.webp' },
+      { filterVal: 'Bombay Sapphire', displayName: 'BOMBAY SAPPHIRE', img: 'images/collections/Bombay%20Sapphire%20Tray%20Single%20%2B%20Glass%20Set%20of%202.webp' },
+      { filterVal: 'Grey Goose', displayName: 'GREY GOOSE', img: 'images/collections/Grey%20Goose%20Glass%20Set%20of%204.webp' },
+      { filterVal: 'Old Monk Face', displayName: 'OLD MONK', img: 'images/collections/Old%20Monk%20Glass%20Set%20of%204.webp' },
+      { filterVal: 'J&auml;germeister', displayName: 'JÄGERMEISTER', img: 'images/collections/Jagermeister_Collection.webp' },
+      { filterVal: "Jack Daniel's", displayName: "JACK DANIEL'S", img: "images/collections/Jack%20Daniel's%20Tray%20Single.webp" },
+      { filterVal: 'Black Label', displayName: 'BLACK LABEL / GOLD LABEL', img: 'images/collections/Black%20label%20Gold%20Label%20Tray%20Single%20%2B%20Glass%20Set%20of%204.webp' },
+      { filterVal: 'Blue Label', displayName: 'BLUE LABEL', img: 'images/collections/Blue%20Label%20Tray%20Single%20%2B%20Glass%20Set%20of%204.webp' },
+      { filterVal: '1800 Tequila', displayName: '1800 TEQUILA', img: 'images/collections/1800%20Tequila%20Tray%20Single.webp' },
+      { filterVal: 'Don Julio 1942', displayName: 'DON JULIO 1942', img: 'images/collections/Don%20Julio%201942%20Glass%20Set%20of%202.webp' },
+      { filterVal: 'Tanqueray', displayName: 'TANQUERAY', img: 'images/collections/Tanqueray%20Container%20Single.webp' },
+      { filterVal: 'Ciroc', displayName: 'CIROC', img: 'images/collections/Ciroc%20Glass%20Single.webp' },
+      { filterVal: 'Altius GG', displayName: 'ALTIUS GG', img: 'images/collections/Altius%20Grey%20Goose%20Glass%20Single.webp' }
+    ];
+
+    if (brandCollectionsGrid) {
+      brandCollectionsGrid.innerHTML = BRAND_COLLECTIONS_DATA.map(item => `
+        <div class="arrivals-card brand-collection-card" data-brand-target="${item.filterVal}" style="cursor: pointer;">
+          <div class="arrivals-card__img-wrapper">
+            <img src="${item.img}" alt="${item.displayName}" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
+          </div>
+          <div class="arrivals-card__info">
+            <span class="arrivals-card__brand">${item.displayName}</span>
+            <span class="arrivals-card__title" style="font-family: var(--Font-Secondary), 'Inter', sans-serif; font-size: 1.3rem; color: var(--Red-Main); text-transform: lowercase; margin-top: 0.4rem; font-weight: 500;">shop collection</span>
+          </div>
+        </div>
+      `).join('');
+
+      brandCollectionsGrid.querySelectorAll('.brand-collection-card').forEach(card => {
+        card.addEventListener('click', () => {
+          const targetBrand = card.getAttribute('data-brand-target');
+          if (targetBrand) {
+            brandPills.forEach(p => {
+              if (p.getAttribute('data-brand-filter') === targetBrand) {
+                p.classList.add('active');
+              } else {
+                p.classList.remove('active');
+              }
+            });
+            selectedBrand = targetBrand;
+            applyCatalogFilters();
+            if (catalogFilterControls) {
+              const rect = catalogFilterControls.getBoundingClientRect();
+              window.scrollTo({ top: window.scrollY + rect.top - 100, behavior: 'smooth' });
+            }
+          }
+        });
       });
-      if (resultCountEl) {
-        resultCountEl.textContent = `SHOWING ${visibleCount} OF ${catalogCards.length} PRODUCTS`;
+    }
+
+    function applyCatalogFilters() {
+      const isDefaultView = (selectedType === 'all') && (selectedBrand === 'all');
+      if (isDefaultView && brandCollectionsGrid) {
+        brandCollectionsGrid.style.display = 'grid';
+        if (catalogGrid) catalogGrid.style.display = 'none';
+        catalogCards.forEach(card => card.style.display = 'none');
+        if (resultCountEl) {
+          resultCountEl.textContent = `SHOWING 13 BRAND COLLECTIONS (${catalogCards.length} SKUs TOTAL)`;
+        }
+      } else {
+        if (brandCollectionsGrid) brandCollectionsGrid.style.display = 'none';
+        if (catalogGrid) catalogGrid.style.display = 'grid';
+        let visibleCount = 0;
+        catalogCards.forEach(card => {
+          const cardType = card.getAttribute('data-type') || '';
+          const cardBrand = card.getAttribute('data-brand') || '';
+          const matchType = (selectedType === 'all') || (cardType === selectedType);
+          let matchBrand = false;
+          if (selectedBrand === 'all') {
+            matchBrand = true;
+          } else {
+            const bSelLower = selectedBrand.toLowerCase();
+            const bCardLower = cardBrand.toLowerCase();
+            matchBrand = bCardLower.includes(bSelLower) || bSelLower.includes(bCardLower);
+          }
+          if (matchType && matchBrand) {
+            card.style.display = 'flex';
+            visibleCount++;
+          } else {
+            card.style.display = 'none';
+          }
+        });
+        if (resultCountEl) {
+          resultCountEl.textContent = `SHOWING ${visibleCount} OF ${catalogCards.length} PRODUCTS`;
+        }
       }
     }
     productTypePills.forEach(pill => {
