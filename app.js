@@ -1225,11 +1225,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 <tr>
                 <tr id="summaryShippingRow">
                   <td class="table-label">Shipping Cost <span style="font-size:1.1rem; color:var(--Grey-2);">(Standard Delivery)</span></td>
-                  <td class="table-val" id="summaryShipping">&#8377;149</td>
+                  <td class="table-val" id="summaryShipping">&#8377;75</td>
                 </tr>
                 <tr id="summaryCodRow" style="display: none;">
                   <td class="table-label">COD Convenience Fee</td>
-                  <td class="table-val" id="summaryCodFee" style="color:var(--Red-Main); font-weight:700;">&#8377;49</td>
+                  <td class="table-val" id="summaryCodFee" style="color:var(--Red-Main); font-weight:700;">&#8377;25</td>
                 </tr>
                 <tr id="summaryFounderRow" style="display: none;">
                   <td class="table-label">Founder Delivery <span style="font-size:1.1rem; color:var(--Red-Main); font-weight:600;">(NCR Region VIP)</span></td>
@@ -1258,7 +1258,7 @@ document.addEventListener('DOMContentLoaded', () => {
                   <input type="radio" name="checkoutStep1PaymentMethod" value="ONLINE" checked style="accent-color: var(--Red-Main); width: 1.6rem; height: 1.6rem;"> Online Payment (Prepaid)
                 </label>
                 <label style="display: flex; align-items: center; gap: 0.8rem; font-family: var(--Font-Secondary), 'Inter', sans-serif; font-size: 1.3rem; cursor: pointer; color: var(--Black); font-weight: 600;">
-                  <input type="radio" name="checkoutStep1PaymentMethod" value="COD" style="accent-color: var(--Red-Main); width: 1.6rem; height: 1.6rem;"> Cash on Delivery (COD + &#8377;49)
+                  <input type="radio" name="checkoutStep1PaymentMethod" value="COD" style="accent-color: var(--Red-Main); width: 1.6rem; height: 1.6rem;"> Cash on Delivery (COD + &#8377;25)
                 </label>
                 <label style="display: flex; align-items: center; gap: 0.8rem; font-family: var(--Font-Secondary), 'Inter', sans-serif; font-size: 1.3rem; cursor: pointer; color: var(--Black); font-weight: 600;">
                   <input type="radio" name="checkoutStep1PaymentMethod" value="FOUNDER" style="accent-color: var(--Red-Main); width: 1.6rem; height: 1.6rem;"> Delivery by the Founder (NCR Region Only - &#8377;1,499)
@@ -1336,7 +1336,7 @@ document.addEventListener('DOMContentLoaded', () => {
               <label class="payment-method-option">
                 <input type="radio" name="paymentGateway" value="COD">
                 <div class="payment-method-text">
-                  <span class="payment-method-title">Cash on Delivery (COD + &#8377;49 Fee)</span>
+                  <span class="payment-method-title">Cash on Delivery (COD + &#8377;25 Fee)</span>
                   <span class="payment-method-desc">Pay cash upon delivery to your doorstep</span>
                 </div>
               </label>
@@ -1387,7 +1387,7 @@ document.addEventListener('DOMContentLoaded', () => {
     ];
     let currentCalculatedTotal = 0;
     let currentSubtotal = 0;
-    const FIXED_SHIPPING_COST = 149;
+    const FIXED_SHIPPING_COST = 75;
     let currentCodFee = 0;
     let isDiscountApplied = false;
     let activeAppliedCode = '';
@@ -1401,7 +1401,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const isCod = selectedMethod === 'COD';
       const isFounder = selectedMethod === 'FOUNDER';
 
-      currentCodFee = isCod ? 49 : 0;
+      currentCodFee = isCod ? 25 : 0;
       const currentShippingCost = isFounder ? 0 : FIXED_SHIPPING_COST;
       const currentFounderFee = isFounder ? 1499 : 0;
 
@@ -1568,7 +1568,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const step1Val = document.querySelector('input[name="checkoutStep1PaymentMethod"]:checked')?.value;
         let prefText = 'Online Payment (Prepaid)';
         if (step1Val === 'FOUNDER') prefText = 'Delivery by the Founder (NCR Region Only)';
-        else if (step1Val === 'COD') prefText = 'Cash on Delivery (COD + ₹49)';
+        else if (step1Val === 'COD') prefText = 'Cash on Delivery (COD + ₹25)';
 
         const leadSubject = `KAIRO Checkout Step 1 Lead - ${name} (₹${currentCalculatedTotal})`;
         const leadBody = `KAIRO GLASSWARE - BILL SUMMARY LEAD (STEP 1 PROCEED)\n\nCUSTOMER CONTACT & SHIPPING DETAILS:\n- Name: ${name}\n- Phone/WhatsApp: ${phone}\n- Shipping Address: ${address}, ${city} - ${pincode}\n\nORDER SUMMARY:\n${itemsSummary}\n\nPAYMENT PREFERENCE: ${prefText}\nESTIMATED TOTAL: ₹${currentCalculatedTotal}\n\nCaptured automatically at Checkout Step 1.`;
@@ -1633,7 +1633,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const isFounderOrder = selectedGateway === 'FOUNDER';
         const orderTitle = isFounderOrder ? 'Delivery by the Founder (NCR Region Only)' : 'Cash on Delivery';
         const subject = `KAIRO Order (${isFounderOrder ? 'Founder VIP Delivery' : 'COD'}) - ${name} (₹${currentCalculatedTotal})`;
-        const body = `KAIRO GLASSWARE - ${isFounderOrder ? 'DELIVERY BY THE FOUNDER (NCR REGION ONLY)' : 'CASH ON DELIVERY ORDER'}\n\nORDER SUMMARY:\n${itemsSummary}\n\nCOST BREAKDOWN:\n- Subtotal: ₹${currentSubtotal}\n- Discount (${activeAppliedCode || 'N/A'}): ${isDiscountApplied ? '-₹' + currentDiscountAmount : 'N/A'}\n${isFounderOrder ? '- Shipping: ₹0 (Waived for Founder Delivery)\n- COD Fee: ₹0 (Waived for Founder Delivery)\n- Founder Delivery Fee: ₹1,499' : '- Shipping: ₹' + FIXED_SHIPPING_COST + '\n- COD Fee: ₹49'}\n- TOTAL PAYABLE: ₹${currentCalculatedTotal}\n\nDELIVERY ADDRESS:\nName: ${name}\nPhone/WhatsApp: ${phone}\nAddress: ${address}, ${city} - ${pincode}\n\nPAYMENT & FULFILLMENT METHOD: ${orderTitle}\n\nSubmitted via Kairo Studio Secure Checkout.`;
+        const body = `KAIRO GLASSWARE - ${isFounderOrder ? 'DELIVERY BY THE FOUNDER (NCR REGION ONLY)' : 'CASH ON DELIVERY ORDER'}\n\nORDER SUMMARY:\n${itemsSummary}\n\nCOST BREAKDOWN:\n- Subtotal: ₹${currentSubtotal}\n- Discount (${activeAppliedCode || 'N/A'}): ${isDiscountApplied ? '-₹' + currentDiscountAmount : 'N/A'}\n${isFounderOrder ? '- Shipping: ₹0 (Waived for Founder Delivery)\n- COD Fee: ₹0 (Waived for Founder Delivery)\n- Founder Delivery Fee: ₹1,499' : '- Shipping: ₹' + FIXED_SHIPPING_COST + '\n- COD Fee: ₹25'}\n- TOTAL PAYABLE: ₹${currentCalculatedTotal}\n\nDELIVERY ADDRESS:\nName: ${name}\nPhone/WhatsApp: ${phone}\nAddress: ${address}, ${city} - ${pincode}\n\nPAYMENT & FULFILLMENT METHOD: ${orderTitle}\n\nSubmitted via Kairo Studio Secure Checkout.`;
 
         // Send order notification via Web3Forms API in background without opening email client
         try {
