@@ -331,10 +331,12 @@ document.addEventListener('DOMContentLoaded', () => {
   });
   originFilterPills.forEach(pill => {
     pill.addEventListener('click', () => {
-      originFilterPills.forEach(p => p.classList.remove('active'));
-      pill.classList.add('active');
-      currentOriginFilter = pill.getAttribute('data-origin-filter');
-      applyDualFilters();
+      const val = pill.getAttribute('data-origin-filter');
+      if (val === 'ALL') {
+        window.location.href = 'catalog.html';
+      } else {
+        window.location.href = 'product.html?brand=' + encodeURIComponent(val);
+      }
     });
   });
   brandPillsLegacy.forEach(pill => {
@@ -441,9 +443,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   const KAIRO_BRANDS = [
     'Absolut Vodka', 'Bombay Sapphire', 'Grey Goose', 'Old Monk Face',
-    'Jägermeister', "Jack Daniel's", 'Tanqueray', 'Black Label',
-    'Ciroc', '1800 Tequila', 'Blue Label', 'Don Julio 1942', 'Altius GG'
-  ];
+    'Jägermeister', "Jack Daniel's", 'Tanqueray', 
+    'Ciroc', '1800 Cristalino'];
   const KAIRO_FORMS = [
     { key: 'Glasses', label: 'DRINKING GLASSES', queryAliases: ['glass', 'glasses', 'tumbler', 'drinking'] },
     { key: 'Sippers', label: 'GLASS SIPPERS', queryAliases: ['sipper', 'sippers', 'straw', 'sip'] },
@@ -474,19 +475,11 @@ document.addEventListener('DOMContentLoaded', () => {
     { id: 21, brand: 'Jack Daniel\'s', form: 'Platters', name: 'Jack Daniel\'s - Barrel Wood Platter Set', price: 1299, badge: 'BARREL WOOD', quantityText: '1 Platter Set • Reclaimed Oak' },
     { id: 22, brand: 'Tanqueray', form: 'Glasses', name: 'Tanqueray - Green Goblet Glass • Single', price: 1999, badge: 'SINGLE', quantityText: '1 Glass • 100% Upcycled' },
     { id: 23, brand: 'Tanqueray', form: 'Glasses', name: 'Tanqueray - Green Goblet Glass • Set of 2', price: 799, badge: 'SET OF 2', quantityText: '2 Glasses • 100% Upcycled' },
-    { id: 24, brand: 'Black Label', form: 'Glasses', name: 'Black Label - Beveled Highball • Single', price: 1499, badge: 'SINGLE', quantityText: '1 Glass • 100% Upcycled' },
-    { id: 25, brand: 'Black Label', form: 'Glasses', name: 'Black Label - Beveled Highball • Set of 2', price: 499, badge: 'SET OF 2', quantityText: '2 Glasses • 100% Upcycled' },
     { id: 26, brand: 'Ciroc', form: 'Glasses', name: 'Ciroc - Cobalt Blue Tumbler • Single', price: 1199, badge: 'SINGLE', quantityText: '1 Glass • 100% Upcycled' },
     { id: 27, brand: 'Ciroc', form: 'Glasses', name: 'Ciroc - Cobalt Blue Tumbler • Set of 2', price: 699, badge: 'SET OF 2', quantityText: '2 Glasses • 100% Upcycled' },
     { id: 28, brand: 'Ciroc', form: 'Sippers', name: 'Ciroc - Cobalt Blue Sipper', price: 1199, badge: 'SINGLE', quantityText: '1 Sipper • 100% Upcycled' },
-    { id: 29, brand: '1800 Tequila', form: 'Glasses', name: '1800 Tequila - Pyramid Lowball • Single', price: 1499, badge: 'SINGLE', quantityText: '1 Glass • 100% Upcycled' },
-    { id: 30, brand: '1800 Tequila', form: 'Glasses', name: '1800 Tequila - Pyramid Lowball • Set of 2', price: 649, badge: 'SET OF 2', quantityText: '2 Glasses • 100% Upcycled' },
-    { id: 31, brand: 'Blue Label', form: 'Glasses', name: 'Blue Label - Heavy Base Rocks Glass • Single', price: 999, badge: 'PREMIUM', quantityText: '1 Glass • Heavy Cut' },
-    { id: 32, brand: 'Blue Label', form: 'Glasses', name: 'Blue Label - Heavy Base Rocks Glass • Set of 2', price: 1399, badge: 'PREMIUM', quantityText: '2 Glasses • Heavy Cut' },
-    { id: 33, brand: 'Don Julio 1942', form: 'Glasses', name: 'Don Julio 1942 - Tall Tequila Vessel • Single', price: 2199, badge: 'RARE', quantityText: '1 Glass • 100% Upcycled' },
-    { id: 34, brand: 'Don Julio 1942', form: 'Platters', name: 'Don Julio 1942 - Agave Wood Serving Platter', price: 599, badge: 'EXCLUSIVE', quantityText: '1 Platter • Agave Wood' },
-    { id: 35, brand: 'Altius GG', form: 'Glasses', name: 'Altius GG - Crystal Cut Highball • Single', price: 999, badge: 'CRYSTAL', quantityText: '1 Glass • 100% Upcycled' },
-    { id: 36, brand: 'Altius GG', form: 'Glasses', name: 'Altius GG - Crystal Cut Highball • Set of 2', price: 1499, badge: 'SET OF 2', quantityText: '2 Glasses • 100% Upcycled' }
+    { id: 29, brand: '1800 Cristalino', form: 'Glasses', name: '1800 Cristalino - Pyramid Lowball • Single', price: 1499, badge: 'SINGLE', quantityText: '1 Glass • 100% Upcycled' },
+    { id: 30, brand: '1800 Cristalino', form: 'Glasses', name: '1800 Cristalino - Pyramid Lowball • Set of 2', price: 649, badge: 'SET OF 2', quantityText: '2 Glasses • 100% Upcycled' },
   ];
   function getSearchableCatalog() {
     const gridContainer = document.getElementById('standaloneGrid') || document.getElementById('catalogGrid');
@@ -558,6 +551,19 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class="search-group__grid"></div>
       `;
       const grid = collectionSection.querySelector('.search-group__grid');
+      
+      const brandImages = {
+        "1800 Cristalino": "images/collections/v1_1800_cristalino.webp",
+        "Absolut Vodka": "images/collections/v1_absolut_vodka.webp",
+        "Ciroc": "images/collections/v1_ciroc.webp",
+        "Grey Goose": "images/collections/v1_grey_goose.webp",
+        "Jagermeister": "images/collections/v1_jagermeister.webp",
+        "Old Monk": "images/collections/v1_old_monk.webp",
+        "Bombay Sapphire": "images/collections/Bombay%20Sapphire%20Tray%20Single%20%2B%20Glass%20Set%20of%202.webp",
+        "Tanqueray": "images/collections/Tanqueray%20Container%20Single.webp",
+        "Jack Daniels": "images/collections/Jack%20Daniels%20Tray%20Single.webp"
+      };
+
       matchedBrands.forEach(brandName => {
         const brandKey = brandName.split(' ')[0];
         const cardLink = document.createElement('a');
@@ -565,11 +571,15 @@ document.addEventListener('DOMContentLoaded', () => {
         cardLink.href = `catalog.html?origin=${encodeURIComponent(brandName)}`;
         cardLink.style.textDecoration = 'none';
         cardLink.style.color = 'inherit';
+        
+        let imgSrc = brandImages[brandName] || 'images/collections/v1_absolut_vodka.webp';
+        
         cardLink.innerHTML = `
           <div class="arrivals-card__img-wrapper" style="aspect-ratio: 1 / 1; width: 100%; border: 1px solid var(--Red-1); border-radius: 0.4rem; overflow: hidden; position: relative;">
             <span class="arrivals-card__badge" style="background: var(--Red-Main); color: white; position: absolute; top: 1rem; left: 1rem; padding: 0.3rem 0.8rem; font-size: 1rem; font-family: var(--Font-Mono); z-index: 2;">BRAND COLLECTION</span>
-            <img src="images/${encodeURIComponent(brandName)}%20Glass%20Set%20of%202.webp" loading="lazy" decoding="async" onerror="this.src='images/Absolut%20Vodka%20Sipper%20Single.webp';" alt="${brandName}" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
+            <img src="${imgSrc}" loading="lazy" decoding="async" alt="${brandName}" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
           </div>
+
           <div class="arrivals-card__info" style="margin-top: 1.2rem;">
             <span class="arrivals-card__brand" style="color: var(--Red-Main); font-family: var(--Font-Primary); font-size: 1.6rem; font-weight: 700;">BRAND DIRECTORY</span>
             <h3 class="arrivals-card__title" style="font-family: var(--Font-Primary); font-size: 1.4rem; font-weight: 500; text-transform: uppercase;">SHOP ${brandName.toUpperCase()} COLLECTION</h3>
@@ -902,14 +912,11 @@ document.addEventListener('DOMContentLoaded', () => {
   if (selectionCards.length > 0) {
     selectionCards.forEach(card => {
       card.addEventListener('click', () => {
-        const stepGroup = card.getAttribute('data-step');
-        if (!stepGroup) return;
-        document.querySelectorAll(`.selection-card[data-step="${stepGroup}"]`).forEach(c => c.classList.remove('selected'));
-        card.classList.add('selected');
-        const formVal = document.querySelector('.selection-card[data-step="form"].selected')?.getAttribute('data-value') || 'GLASSES';
-        const elForm = document.getElementById('selForm');
-        if (elForm) elForm.textContent = formVal;
-      });
+          const targetBrand = card.getAttribute('data-brand-target');
+          if (targetBrand) {
+            window.location.href = 'product.html?brand=' + encodeURIComponent(targetBrand);
+          }
+        });
     });
   }
   const contactModalOverlay = document.getElementById('contactModalOverlay');
@@ -1034,97 +1041,32 @@ document.addEventListener('DOMContentLoaded', () => {
   const catalogGrid = document.getElementById('catalogGrid');
 
   if (catalogCards.length > 0) {
-    let selectedType = 'all';
-    let selectedBrand = 'all';
-
-    const BRAND_COLLECTIONS_DATA = [
-      { filterVal: 'Absolut Vodka', displayName: 'ABSOLUT VODKA', img: 'images/collections/Absolut%20Vodka%20Sipper%20Set%20of%202.webp' },
-      { filterVal: 'Bombay Sapphire', displayName: 'BOMBAY SAPPHIRE', img: 'images/collections/Bombay%20Sapphire%20Tray%20Single%20%2B%20Glass%20Set%20of%202.webp' },
-      { filterVal: 'Grey Goose', displayName: 'GREY GOOSE', img: 'images/collections/Grey%20Goose%20Glass%20Set%20of%204.webp' },
-      { filterVal: 'Old Monk Face', displayName: 'OLD MONK', img: 'images/collections/Old%20Monk%20Glass%20Set%20of%204.webp' },
-      { filterVal: 'J&auml;germeister', displayName: 'JÄGERMEISTER', img: 'images/collections/Jagermeister_Collection.webp' },
-      { filterVal: "Jack Daniel's", displayName: "JACK DANIEL'S", img: "images/collections/Jack%20Daniel's%20Tray%20Single.webp" },
-      { filterVal: 'Black Label', displayName: 'BLACK LABEL / GOLD LABEL', img: 'images/collections/Black%20label%20Gold%20Label%20Tray%20Single%20%2B%20Glass%20Set%20of%204.webp' },
-      { filterVal: 'Blue Label', displayName: 'BLUE LABEL', img: 'images/collections/Blue%20Label%20Tray%20Single%20%2B%20Glass%20Set%20of%204.webp' },
-      { filterVal: '1800 Tequila', displayName: '1800 TEQUILA', img: 'images/collections/1800%20Tequila%20Tray%20Single.webp' },
-      { filterVal: 'Don Julio 1942', displayName: 'DON JULIO 1942', img: 'images/collections/Don%20Julio%201942%20Glass%20Set%20of%202.webp' },
-      { filterVal: 'Tanqueray', displayName: 'TANQUERAY', img: 'images/collections/Tanqueray%20Container%20Single.webp' },
-      { filterVal: 'Ciroc', displayName: 'CIROC', img: 'images/collections/Ciroc%20Glass%20Single.webp' },
-      { filterVal: 'Altius GG', displayName: 'ALTIUS GG', img: 'images/collections/Altius%20Grey%20Goose%20Glass%20Single.webp' }
-    ];
-
-    if (brandCollectionsGrid) {
-      brandCollectionsGrid.innerHTML = BRAND_COLLECTIONS_DATA.map(item => `
-        <div class="arrivals-card brand-collection-card" data-brand-target="${item.filterVal}" style="cursor: pointer;">
-          <div class="arrivals-card__img-wrapper">
-            <img src="${item.img}" alt="${item.displayName}" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
-          </div>
-          <div class="arrivals-card__info">
-            <span class="arrivals-card__brand">${item.displayName}</span>
-            <span class="arrivals-card__title" style="font-family: var(--Font-Secondary), 'Inter', sans-serif; font-size: 1.3rem; color: var(--Red-Main); text-transform: lowercase; margin-top: 0.4rem; font-weight: 500;">shop collection</span>
-          </div>
-        </div>
-      `).join('');
-
-      brandCollectionsGrid.querySelectorAll('.brand-collection-card').forEach(card => {
-        card.addEventListener('click', () => {
-          const targetBrand = card.getAttribute('data-brand-target');
-          if (targetBrand) {
-            brandPills.forEach(p => {
-              if (p.getAttribute('data-brand-filter') === targetBrand) {
-                p.classList.add('active');
-              } else {
-                p.classList.remove('active');
-              }
-            });
-            selectedBrand = targetBrand;
-            applyCatalogFilters();
-            if (catalogFilterControls) {
-              const rect = catalogFilterControls.getBoundingClientRect();
-              window.scrollTo({ top: window.scrollY + rect.top - 100, behavior: 'smooth' });
-            }
-          }
-        });
-      });
-    }
+    let selectedType = "all";
+    let selectedBrand = "all";
 
     function applyCatalogFilters() {
-      const isDefaultView = (selectedType === 'all') && (selectedBrand === 'all');
-      if (isDefaultView && brandCollectionsGrid) {
-        brandCollectionsGrid.style.display = 'grid';
-        if (catalogGrid) catalogGrid.style.display = 'none';
-        catalogCards.forEach(card => card.style.display = 'none');
-        if (resultCountEl) {
-          resultCountEl.textContent = `SHOWING 13 BRAND COLLECTIONS (${catalogCards.length} SKUs TOTAL)`;
+      let visibleCount = 0;
+      catalogCards.forEach(card => {
+        const cardTypes = card.getAttribute('data-types') || '';
+        const cardBrand = card.getAttribute('data-brand-target') || '';
+        
+        let matchType = (selectedType === 'all') || cardTypes.includes(selectedType);
+        let matchBrand = (selectedBrand === 'all') || cardBrand === selectedBrand;
+        
+        if (matchType && matchBrand) {
+          if (card.style) card.style.display = "flex";
+          visibleCount++;
+        } else {
+          if (card.style) card.style.display = "none";
         }
-      } else {
-        if (brandCollectionsGrid) brandCollectionsGrid.style.display = 'none';
-        if (catalogGrid) catalogGrid.style.display = 'grid';
-        let visibleCount = 0;
-        catalogCards.forEach(card => {
-          const cardType = card.getAttribute('data-type') || '';
-          const cardBrand = card.getAttribute('data-brand') || '';
-          const matchType = (selectedType === 'all') || (cardType === selectedType);
-          let matchBrand = false;
-          if (selectedBrand === 'all') {
-            matchBrand = true;
-          } else {
-            const bSelLower = selectedBrand.toLowerCase();
-            const bCardLower = cardBrand.toLowerCase();
-            matchBrand = bCardLower.includes(bSelLower) || bSelLower.includes(bCardLower);
-          }
-          if (matchType && matchBrand) {
-            card.style.display = 'flex';
-            visibleCount++;
-          } else {
-            card.style.display = 'none';
-          }
-        });
-        if (resultCountEl) {
-          resultCountEl.textContent = `SHOWING ${visibleCount} OF ${catalogCards.length} PRODUCTS`;
-        }
+      });
+      
+      const resultCountEl = document.getElementById('resultCount');
+      if (resultCountEl) {
+        resultCountEl.textContent = `SHOWING ${visibleCount} BRAND COLLECTION${visibleCount !== 1 ? 'S' : ''}`;
       }
     }
+
     productTypePills.forEach(pill => {
       pill.addEventListener('click', () => {
         productTypePills.forEach(p => p.classList.remove('active'));

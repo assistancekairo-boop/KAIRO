@@ -14,6 +14,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
   <title>KAIRO &mdash; Upcycled Glassware Studio</title>
   <meta name="description" content="Kairo crafts elevated drinking glasses, sippers, and platters from 100% reclaimed bottles. Handcrafted sustainable glass vessels.">
+  <meta name="robots" content="index, follow">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="KAIRO Upcycled Glassware Studio">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
@@ -47,7 +50,8 @@
     <ul class="header__list header__list--left">
       <li>
         <button id="menuBtn" hover-link>
-          <span>[ Menu ]</span>
+          <span class="desktop-text">[ Menu ]</span>
+          <svg class="icon-mobile icon-menu" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
         </button>
       </li>
     </ul>
@@ -59,12 +63,16 @@
     <ul class="header__list header__list--right">
       <li>
         <button id="searchBtn" hover-link>
-          <span>[ Search ]</span>
+          <span class="desktop-text">[ Search ]</span>
+          <svg class="icon-mobile icon-search" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
         </button>
       </li>
       <li>
-        <button id="cartBtn" hover-link>
-          <span>[ Bag.<span id="cartCount">0</span> ]</span>
+        <button id="cartBtn" hover-link style="position:relative; display:flex; align-items:center;">
+          <span class="desktop-text">[ Bag.</span>
+          <svg class="icon-mobile icon-bag" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+          <span id="cartCount" class="cart-count-badge">0</span>
+          <span class="desktop-text"> ]</span>
         </button>
       </li>
     </ul>
@@ -75,62 +83,29 @@
     <div class="hero-overlap-wrapper">
       <!-- SECTION 1: Clean Full-Width 3D Revolving Cylinder Carousel Hero -->
       <section class="hero-split-section">
-        <!-- Full-Width Pane: Dark Grayscale 3D Revolving Cylinder Carousel -->
-        <div class="hero-split__right">
-          <div class="hero-split__gradient-overlay"></div>
+        <!-- Full-Width Pane: Video Background Container -->
+        <div class="hero-split__right" style="filter: none;">
 
-          <!-- Homepage Centered Hero Title & Subtitle Overlay -->
-          <div class="hero-title-container">
-            <h1 class="hero-main-title">KAIRO</h1>
-            <p class="hero-sub-title">One bottle. One cut. One of a kind.</p>
-          </div>
 
-          <div class="cylinder-stage">
-            <div class="cylinder-rotation-ring">
-              <!-- Slot Set 1 -->
-              <div class="cylinder-card">
-                <div class="cylinder-card__inner" style="padding:0; background:#0d0d0d;">
-                  <img src="images/slot_1.webp" alt="Slot 01 - Desktop" class="cylinder-card__img cylinder-img-desktop" decoding="async" style="width: 100%; height: 100%; object-fit: cover;">
-                  <img src="images/mobile_slot_1.webp" alt="Slot 01 - Mobile" class="cylinder-card__img cylinder-img-mobile" decoding="async" style="width: 100%; height: 100%; object-fit: cover;">
-                </div>
-              </div>
 
-              <div class="cylinder-card">
-                <div class="cylinder-card__inner" style="padding:0; background:#0d0d0d;">
-                  <img src="images/slot_2.webp" alt="Slot 02 - Desktop" class="cylinder-card__img cylinder-img-desktop" decoding="async" style="width: 100%; height: 100%; object-fit: cover;">
-                  <img src="images/mobile_slot_2.webp" alt="Slot 02 - Mobile" class="cylinder-card__img cylinder-img-mobile" decoding="async" style="width: 100%; height: 100%; object-fit: cover;">
-                </div>
-              </div>
-
-              <div class="cylinder-card">
-                <div class="cylinder-card__inner" style="padding:0; background:#0d0d0d;">
-                  <img src="images/slot_3.webp" alt="Slot 03 - Desktop" class="cylinder-card__img cylinder-img-desktop" decoding="async" style="width: 100%; height: 100%; object-fit: cover;">
-                  <img src="images/mobile_slot_3.webp" alt="Slot 03 - Mobile" class="cylinder-card__img cylinder-img-mobile" decoding="async" style="width: 100%; height: 100%; object-fit: cover;">
-                </div>
-              </div>
-
-              <!-- Duplicate Set 2 for Seamless Gapless Infinite Looping -->
-              <div class="cylinder-card">
-                <div class="cylinder-card__inner" style="padding:0; background:#0d0d0d;">
-                  <img src="images/slot_1.webp" alt="Slot 01 - Desktop" class="cylinder-card__img cylinder-img-desktop" decoding="async" style="width: 100%; height: 100%; object-fit: cover;">
-                  <img src="images/mobile_slot_1.webp" alt="Slot 01 - Mobile" class="cylinder-card__img cylinder-img-mobile" decoding="async" style="width: 100%; height: 100%; object-fit: cover;">
-                </div>
-              </div>
-
-              <div class="cylinder-card">
-                <div class="cylinder-card__inner" style="padding:0; background:#0d0d0d;">
-                  <img src="images/slot_2.webp" alt="Slot 02 - Desktop" class="cylinder-card__img cylinder-img-desktop" decoding="async" style="width: 100%; height: 100%; object-fit: cover;">
-                  <img src="images/mobile_slot_2.webp" alt="Slot 02 - Mobile" class="cylinder-card__img cylinder-img-mobile" decoding="async" style="width: 100%; height: 100%; object-fit: cover;">
-                </div>
-              </div>
-
-              <div class="cylinder-card">
-                <div class="cylinder-card__inner" style="padding:0; background:#0d0d0d;">
-                  <img src="images/slot_3.webp" alt="Slot 03 - Desktop" class="cylinder-card__img cylinder-img-desktop" decoding="async" style="width: 100%; height: 100%; object-fit: cover;">
-                  <img src="images/mobile_slot_3.webp" alt="Slot 03 - Mobile" class="cylinder-card__img cylinder-img-mobile" decoding="async" style="width: 100%; height: 100%; object-fit: cover;">
-                </div>
-              </div>
-            </div>
+          <style>
+            .hero-video-mobile { display: none !important; }
+            @media (max-width: 768px) {
+              .hero-video-desktop { display: none !important; }
+              .hero-video-mobile { display: block !important; }
+            }
+          </style>
+          <div class="video-placeholder-stage" style="width: 100%; height: 100vh; position: relative; z-index: 6; overflow: hidden; pointer-events: none;">
+            <!-- Desktop Video -->
+            <video id="heroVideoDesktop" class="hero-video-desktop" autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: contain; background: #0d0d0d;">
+              <source src="videos/kairo_v1_laptop.webm" type="video/quicktime">
+              <source src="videos/kairo_v1_laptop.webm" type="video/mp4">
+            </video>
+            <!-- Mobile Video -->
+            <video id="heroVideoMobile" class="hero-video-mobile" autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: cover; background: #0d0d0d;">
+              <source src="videos/kairo_v1_mobile.webm" type="video/quicktime">
+              <source src="videos/kairo_v1_mobile.webm" type="video/mp4">
+            </video>
           </div>
         </div>
       </section>
@@ -147,367 +122,255 @@
 
         <!-- Horizontal Sliding Track Container -->
         <div class="carousel-track-container" id="carouselContainer">
-          <div class="carousel-track-move">          <a href="catalog.html?brand=Absolut%20Vodka" class="carousel-card">
+          <div class="carousel-track-move">          <a href="product.html?brand=Absolut%20Vodka" class="carousel-card">
             <div class="carousel-card__img-wrapper">
               <span class="arrivals-card__badge">SIPPER SINGLE / SETS</span>
-              <span class="arrivals-card__prices">&#8377;499+</span>
-              <img src="images/collections/Absolut%20Vodka%20Sipper%20Set%20of%202.webp" alt="ABSOLUT VODKA" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
+              <span class="arrivals-card__prices">&#8377;399+</span>
+              <img src="images/collections/v1_absolut_vodka.webp" alt="ABSOLUT VODKA" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
             </div>
             <div class="arrivals-card__info">
               <span class="arrivals-card__brand">ABSOLUT VODKA</span>
               <h3 class="arrivals-card__title">Brand Collection</h3>
               <div class="arrivals-card__meta">
-                <span class="arrivals-card__price-val">&#8377;499+</span>
+                <span class="arrivals-card__price-val">&#8377;399+</span>
                 <span>3 SKUs AVAILABLE</span>
               </div>
             </div>
-          </a>          <a href="catalog.html?brand=Bombay%20Sapphire" class="carousel-card">
+          </a>          <a href="product.html?brand=Bombay%20Sapphire" class="carousel-card">
             <div class="carousel-card__img-wrapper">
               <span class="arrivals-card__badge">SAPPHIRE GIN</span>
-              <span class="arrivals-card__prices">&#8377;599+</span>
+              <span class="arrivals-card__prices">&#8377;399+</span>
               <img src="images/collections/Bombay%20Sapphire%20Tray%20Single%20%2B%20Glass%20Set%20of%202.webp" alt="BOMBAY SAPPHIRE" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
             </div>
             <div class="arrivals-card__info">
               <span class="arrivals-card__brand">BOMBAY SAPPHIRE</span>
               <h3 class="arrivals-card__title">Brand Collection</h3>
               <div class="arrivals-card__meta">
-                <span class="arrivals-card__price-val">&#8377;599+</span>
+                <span class="arrivals-card__price-val">&#8377;399+</span>
                 <span>7 SKUs AVAILABLE</span>
               </div>
             </div>
-          </a>          <a href="catalog.html?brand=Grey%20Goose" class="carousel-card">
+          </a>          <a href="product.html?brand=Grey%20Goose" class="carousel-card">
             <div class="carousel-card__img-wrapper">
               <span class="arrivals-card__badge">FRENCH VODKA</span>
-              <span class="arrivals-card__prices">&#8377;599+</span>
-              <img src="images/collections/Grey%20Goose%20Glass%20Set%20of%204.webp" alt="GREY GOOSE" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
+              <span class="arrivals-card__prices">&#8377;399+</span>
+              <img src="images/collections/v1_grey_goose.webp" alt="GREY GOOSE" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
             </div>
             <div class="arrivals-card__info">
               <span class="arrivals-card__brand">GREY GOOSE</span>
               <h3 class="arrivals-card__title">Brand Collection</h3>
               <div class="arrivals-card__meta">
-                <span class="arrivals-card__price-val">&#8377;599+</span>
+                <span class="arrivals-card__price-val">&#8377;399+</span>
                 <span>3 SKUs AVAILABLE</span>
               </div>
             </div>
-          </a>          <a href="catalog.html?brand=Old%20Monk%20Face" class="carousel-card">
+          </a>          <a href="product.html?brand=Old%20Monk" class="carousel-card">
             <div class="carousel-card__img-wrapper">
               <span class="arrivals-card__badge">EMBOSSED GLASS</span>
-              <span class="arrivals-card__prices">&#8377;599+</span>
-              <img src="images/collections/Old%20Monk%20Glass%20Set%20of%204.webp" alt="OLD MONK" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
+              <span class="arrivals-card__prices">&#8377;399+</span>
+              <img src="images/collections/v1_old_monk.webp" alt="OLD MONK" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
             </div>
             <div class="arrivals-card__info">
               <span class="arrivals-card__brand">OLD MONK</span>
               <h3 class="arrivals-card__title">Brand Collection</h3>
               <div class="arrivals-card__meta">
-                <span class="arrivals-card__price-val">&#8377;599+</span>
+                <span class="arrivals-card__price-val">&#8377;399+</span>
                 <span>3 SKUs AVAILABLE</span>
               </div>
             </div>
-          </a>          <a href="catalog.html?brand=J%C3%A4germeister" class="carousel-card">
+          </a>          <a href="product.html?brand=Jagermeister" class="carousel-card">
             <div class="carousel-card__img-wrapper">
               <span class="arrivals-card__badge">HERBAL LIQUEUR</span>
-              <span class="arrivals-card__prices">&#8377;699+</span>
-              <img src="images/collections/Jagermeister_Collection.webp" alt="J&Auml;GERMEISTER" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
+              <span class="arrivals-card__prices">&#8377;549+</span>
+              <img src="images/collections/v1_jagermeister.webp" alt="JAGERMEISTER" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
             </div>
             <div class="arrivals-card__info">
-              <span class="arrivals-card__brand">J&Auml;GERMEISTER</span>
+              <span class="arrivals-card__brand">JAGERMEISTER</span>
               <h3 class="arrivals-card__title">Brand Collection</h3>
               <div class="arrivals-card__meta">
-                <span class="arrivals-card__price-val">&#8377;699+</span>
+                <span class="arrivals-card__price-val">&#8377;549+</span>
                 <span>6 SKUs AVAILABLE</span>
               </div>
             </div>
-          </a>          <a href="catalog.html?brand=Jack%20Daniel's" class="carousel-card">
+          </a>          <a href="product.html?brand=Jack%20Daniels" class="carousel-card">
             <div class="carousel-card__img-wrapper">
               <span class="arrivals-card__badge">TENNESSEE WHISKEY</span>
-              <span class="arrivals-card__prices">&#8377;799+</span>
-              <img src="images/collections/Jack%20Daniel's%20Tray%20Single.webp" alt="JACK DANIEL'S" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
+              <span class="arrivals-card__prices">&#8377;549+</span>
+              <img src="images/collections/Jack%20Daniels%20Tray%20Single.webp" alt="JACK DANIELS" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
             </div>
             <div class="arrivals-card__info">
-              <span class="arrivals-card__brand">JACK DANIEL'S</span>
+              <span class="arrivals-card__brand">JACK DANIELS</span>
               <h3 class="arrivals-card__title">Brand Collection</h3>
               <div class="arrivals-card__meta">
-                <span class="arrivals-card__price-val">&#8377;799+</span>
+                <span class="arrivals-card__price-val">&#8377;549+</span>
                 <span>2 SKUs AVAILABLE</span>
               </div>
             </div>
-          </a>          <a href="catalog.html?brand=Black%20Label" class="carousel-card">
-            <div class="carousel-card__img-wrapper">
-              <span class="arrivals-card__badge">SMOKED SCOTCH</span>
-              <span class="arrivals-card__prices">&#8377;649+</span>
-              <img src="images/collections/Black%20label%20Gold%20Label%20Tray%20Single%20%2B%20Glass%20Set%20of%204.webp" alt="BLACK LABEL" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
-            </div>
-            <div class="arrivals-card__info">
-              <span class="arrivals-card__brand">BLACK LABEL</span>
-              <h3 class="arrivals-card__title">Brand Collection</h3>
-              <div class="arrivals-card__meta">
-                <span class="arrivals-card__price-val">&#8377;649+</span>
-                <span>7 SKUs AVAILABLE</span>
-              </div>
-            </div>
-          </a>          <a href="catalog.html?brand=Blue%20Label" class="carousel-card">
-            <div class="carousel-card__img-wrapper">
-              <span class="arrivals-card__badge">RARE BLENDED</span>
-              <span class="arrivals-card__prices">&#8377;599+</span>
-              <img src="images/collections/Blue%20Label%20Tray%20Single%20%2B%20Glass%20Set%20of%204.webp" alt="BLUE LABEL" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
-            </div>
-            <div class="arrivals-card__info">
-              <span class="arrivals-card__brand">BLUE LABEL</span>
-              <h3 class="arrivals-card__title">Brand Collection</h3>
-              <div class="arrivals-card__meta">
-                <span class="arrivals-card__price-val">&#8377;599+</span>
-                <span>8 SKUs AVAILABLE</span>
-              </div>
-            </div>
-          </a>          <a href="catalog.html?brand=1800%20Tequila" class="carousel-card">
+          </a>          <a href="product.html?brand=1800%20Cristalino" class="carousel-card">
             <div class="carousel-card__img-wrapper">
               <span class="arrivals-card__badge">AGAVE TEQUILA</span>
-              <span class="arrivals-card__prices">&#8377;649+</span>
-              <img src="images/collections/1800%20Tequila%20Tray%20Single.webp" alt="1800 TEQUILA" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
-            </div>
-            <div class="arrivals-card__info">
-              <span class="arrivals-card__brand">1800 TEQUILA</span>
-              <h3 class="arrivals-card__title">Brand Collection</h3>
-              <div class="arrivals-card__meta">
-                <span class="arrivals-card__price-val">&#8377;649+</span>
-                <span>4 SKUs AVAILABLE</span>
-              </div>
-            </div>
-          </a>          <a href="catalog.html?brand=Don%20Julio%201942" class="carousel-card">
-            <div class="carousel-card__img-wrapper">
-              <span class="arrivals-card__badge">A&Ntilde;EJO TEQUILA</span>
               <span class="arrivals-card__prices">&#8377;599+</span>
-              <img src="images/collections/Don%20Julio%201942%20Glass%20Set%20of%202.webp" alt="DON JULIO 1942" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
+              <img src="images/collections/v1_1800_cristalino.webp" alt="1800 CRISTALINO" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
             </div>
             <div class="arrivals-card__info">
-              <span class="arrivals-card__brand">DON JULIO 1942</span>
+              <span class="arrivals-card__brand">1800 CRISTALINO</span>
               <h3 class="arrivals-card__title">Brand Collection</h3>
               <div class="arrivals-card__meta">
                 <span class="arrivals-card__price-val">&#8377;599+</span>
                 <span>4 SKUs AVAILABLE</span>
               </div>
             </div>
-          </a>          <a href="catalog.html?brand=Tanqueray" class="carousel-card">
+          </a>          <a href="product.html?brand=Tanqueray" class="carousel-card">
             <div class="carousel-card__img-wrapper">
               <span class="arrivals-card__badge">LONDON DRY GIN</span>
-              <span class="arrivals-card__prices">&#8377;499+</span>
+              <span class="arrivals-card__prices">&#8377;549+</span>
               <img src="images/collections/Tanqueray%20Container%20Single.webp" alt="TANQUERAY" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
             </div>
             <div class="arrivals-card__info">
               <span class="arrivals-card__brand">TANQUERAY</span>
               <h3 class="arrivals-card__title">Brand Collection</h3>
               <div class="arrivals-card__meta">
-                <span class="arrivals-card__price-val">&#8377;499+</span>
+                <span class="arrivals-card__price-val">&#8377;549+</span>
                 <span>2 SKUs AVAILABLE</span>
               </div>
             </div>
-          </a>          <a href="catalog.html?brand=Ciroc" class="carousel-card">
+          </a>          <a href="product.html?brand=Ciroc" class="carousel-card">
             <div class="carousel-card__img-wrapper">
               <span class="arrivals-card__badge">VODKA TUMBLERS</span>
-              <span class="arrivals-card__prices">&#8377;599+</span>
-              <img src="images/collections/Ciroc%20Glass%20Single.webp" alt="CIROC" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
+              <span class="arrivals-card__prices">&#8377;499+</span>
+              <img src="images/collections/v1_ciroc.webp" alt="CIROC" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
             </div>
             <div class="arrivals-card__info">
               <span class="arrivals-card__brand">CIROC</span>
               <h3 class="arrivals-card__title">Brand Collection</h3>
               <div class="arrivals-card__meta">
-                <span class="arrivals-card__price-val">&#8377;599+</span>
+                <span class="arrivals-card__price-val">&#8377;499+</span>
                 <span>4 SKUs AVAILABLE</span>
               </div>
             </div>
-          </a>          <a href="catalog.html?brand=Altius%20GG" class="carousel-card">
-            <div class="carousel-card__img-wrapper">
-              <span class="arrivals-card__badge">CRYSTAL HIGHBALLS</span>
-              <span class="arrivals-card__prices">&#8377;599+</span>
-              <img src="images/collections/Altius%20Grey%20Goose%20Glass%20Single.webp" alt="ALTIUS GG" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
-            </div>
-            <div class="arrivals-card__info">
-              <span class="arrivals-card__brand">ALTIUS GG</span>
-              <h3 class="arrivals-card__title">Brand Collection</h3>
-              <div class="arrivals-card__meta">
-                <span class="arrivals-card__price-val">&#8377;599+</span>
-                <span>4 SKUs AVAILABLE</span>
-              </div>
-            </div>
-          </a>          <a href="catalog.html?brand=Absolut%20Vodka" class="carousel-card">
+          </a>          <a href="product.html?brand=Absolut%20Vodka" class="carousel-card">
             <div class="carousel-card__img-wrapper">
               <span class="arrivals-card__badge">SIPPER SINGLE / SETS</span>
-              <span class="arrivals-card__prices">&#8377;499+</span>
-              <img src="images/collections/Absolut%20Vodka%20Sipper%20Set%20of%202.webp" alt="ABSOLUT VODKA" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
+              <span class="arrivals-card__prices">&#8377;399+</span>
+              <img src="images/collections/v1_absolut_vodka.webp" alt="ABSOLUT VODKA" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
             </div>
             <div class="arrivals-card__info">
               <span class="arrivals-card__brand">ABSOLUT VODKA</span>
               <h3 class="arrivals-card__title">Brand Collection</h3>
               <div class="arrivals-card__meta">
-                <span class="arrivals-card__price-val">&#8377;499+</span>
+                <span class="arrivals-card__price-val">&#8377;399+</span>
                 <span>3 SKUs AVAILABLE</span>
               </div>
             </div>
-          </a>          <a href="catalog.html?brand=Bombay%20Sapphire" class="carousel-card">
+          </a>          <a href="product.html?brand=Bombay%20Sapphire" class="carousel-card">
             <div class="carousel-card__img-wrapper">
               <span class="arrivals-card__badge">SAPPHIRE GIN</span>
-              <span class="arrivals-card__prices">&#8377;599+</span>
+              <span class="arrivals-card__prices">&#8377;399+</span>
               <img src="images/collections/Bombay%20Sapphire%20Tray%20Single%20%2B%20Glass%20Set%20of%202.webp" alt="BOMBAY SAPPHIRE" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
             </div>
             <div class="arrivals-card__info">
               <span class="arrivals-card__brand">BOMBAY SAPPHIRE</span>
               <h3 class="arrivals-card__title">Brand Collection</h3>
               <div class="arrivals-card__meta">
-                <span class="arrivals-card__price-val">&#8377;599+</span>
+                <span class="arrivals-card__price-val">&#8377;399+</span>
                 <span>7 SKUs AVAILABLE</span>
               </div>
             </div>
-          </a>          <a href="catalog.html?brand=Grey%20Goose" class="carousel-card">
+          </a>          <a href="product.html?brand=Grey%20Goose" class="carousel-card">
             <div class="carousel-card__img-wrapper">
               <span class="arrivals-card__badge">FRENCH VODKA</span>
-              <span class="arrivals-card__prices">&#8377;599+</span>
-              <img src="images/collections/Grey%20Goose%20Glass%20Set%20of%204.webp" alt="GREY GOOSE" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
+              <span class="arrivals-card__prices">&#8377;399+</span>
+              <img src="images/collections/v1_grey_goose.webp" alt="GREY GOOSE" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
             </div>
             <div class="arrivals-card__info">
               <span class="arrivals-card__brand">GREY GOOSE</span>
               <h3 class="arrivals-card__title">Brand Collection</h3>
               <div class="arrivals-card__meta">
-                <span class="arrivals-card__price-val">&#8377;599+</span>
+                <span class="arrivals-card__price-val">&#8377;399+</span>
                 <span>3 SKUs AVAILABLE</span>
               </div>
             </div>
-          </a>          <a href="catalog.html?brand=Old%20Monk%20Face" class="carousel-card">
+          </a>          <a href="product.html?brand=Old%20Monk" class="carousel-card">
             <div class="carousel-card__img-wrapper">
               <span class="arrivals-card__badge">EMBOSSED GLASS</span>
-              <span class="arrivals-card__prices">&#8377;599+</span>
-              <img src="images/collections/Old%20Monk%20Glass%20Set%20of%204.webp" alt="OLD MONK" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
+              <span class="arrivals-card__prices">&#8377;399+</span>
+              <img src="images/collections/v1_old_monk.webp" alt="OLD MONK" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
             </div>
             <div class="arrivals-card__info">
               <span class="arrivals-card__brand">OLD MONK</span>
               <h3 class="arrivals-card__title">Brand Collection</h3>
               <div class="arrivals-card__meta">
-                <span class="arrivals-card__price-val">&#8377;599+</span>
+                <span class="arrivals-card__price-val">&#8377;399+</span>
                 <span>3 SKUs AVAILABLE</span>
               </div>
             </div>
-          </a>          <a href="catalog.html?brand=J%C3%A4germeister" class="carousel-card">
+          </a>          <a href="product.html?brand=Jagermeister" class="carousel-card">
             <div class="carousel-card__img-wrapper">
               <span class="arrivals-card__badge">HERBAL LIQUEUR</span>
-              <span class="arrivals-card__prices">&#8377;699+</span>
-              <img src="images/collections/Jagermeister_Collection.webp" alt="J&Auml;GERMEISTER" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
+              <span class="arrivals-card__prices">&#8377;549+</span>
+              <img src="images/collections/v1_jagermeister.webp" alt="JAGERMEISTER" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
             </div>
             <div class="arrivals-card__info">
-              <span class="arrivals-card__brand">J&Auml;GERMEISTER</span>
+              <span class="arrivals-card__brand">JAGERMEISTER</span>
               <h3 class="arrivals-card__title">Brand Collection</h3>
               <div class="arrivals-card__meta">
-                <span class="arrivals-card__price-val">&#8377;699+</span>
+                <span class="arrivals-card__price-val">&#8377;549+</span>
                 <span>6 SKUs AVAILABLE</span>
               </div>
             </div>
-          </a>          <a href="catalog.html?brand=Jack%20Daniel's" class="carousel-card">
+          </a>          <a href="product.html?brand=Jack%20Daniels" class="carousel-card">
             <div class="carousel-card__img-wrapper">
               <span class="arrivals-card__badge">TENNESSEE WHISKEY</span>
-              <span class="arrivals-card__prices">&#8377;799+</span>
-              <img src="images/collections/Jack%20Daniel's%20Tray%20Single.webp" alt="JACK DANIEL'S" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
+              <span class="arrivals-card__prices">&#8377;549+</span>
+              <img src="images/collections/Jack%20Daniels%20Tray%20Single.webp" alt="JACK DANIELS" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
             </div>
             <div class="arrivals-card__info">
-              <span class="arrivals-card__brand">JACK DANIEL'S</span>
+              <span class="arrivals-card__brand">JACK DANIELS</span>
               <h3 class="arrivals-card__title">Brand Collection</h3>
               <div class="arrivals-card__meta">
-                <span class="arrivals-card__price-val">&#8377;799+</span>
+                <span class="arrivals-card__price-val">&#8377;549+</span>
                 <span>2 SKUs AVAILABLE</span>
               </div>
             </div>
-          </a>          <a href="catalog.html?brand=Black%20Label" class="carousel-card">
-            <div class="carousel-card__img-wrapper">
-              <span class="arrivals-card__badge">SMOKED SCOTCH</span>
-              <span class="arrivals-card__prices">&#8377;649+</span>
-              <img src="images/collections/Black%20label%20Gold%20Label%20Tray%20Single%20%2B%20Glass%20Set%20of%204.webp" alt="BLACK LABEL" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
-            </div>
-            <div class="arrivals-card__info">
-              <span class="arrivals-card__brand">BLACK LABEL</span>
-              <h3 class="arrivals-card__title">Brand Collection</h3>
-              <div class="arrivals-card__meta">
-                <span class="arrivals-card__price-val">&#8377;649+</span>
-                <span>7 SKUs AVAILABLE</span>
-              </div>
-            </div>
-          </a>          <a href="catalog.html?brand=Blue%20Label" class="carousel-card">
-            <div class="carousel-card__img-wrapper">
-              <span class="arrivals-card__badge">RARE BLENDED</span>
-              <span class="arrivals-card__prices">&#8377;599+</span>
-              <img src="images/collections/Blue%20Label%20Tray%20Single%20%2B%20Glass%20Set%20of%204.webp" alt="BLUE LABEL" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
-            </div>
-            <div class="arrivals-card__info">
-              <span class="arrivals-card__brand">BLUE LABEL</span>
-              <h3 class="arrivals-card__title">Brand Collection</h3>
-              <div class="arrivals-card__meta">
-                <span class="arrivals-card__price-val">&#8377;599+</span>
-                <span>8 SKUs AVAILABLE</span>
-              </div>
-            </div>
-          </a>          <a href="catalog.html?brand=1800%20Tequila" class="carousel-card">
+          </a>          <a href="product.html?brand=1800%20Cristalino" class="carousel-card">
             <div class="carousel-card__img-wrapper">
               <span class="arrivals-card__badge">AGAVE TEQUILA</span>
-              <span class="arrivals-card__prices">&#8377;649+</span>
-              <img src="images/collections/1800%20Tequila%20Tray%20Single.webp" alt="1800 TEQUILA" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
-            </div>
-            <div class="arrivals-card__info">
-              <span class="arrivals-card__brand">1800 TEQUILA</span>
-              <h3 class="arrivals-card__title">Brand Collection</h3>
-              <div class="arrivals-card__meta">
-                <span class="arrivals-card__price-val">&#8377;649+</span>
-                <span>4 SKUs AVAILABLE</span>
-              </div>
-            </div>
-          </a>          <a href="catalog.html?brand=Don%20Julio%201942" class="carousel-card">
-            <div class="carousel-card__img-wrapper">
-              <span class="arrivals-card__badge">A&Ntilde;EJO TEQUILA</span>
               <span class="arrivals-card__prices">&#8377;599+</span>
-              <img src="images/collections/Don%20Julio%201942%20Glass%20Set%20of%202.webp" alt="DON JULIO 1942" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
+              <img src="images/collections/v1_1800_cristalino.webp" alt="1800 CRISTALINO" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
             </div>
             <div class="arrivals-card__info">
-              <span class="arrivals-card__brand">DON JULIO 1942</span>
+              <span class="arrivals-card__brand">1800 CRISTALINO</span>
               <h3 class="arrivals-card__title">Brand Collection</h3>
               <div class="arrivals-card__meta">
                 <span class="arrivals-card__price-val">&#8377;599+</span>
                 <span>4 SKUs AVAILABLE</span>
               </div>
             </div>
-          </a>          <a href="catalog.html?brand=Tanqueray" class="carousel-card">
+          </a>          <a href="product.html?brand=Tanqueray" class="carousel-card">
             <div class="carousel-card__img-wrapper">
               <span class="arrivals-card__badge">LONDON DRY GIN</span>
-              <span class="arrivals-card__prices">&#8377;499+</span>
+              <span class="arrivals-card__prices">&#8377;549+</span>
               <img src="images/collections/Tanqueray%20Container%20Single.webp" alt="TANQUERAY" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
             </div>
             <div class="arrivals-card__info">
               <span class="arrivals-card__brand">TANQUERAY</span>
               <h3 class="arrivals-card__title">Brand Collection</h3>
               <div class="arrivals-card__meta">
-                <span class="arrivals-card__price-val">&#8377;499+</span>
+                <span class="arrivals-card__price-val">&#8377;549+</span>
                 <span>2 SKUs AVAILABLE</span>
               </div>
             </div>
-          </a>          <a href="catalog.html?brand=Ciroc" class="carousel-card">
+          </a>          <a href="product.html?brand=Ciroc" class="carousel-card">
             <div class="carousel-card__img-wrapper">
               <span class="arrivals-card__badge">VODKA TUMBLERS</span>
-              <span class="arrivals-card__prices">&#8377;599+</span>
-              <img src="images/collections/Ciroc%20Glass%20Single.webp" alt="CIROC" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
+              <span class="arrivals-card__prices">&#8377;499+</span>
+              <img src="images/collections/v1_ciroc.webp" alt="CIROC" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
             </div>
             <div class="arrivals-card__info">
               <span class="arrivals-card__brand">CIROC</span>
               <h3 class="arrivals-card__title">Brand Collection</h3>
               <div class="arrivals-card__meta">
-                <span class="arrivals-card__price-val">&#8377;599+</span>
-                <span>4 SKUs AVAILABLE</span>
-              </div>
-            </div>
-          </a>          <a href="catalog.html?brand=Altius%20GG" class="carousel-card">
-            <div class="carousel-card__img-wrapper">
-              <span class="arrivals-card__badge">CRYSTAL HIGHBALLS</span>
-              <span class="arrivals-card__prices">&#8377;599+</span>
-              <img src="images/collections/Altius%20Grey%20Goose%20Glass%20Single.webp" alt="ALTIUS GG" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
-            </div>
-            <div class="arrivals-card__info">
-              <span class="arrivals-card__brand">ALTIUS GG</span>
-              <h3 class="arrivals-card__title">Brand Collection</h3>
-              <div class="arrivals-card__meta">
-                <span class="arrivals-card__price-val">&#8377;599+</span>
+                <span class="arrivals-card__price-val">&#8377;499+</span>
                 <span>4 SKUs AVAILABLE</span>
               </div>
             </div>
@@ -520,8 +383,8 @@
     <section class="ticker-section reveal-section">
       <div class="ticker-wrap">
         <div class="ticker-move">
-          <div class="ticker-item">ABSOLUT VODKA - BOMBAY SAPPHIRE - GREY GOOSE - TANQUERAY - J&Auml;GERMEISTER - JACK DANIEL'S - JOHNNIE WALKER - 1800 TEQUILA - DON JULIO 1942 - CIROC - OLD MONK -</div>
-          <div class="ticker-item">ABSOLUT VODKA - BOMBAY SAPPHIRE - GREY GOOSE - TANQUERAY - J&Auml;GERMEISTER - JACK DANIEL'S - JOHNNIE WALKER - 1800 TEQUILA - DON JULIO 1942 - CIROC - OLD MONK -</div>
+          <div class="ticker-item">ABSOLUT VODKA - BOMBAY SAPPHIRE - GREY GOOSE - TANQUERAY - JAGERMEISTER - JACK DANIELS - 1800 CRISTALINO - CIROC - OLD MONK - </div>
+          <div class="ticker-item">ABSOLUT VODKA - BOMBAY SAPPHIRE - GREY GOOSE - TANQUERAY - JAGERMEISTER - JACK DANIELS - 1800 CRISTALINO - CIROC - OLD MONK - </div>
         </div>
       </div>
     </section>
@@ -564,10 +427,11 @@
         <a href="catalog.html?form=Platters" class="categories-card">
           <span class="categories-card__count">[ 03 / 16 PRODUCTS ]</span>
           <div style="width: 100%; height: 22rem; margin: 1.6rem 0; overflow: hidden; border-radius: 0.4rem; position: relative; background: var(--Placeholder-Bg-1);">
-            <img src="images/categories/Tray%20Collection.webp" alt="ARTISANAL PLATTERS &amp; COMBOS" class="arrivals-card__img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
+            <img src="images/categories/Tray%20Collection.webp" alt="ARTISANAL PLATTERS" class="arrivals-card__img desktop-platter-img" style="width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1 / 1; display: block;">
+            <img src="images/categories/Tray_Collection_Mobile.webp" alt="ARTISANAL PLATTERS" class="arrivals-card__img mobile-platter-img" style="width: 100%; height: 100%; object-fit: cover; display: none;">
           </div>
           <div>
-            <h3 class="categories-card__title">ARTISANAL PLATTERS &amp; COMBOS</h3>
+            <h3 class="categories-card__title">ARTISANAL PLATTERS</h3>
             <span class="placeholder-badge" style="margin-top:1rem; display:inline-block;">[ EXPLORE FORM ]</span>
           </div>
         </a>
@@ -656,15 +520,15 @@
   <!-- Side-Sliding Navigation Menu Drawer -->
   <div class="menu-drawer" id="menuDrawer">
     <div class="menu-drawer__top">
-      <span class="mono-text" style="color:var(--Red-Main);">[ KAIRO STUDIO NAV ]</span>
-      <button class="close-btn" id="closeNavBtn">[ CLOSE X ]</button>
+      <span class="mono-text" style="color:var(--Red-Main);"><span class="desktop-text">[ </span>KAIRO STUDIO NAV<span class="desktop-text"> ]</span></span>
+      <button class="close-btn" id="closeNavBtn" style="display:flex; align-items:center;"><span class="desktop-text">[ CLOSE X ]</span><svg class="icon-mobile" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>
     </div>
 
     <div class="menu-drawer__content">
       <!-- Catalog Accordion Category (Closed by Default) -->
       <div class="nav-accordion-item" id="navCatalogAccordion">
         <div class="nav-accordion-header">
-          <span class="nav-link-main">[ 01 ] CATALOG</span>
+          <span class="nav-link-main"><span class="desktop-text">[ </span>01<span class="desktop-text"> ]</span> CATALOG</span>
           <span class="nav-accordion-icon">+</span>
         </div>
 
@@ -692,19 +556,15 @@
           <div class="nav-sub-col">
             <span class="nav-sub-title">[ SHOP BY BRAND ORIGIN ]</span>
             <ul class="nav-sub-list">
-              <li><a href="catalog.html?origin=Absolut%20Vodka">Absolut Vodka</a></li>
-              <li><a href="catalog.html?origin=Bombay%20Sapphire">Bombay Sapphire</a></li>
-              <li><a href="catalog.html?origin=Grey%20Goose">Grey Goose</a></li>
-              <li><a href="catalog.html?origin=Old%20Monk">Old Monk</a></li>
-              <li><a href="catalog.html?origin=J%C3%A4germeister">J&auml;germeister</a></li>
-              <li><a href="catalog.html?origin=Jack%20Daniel's">Jack Daniel's</a></li>
-              <li><a href="catalog.html?origin=Tanqueray">Tanqueray</a></li>
-              <li><a href="catalog.html?origin=Black%20Label">Black Label</a></li>
-              <li><a href="catalog.html?origin=Ciroc">Ciroc</a></li>
-              <li><a href="catalog.html?origin=1800%20Tequila">1800 Tequila</a></li>
-              <li><a href="catalog.html?origin=Blue%20Label">Blue Label</a></li>
-              <li><a href="catalog.html?origin=Don%20Julio%201942">Don Julio 1942</a></li>
-              <li><a href="catalog.html?origin=Altius%20GG">Altius GG</a></li>
+              <li><a href="product.html?brand=Absolut%20Vodka">Absolut Vodka</a></li>
+              <li><a href="product.html?brand=Bombay%20Sapphire">Bombay Sapphire</a></li>
+              <li><a href="product.html?brand=Grey%20Goose">Grey Goose</a></li>
+              <li><a href="product.html?brand=Old%20Monk">Old Monk</a></li>
+              <li><a href="product.html?brand=Jagermeister">Jagermeister</a></li>
+              <li><a href="product.html?brand=Jack%20Daniels">Jack Daniels</a></li>
+              <li><a href="product.html?brand=Tanqueray">Tanqueray</a></li>
+              <li><a href="product.html?brand=Ciroc">Ciroc</a></li>
+              <li><a href="product.html?brand=1800%20Cristalino">1800 Cristalino</a></li>
             </ul>
           </div>
         </div>
@@ -712,17 +572,17 @@
 
       <!-- Item 02: BYOB -->
       <div class="nav-accordion-item">
-        <a href="byob.html" class="nav-link-main" id="navByobBtn">[ 02 ] BYOB</a>
+        <a href="byob.html" class="nav-link-main" id="navByobBtn"><span class="desktop-text">[ </span>02<span class="desktop-text"> ]</span> BYOB</a>
       </div>
 
       <!-- Item 03: Customized -->
       <div class="nav-accordion-item">
-        <a href="customized.html" class="nav-link-main" id="navCustomizedBtn">[ 03 ] CUSTOMIZED</a>
+        <a href="customized.html" class="nav-link-main" id="navCustomizedBtn"><span class="desktop-text">[ </span>03<span class="desktop-text"> ]</span> CUSTOMIZED</a>
       </div>
 
       <!-- Item 04: Contact Us -->
       <div class="nav-accordion-item">
-        <a href="index.html#footer" class="nav-link-main" id="navContactBtn">[ 04 ] CONTACT US</a>
+        <a href="index.html#footer" class="nav-link-main" id="navContactBtn"><span class="desktop-text">[ </span>04<span class="desktop-text"> ]</span> CONTACT US</a>
       </div>
     </div>
   </div>

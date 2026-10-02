@@ -14,6 +14,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
   <title>Customized Commissions &mdash; KAIRO Glassware Studio</title>
   <meta name="description" content="Request specific spirit brands and custom vessel forms handcrafted by Kairo Studio.">
+  <meta name="robots" content="index, follow">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="KAIRO Upcycled Glassware Studio">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
@@ -45,7 +48,8 @@
     <ul class="header__list header__list--left">
       <li>
         <button id="menuBtn" hover-link>
-          <span>[ Menu ]</span>
+          <span class="desktop-text">[ Menu ]</span>
+          <svg class="icon-mobile icon-menu" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
         </button>
       </li>
     </ul>
@@ -57,12 +61,16 @@
     <ul class="header__list header__list--right">
       <li>
         <button id="searchBtn" hover-link>
-          <span>[ Search ]</span>
+          <span class="desktop-text">[ Search ]</span>
+          <svg class="icon-mobile icon-search" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
         </button>
       </li>
       <li>
-        <button id="cartBtn" hover-link>
-          <span>[ Bag.<span id="cartCount">0</span> ]</span>
+        <button id="cartBtn" hover-link style="position:relative; display:flex; align-items:center;">
+          <span class="desktop-text">[ Bag.</span>
+          <svg class="icon-mobile icon-bag" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+          <span id="cartCount" class="cart-count-badge">0</span>
+          <span class="desktop-text"> ]</span>
         </button>
       </li>
     </ul>
@@ -257,15 +265,15 @@
   <!-- Side-Sliding Navigation Menu Drawer -->
   <div class="menu-drawer" id="menuDrawer">
     <div class="menu-drawer__top">
-      <span class="mono-text" style="color:var(--Red-Main);">[ KAIRO STUDIO NAV ]</span>
-      <button class="close-btn" id="closeNavBtn">[ CLOSE X ]</button>
+      <span class="mono-text" style="color:var(--Red-Main);"><span class="desktop-text">[ </span>KAIRO STUDIO NAV<span class="desktop-text"> ]</span></span>
+      <button class="close-btn" id="closeNavBtn" style="display:flex; align-items:center;"><span class="desktop-text">[ CLOSE X ]</span><svg class="icon-mobile" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>
     </div>
 
     <div class="menu-drawer__content">
       <!-- Catalog Accordion Category (Closed by Default) -->
       <div class="nav-accordion-item" id="navCatalogAccordion">
         <div class="nav-accordion-header">
-          <span class="nav-link-main">[ 01 ] CATALOG</span>
+          <span class="nav-link-main"><span class="desktop-text">[ </span>01<span class="desktop-text"> ]</span> CATALOG</span>
           <span class="nav-accordion-icon">+</span>
         </div>
 
@@ -291,19 +299,15 @@
           <div class="nav-sub-col">
             <span class="nav-sub-title">[ SHOP BY BRAND ORIGIN ]</span>
             <ul class="nav-sub-list">
-              <li><a href="catalog.html?origin=Absolut%20Vodka">Absolut Vodka</a></li>
-              <li><a href="catalog.html?origin=Bombay%20Sapphire">Bombay Sapphire</a></li>
-              <li><a href="catalog.html?origin=Grey%20Goose">Grey Goose</a></li>
-              <li><a href="catalog.html?origin=Old%20Monk">Old Monk</a></li>
-              <li><a href="catalog.html?origin=J%C3%A4germeister">J&auml;germeister</a></li>
-              <li><a href="catalog.html?origin=Jack%20Daniel's">Jack Daniel's</a></li>
-              <li><a href="catalog.html?origin=Tanqueray">Tanqueray</a></li>
-              <li><a href="catalog.html?origin=Black%20Label">Black Label</a></li>
-              <li><a href="catalog.html?origin=Ciroc">Ciroc</a></li>
-              <li><a href="catalog.html?origin=1800%20Tequila">1800 Tequila</a></li>
-              <li><a href="catalog.html?origin=Blue%20Label">Blue Label</a></li>
-              <li><a href="catalog.html?origin=Don%20Julio%201942">Don Julio 1942</a></li>
-              <li><a href="catalog.html?origin=Altius%20GG">Altius GG</a></li>
+              <li><a href="product.html?brand=Absolut%20Vodka">Absolut Vodka</a></li>
+              <li><a href="product.html?brand=Bombay%20Sapphire">Bombay Sapphire</a></li>
+              <li><a href="product.html?brand=Grey%20Goose">Grey Goose</a></li>
+              <li><a href="product.html?brand=Old%20Monk">Old Monk</a></li>
+              <li><a href="product.html?brand=J%C3%A4germeister">J&auml;germeister</a></li>
+              <li><a href="product.html?brand=Jack%20Daniel's">Jack Daniel's</a></li>
+              <li><a href="product.html?brand=Tanqueray">Tanqueray</a></li>
+              <li><a href="product.html?brand=Ciroc">Ciroc</a></li>
+              <li><a href="product.html?brand=1800%20Tequila">1800 Tequila</a></li>
             </ul>
           </div>
         </div>
@@ -311,17 +315,17 @@
 
       <!-- Item 02: BYOB -->
       <div class="nav-accordion-item">
-        <a href="byob.html" class="nav-link-main" id="navByobBtn">[ 02 ] BYOB</a>
+        <a href="byob.html" class="nav-link-main" id="navByobBtn"><span class="desktop-text">[ </span>02<span class="desktop-text"> ]</span> BYOB</a>
       </div>
 
       <!-- Item 03: Customized -->
       <div class="nav-accordion-item">
-        <a href="customized.html" class="nav-link-main" id="navCustomizedBtn">[ 03 ] CUSTOMIZED</a>
+        <a href="customized.html" class="nav-link-main" id="navCustomizedBtn"><span class="desktop-text">[ </span>03<span class="desktop-text"> ]</span> CUSTOMIZED</a>
       </div>
 
       <!-- Item 04: Contact Us -->
       <div class="nav-accordion-item">
-        <a href="index.html#footer" class="nav-link-main" id="navContactBtn">[ 04 ] CONTACT US</a>
+        <a href="index.html#footer" class="nav-link-main" id="navContactBtn"><span class="desktop-text">[ </span>04<span class="desktop-text"> ]</span> CONTACT US</a>
       </div>
     </div>
   </div>

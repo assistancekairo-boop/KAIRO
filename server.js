@@ -18,7 +18,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(__dirname, {
   maxAge: '1d',
   setHeaders: (res, filepath) => {
-    if (filepath.endsWith('.webp') || filepath.endsWith('.jpg') || filepath.endsWith('.png') || filepath.endsWith('.woff2')) {
+    if (filepath.endsWith('.webp') || filepath.endsWith('.webm') || filepath.endsWith('.woff2')) {
       res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
     } else if (filepath.endsWith('.css') || filepath.endsWith('.js')) {
       res.setHeader('Cache-Control', 'public, max-age=86400');
