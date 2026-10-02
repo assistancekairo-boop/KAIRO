@@ -253,3 +253,9 @@
     padding-left: 0 !important;
   }
 }
+
+@media (max-width: 768px) {
+  .categories-card > div:nth-child(3) {
+    display: none !important;
+  }
+}
