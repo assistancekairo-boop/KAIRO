@@ -259,3 +259,29 @@
     display: none !important;
   }
 }
+
+/* Local Trial: Hide all text from Vessel Form Categories Grid globally */
+.categories-card__count,
+.categories-card > div:last-child {
+  display: none !important;
+}
+
+/* Global hide for Triyo Grid Text */
+.categories-card__count,
+.categories-card__title,
+.placeholder-badge,
+.categories-card > div:nth-child(3),
+.categories-card > div:last-child {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+.categories-card {
+  justify-content: center !important;
+  padding: 0 !important;
+}
+.categories-card > div:nth-child(2) {
+  margin: 0 !important;
+  height: 100% !important;
+  border-radius: 0.4rem !important;
+}
