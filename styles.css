@@ -192,3 +192,49 @@
 @media (max-width: 768px) { .variants-table-container { aspect-ratio: 1/1 !important; overflow-y: auto !important; display: block !important; } .variants-table { min-width: 0 !important; width: 100% !important; table-layout: auto !important; } .variants-table th, .variants-table td { font-size: inherit !important; font-family: inherit !important; text-transform: none !important; letter-spacing: normal !important; padding: 0.4rem 0 !important; border-bottom: 1px solid var(--Red-1) !important; } .variants-table th { font-weight: 700 !important; font-size: 1rem !important; } .variants-table td { font-size: 1rem !important; } .variants-table th:nth-child(1), .variants-table td:nth-child(1) { width: 1% !important; white-space: normal !important; padding-right: 0.8rem !important; } .variants-table th:nth-child(2), .variants-table td:nth-child(2) { width: auto !important; padding-left: 0 !important; text-align: left !important; } }
 @media (max-width: 768px) { .variants-table-container { aspect-ratio: 1/1 !important; overflow-y: auto !important; display: block !important; } .variants-table { min-width: 0 !important; width: max-content !important; max-width: 100% !important; table-layout: auto !important; height: fit-content !important; } .variants-table th, .variants-table td { font-size: inherit !important; font-family: inherit !important; text-transform: none !important; letter-spacing: normal !important; padding: 0.4rem 0.6rem !important; padding-left: 0 !important; border-bottom: 1px solid var(--Red-1) !important; } .variants-table th { font-weight: 700 !important; font-size: 1rem !important; } .variants-table td { font-size: 1rem !important; } .variants-table th:nth-child(1), .variants-table td:nth-child(1) { width: auto !important; padding-right: 1.2rem !important; } .variants-table th:nth-child(2), .variants-table td:nth-child(2) { width: auto !important; padding-left: 0 !important; text-align: left !important; } }
 @media (max-width: 768px) { .variants-table-container { aspect-ratio: 1/1 !important; overflow-y: auto !important; display: flex !important; justify-content: flex-start !important; } .variants-table { min-width: 0 !important; width: max-content !important; max-width: 100% !important; table-layout: auto !important; height: fit-content !important; } .variants-table th, .variants-table td { font-size: 1.2rem !important; font-family: inherit !important; text-transform: none !important; letter-spacing: normal !important; padding: 0.4rem 0.6rem !important; padding-left: 0 !important; border-bottom: 1px solid var(--Red-1) !important; font-weight: 400 !important; } .variants-table th:nth-child(1), .variants-table td:nth-child(1) { width: auto !important; padding-right: 1.2rem !important; } .variants-table th:nth-child(2), .variants-table td:nth-child(2) { width: auto !important; padding-left: 0 !important; text-align: left !important; } .pdp-info-col > div:nth-of-type(3) > div:first-child { font-size: 1.2rem !important; } #calculatedPriceDisplay { font-size: 1.2rem !important; } #btnMinus, #btnPlus, #qtyVal, #btnAddToCart, #btnBuyNow, .pdp-disclaimer-p { font-size: 1.2rem !important; } }
+@media (max-width: 768px) {
+  .pdp-grid {
+    grid-template-areas:
+      "title title"
+      "spec spec"
+      "image price"
+      "image qty"
+      "table table"
+      "cart buy"
+      "disclaimer disclaimer" !important;
+    gap: 0.8rem 1rem !important;
+  }
+  
+  .variants-table-container {
+    aspect-ratio: auto !important;
+    overflow-y: visible !important;
+    height: auto !important;
+    margin-top: 1rem !important;
+    margin-bottom: 1rem !important;
+  }
+  
+  .variants-table {
+    width: 100% !important;
+    max-width: none !important;
+  }
+  
+  .variants-table th:nth-child(1), .variants-table td:nth-child(1) {
+    width: auto !important;
+    padding-right: 2rem !important;
+  }
+  
+  .variants-table th:nth-child(2), .variants-table td:nth-child(2) {
+    width: 100% !important;
+    text-align: left !important;
+  }
+  
+  .pdp-info-col > div:nth-of-type(3) {
+    align-self: end !important;
+    padding-bottom: 0.4rem !important;
+  }
+  
+  .pdp-qty-box {
+    align-self: start !important;
+    margin-top: 0.4rem !important;
+  }
+}
